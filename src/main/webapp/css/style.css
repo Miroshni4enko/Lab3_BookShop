@@ -1,0 +1,68 @@
+*{
+    margin:0 auto; /*Устанавливает величину отступа от каждого края элемента.
+   Отступом является пространство от границы текущего элемента до внутренней
+   границы его родительского элемент*/
+    padding:0 auto; /* Устанавливает значение полей вокруг содержимого элемента.
+   Полем называется расстояние от внутреннего края рамки элемента до воображаемого
+   прямоугольника, ограничивающего его содержимое*/
+    outline:none; /*Универсальное свойство, одновременно устанавливающее цвет, стиль и толщину внешней
+   границы на всех четырех сторонах элемента. В отличие от линии, задаваемой через border, свойство
+   outline не влияет на положение блока и его ширину.*/
+}
+html{
+   /* navbutton_background_color: #3ca0ff;*/
+    background-size: 100%;
+    background: #1a4fff fixed;
+}
+body{
+    width:900px;
+}
+.head{
+    border:3px solid #00FA9A;  /* Универсальное свойство border позволяет одновременно установить
+   толщину, стиль и цвет границы вокруг элемента
+   background:url(head.jpg) no-repeat ;*/
+    background-size: 100%;
+    background-color: aquamarine;
+}
+.headText {
+    color: #ff5654;
+    font-size: 40pt;
+    font-family: Comic Sans MS;
+    text-shadow: 10px 10px 20px #eea760, 0 0 1em #eecf90; /*Добавляет тень к тексту, а также устанавливает её параметры:*/
+}
+.menu{
+    background:#00CD66;
+    margin:10px 0px;
+    text-align:center;
+    font-size:18px;
+    font-weight:bold; /*Текст жирный*/
+    padding:6px 0px 9px 0px;
+}
+.menu a{
+    color:#fff;
+    margin:0px 6px;
+}
+.menu a:hover{
+    color:#FF0000;
+}
+.content{
+    background:#fff;
+    margin:10px 0px;
+    padding:15px 15px 15px 15px;
+    text-align: justify;
+}
+.book{
+    border:3px solid #fa8c30;
+}
+p {
+    text-indent: 25px;
+}
+BLOCKQUOTE {
+    font-size: 11pt;
+    margin: 5px 0px 5px 400px;
+    font-family: fantasy;
+    color: #008B8B;
+}
+BLOCKQUOTE p {
+    color: #228B22;
+}
