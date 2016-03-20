@@ -10,12 +10,12 @@
    outline не влияет на положение блока и его ширину.*/
 }
 html{
-   /* navbutton_background_color: #3ca0ff;*/
+    navbutton_background_color: #3ca0ff;
     background-size: 100%;
     background: #1a4fff fixed;
 }
 body{
-    width:900px;
+    width:100%;
 }
 .head{
     border:3px solid #00FA9A;  /* Универсальное свойство border позволяет одновременно установить
@@ -27,16 +27,15 @@ body{
 .headText {
     color: #ff5654;
     font-size: 40pt;
-    font-family: Comic Sans MS;
+    font-family: Comic Sans MS, serif;
     text-shadow: 10px 10px 20px #eea760, 0 0 1em #eecf90; /*Добавляет тень к тексту, а также устанавливает её параметры:*/
 }
 .menu{
     background:#00CD66;
     margin:10px 0px;
-    text-align:center;
     font-size:18px;
     font-weight:bold; /*Текст жирный*/
-    padding:6px 0px 9px 0px;
+    padding:6px 0px 30px 0px;
 }
 .menu a{
     color:#fff;
@@ -46,6 +45,12 @@ body{
     color:#FF0000;
 }
 .content{
+    position: absolute;
+    overflow: auto;
+    top: 140px;
+    left: 170px;
+    bottom: 30px; right: 0;
+    width: 80%;
     background:#fff;
     margin:10px 0px;
     padding:15px 15px 15px 15px;
@@ -54,15 +59,31 @@ body{
 .book{
     border:3px solid #fa8c30;
 }
+.sidebar {
+    position: absolute;
+    overflow: auto;
+    width: 150px;
+    top: 140px;
+    bottom: 30px;
+    border:3px solid #00FA9A;
+}
+
+.leftstr, .rightstr {
+    float: left; /* Обтекание справа */
+    width: 50%; /* Ширина текстового блока */
+}
+.rightstr {
+    text-align: right; /* Выравнивание по правому краю */
+}
+
 p {
     text-indent: 25px;
 }
-BLOCKQUOTE {
-    font-size: 11pt;
-    margin: 5px 0px 5px 400px;
-    font-family: fantasy;
-    color: #008B8B;
+.footer{
+    position: absolute;
+    height: 30px;
+    bottom: 0%;
+    width: 100%;
+    text-align: center;
 }
-BLOCKQUOTE p {
-    color: #228B22;
-}
+
