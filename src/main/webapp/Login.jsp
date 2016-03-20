@@ -1,10 +1,8 @@
 <%--
-  Created by IntelliJ IDEA.
-  User: Слава
-  Date: 20.03.2016
-  Time: 17:15
-  To change this template use File | Settings | File Templates.
+    Document   : Login
+    Author     : Slava, Sasha
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <HTML>
 <HEAD>
