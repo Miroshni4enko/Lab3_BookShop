@@ -1,3 +1,8 @@
+<%--
+    Document   : index
+    Author     : Sasha
+--%>
+
 <html>
 <head>
     <title>Main</title>
@@ -10,6 +15,8 @@
 <body>
     <jsp:include page="Head.jsp" />
     <jsp:include page="Menu.jsp" />
+    <jsp:include page="Sidebar.jsp" />
     <jsp:include page="ListBooks.jsp" />
+    <jsp:include page="Footer.jsp" />
 </body>
 </html>
