@@ -20,14 +20,19 @@
 <table border="2" cellspacing="1" cellpadding="15" align="center" class="login">
     <tr>
         <td>
-            <FORM NAME="login" ACTION="/Servlet?">
-                <hr>
-                Name:<BR>
+            <FORM NAME="login" method="get" ACTION="/Servlet?">
+                <hr size="3">
+                Name:
+                <BR>
                 <INPUT TYPE="text" NAME="username" VALUE="" SIZE="17" MAXLENGTH="60">
-                <hr>
-                Password:<BR>
+                <BR>
+                <hr size="3">
+                <BR>
+                Password:
+                <BR>
                 <INPUT TYPE="password" SIZE="17" NAME="password">
-                <hr>
+                <BR>
+                <hr size="3">
                     <INPUT TYPE="submit" VALUE=" Enter ">
                     <INPUT TYPE="reset" name="" value="  Clean  ">
             </FORM>

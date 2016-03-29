@@ -12,7 +12,7 @@
     <p class="rightstr">
         <a href="index.jsp"><%
             if (true) {%>
-                entry
+                <a href="Login.jsp">Entry</a>
             <%} else {%>
                 exit
             <%}%>
