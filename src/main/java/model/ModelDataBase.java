@@ -1,7 +1,9 @@
 package model;
 
+import exception.DataBaseException;
+
 import java.sql.Connection;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Interface that describes the communication with the database.
@@ -12,56 +14,40 @@ import java.util.ArrayList;
 public interface ModelDataBase {
 
     Connection getConnection();
+    // boolean isConnection();
 
-    boolean isConnection();
+    void updateBook(Book book)throws DataBaseException;
+    void updateAuthor(Author author)throws DataBaseException;
+    void updateOrder(Order order)throws DataBaseException;
+    void updateCustomer(Customer customer)throws DataBaseException;
+    void updateRubric(Item rubric) throws DataBaseException;
+    void updateSection(Item section) throws DataBaseException;
 
-    void updateBook(Book book);
+    Customer createCustomer(Customer customer)throws DataBaseException;
+    Order createOrder(Order order)throws DataBaseException;
+    Book createBook(Book book)throws DataBaseException;
+    Author createAuthor(Author author)throws DataBaseException;
+    Item createRubric(Item rubric) throws DataBaseException;
+    Item createSection(Item section) throws DataBaseException;
 
-    void updateAuthor(Author author);
+    void removeBook(int bookId)throws DataBaseException;
+    void removeAuthor(int authorId)throws DataBaseException;
+    void removeOrder(int orderId)throws DataBaseException;
+    void removeCustomer(int customerId)throws DataBaseException;
+    void removeRubric(int rubricId) throws DataBaseException;
+    void removeSection(int sectionId) throws DataBaseException;
 
-    void updateItem(Item item);
+    List<Customer> getAllCustomer() throws DataBaseException;
+    List<Author> getAllAuthor() throws DataBaseException;
+    List<Order> getAllOrder() throws DataBaseException;
+    List<Item> getAllRubric() throws DataBaseException;
+    List<Item> getAllSection() throws DataBaseException;
 
-    void updateOrder(Order order);
-
-    void updateCustomer(Customer customer);
-
-    Customer createCustomer(Customer customer);
-
-    Order createOrder(Order order);
-
-    Book createBook(Book book);
-
-    Author createAuthor(Author author);
-
-    Item createItem(Item item);
-
-
-    void removeBook(Book book);
-
-    void removeAuthor(Author author);
-
-    void removeItem(Item item);
-
-    void removeOrder(Order order);
-
-    void removeCustomer(Customer customer);
-
-    ArrayList<Customer> getAllCustomer();
-
-    ArrayList<Author> getAllAuthor();
-
-    ArrayList<Order> getAllOrder();
-
-    ArrayList<Item> getAllItem();
-
-    void showAllBook();
-
-    void showAllCutomer();
-
-    void showAllItem();
-
-    void showAllAuthor();
-
-    void showAllOrder();
+    Book getBookById(int bookId) throws DataBaseException;
+    Customer getCustomerById(int customerId) throws DataBaseException;
+    Order getOrderById(int orderId) throws DataBaseException;
+    Author getAuthorById(int authorId) throws DataBaseException;
+    Item getRubricById(int rubricId) throws DataBaseException;
+    Item getSectionById(int sectionId) throws DataBaseException;
 
 }

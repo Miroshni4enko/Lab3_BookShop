@@ -12,8 +12,11 @@ public class Author {
     private String surname;
     private String name;
 
-    public Author(int id){
+    public Author(int id, String surname, String name){
+
         this.id=id;
+        this.surname=surname;
+        this.name=name;
     }
     public int getId() {
         return id;
