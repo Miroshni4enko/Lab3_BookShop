@@ -41,8 +41,10 @@ public class MainServlet extends HttpServlet {
         if (action == null || action.isEmpty()) {
             action = Commands.ACTION_WELCOME;
         }
-            GeneralProcess process = null;
-            process = (GeneralProcess) map.get(action);
+
+        GeneralProcess process = null;
+        process = (GeneralProcess) map.get(action);
+
         if (process != null) {
             process.process(request, response);
         }

@@ -11,12 +11,12 @@
     </p>
     <p class="rightstr">
         <a href="index.jsp"><%
-            if (true) {%>
+            if ( request.getSession().getAttribute("login").equals(false) ) {%>     //login!!!!!!!!!!!!!!!
                 <a href="Login.jsp">Entry</a>
             <%} else {%>
-                exit
-            <%}%>
+                <a href="index.jsp">Exit</a>
+                <% request.getSession().setAttribute("login", false);
+            }%>
         </a>
     </p>
-
 </div>
