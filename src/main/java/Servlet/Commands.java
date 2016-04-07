@@ -40,6 +40,25 @@ public class Commands {
     private void initMap() {
         map.put(ACTION_WELCOME, new Welcome());
         map.put(ACTION__ADD_CUSTOMER, new AddCustomer());
+
+        /////////////////////////////////////////////////////////////////
+        /*
+
+
+        loginUser -принимает имя пароль, ставит атрибут login если залогинился
+
+        attribute in session listOfAllBooks - сначала 10
+
+action Buy
+action=viewListBooks сначала было 10, при след запросе 20 итд
+action=viewDetailBooks переход на детал книги
+
+
+
+
+
+         */
+        ////////////////////////////////////////////////////////////////
     }
 
     public static void forward(String url, HttpServletRequest request, HttpServletResponse response) {

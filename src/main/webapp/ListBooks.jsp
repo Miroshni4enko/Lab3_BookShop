@@ -1,40 +1,31 @@
-<%--
+<%@ page import="model.Book" %>
+<%@ page import="java.util.List" %><%--
     Document   : ListBooks
     Author     : Sasha
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="content">
-    <%  final int countBooksOnPages = 10;
-        int amountOfBooks = 20; //get
-        int countPages = 1;
-        if (amountOfBooks > countBooksOnPages) { %>
-            <%for (int i = countBooksOnPages * countPages;i > 0; i--) {%>
-                <div class="book">
-                    <form name="book" method="GET" action="Buy"><p>
-                        <b>get name</b>
-                        <p align="right">
-                        <input type="submit" value="Buy">
-                        </p>
-                        </p>
-                    </form>
-                </div>
-                <br>
-                <br>
-            <% }%>
-        <%} else {
-            for (int i = 0;i < amountOfBooks; i++) {%>
-                <div class="book">
-                    <form name="book" method="GET" action="Buy">
-                    <p>
-                        <b>get name</b>
-                        <p align="right">
-                            <input type="submit" value="Buy">
-                        </p>
+    <%   List<Book> listOfAllBooks = (List<Book>) request.getSession().getAttribute("listOfAllBooks");
+        <%for (int i = listOfAllBooks.size(); i > 0; i--) {%>
+            <div class="book">
+                <form name="book" method="GET" action="MainServlet?action=Buy"><p>/////////////////////////////////
+                    <b>
+                        <a href="MainServlet?action=viewDetailBooks"><% listOfAllBooks.get(i).getName(); %></a>//////////
+
+                    </b>
+                    <p align="right">
+                        <input type="submit" value="Buy">//////////////////////
                     </p>
-                    </form>
-                </div>
-                <br>
-            <% } %>
-        <% } %>
+                    </p>
+                </form>
+            </div>
+            <br>
+            <br>
+        <%} %>
+    <br>
+    <br>
+    <a href="MainServlet?action=viewListBooks">view more books</a>//////////////////////
+    <br>
+    <br>
 </div>
