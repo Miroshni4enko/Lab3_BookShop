@@ -13,11 +13,11 @@ public class Customer {
     private String              login;
     private String              password;
     private String              eMail;
-    private int                 phone;
+    private String              phone;
     private int                 role;
     private static final Logger LOG  = Logger.getLogger(Customer.class);
 
-    public Customer(int id, String login, String password, String eMail,int phone, int role) {
+    public Customer(int id, String login, String password, String eMail,String phone, int role) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -39,11 +39,11 @@ public class Customer {
         this.login = login;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

@@ -194,6 +194,7 @@ public class OracleDataAccess implements ModelDataBase{
      * @throws DataBaseException if method have exception.
      */
     public List<Customer> getAllCustomer() throws DataBaseException {
+
         Connection connection = getConnection();
         ResultSet result = null;
         PreparedStatement statement = null;
@@ -204,11 +205,13 @@ public class OracleDataAccess implements ModelDataBase{
             while (result.next()) {
                 listCustomer.add(getCustomer(result));
             }
+
         } catch (Exception e) {
             throw new DataBaseException("Exception with data from database", e);
-        } finally {
+       } finally {
             disconnect(connection, result, statement);
         }
+
         return listCustomer;
     }
 
@@ -219,9 +222,10 @@ public class OracleDataAccess implements ModelDataBase{
             String login = result.getString("LOGIN");
             String password = result.getString("PASSWORD");
             String eMail = result.getString("E_MAIL");
-            int phone = result.getInt("PHOME_NUMBER");
+            String phone = result.getString("PHOME_NUBMER");
             int role = result.getInt("ROLE");
             customer = new Customer(id, login, password, eMail, phone, role);
+
         } catch (SQLException e) {
             throw new DataBaseException("Exception with data from result set", e);
         }

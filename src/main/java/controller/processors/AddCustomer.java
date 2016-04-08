@@ -27,7 +27,7 @@ public class AddCustomer implements GeneralProcess {
         String password = request.getParameter(CUS_PASSWORD);
         String eMail = request.getParameter(CUS_E_MAIL);
         int role = Integer.valueOf(request.getParameter(CUS_ROLE));
-        int phone = Integer.valueOf(request.getParameter(CUS_PHONE));
+        String phone = request.getParameter(CUS_PHONE);
         Customer cus = new Customer(id, login, password,eMail,phone,role);
         OracleDataAccess.getInstance().createCustomer(cus);
 
