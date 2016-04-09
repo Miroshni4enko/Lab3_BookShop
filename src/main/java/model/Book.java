@@ -9,25 +9,31 @@ package model;
  */
 public class Book extends Item{
 
-    private int idAuthor;
+    //private int idAuthor;
+    private Author author;
     private int pages;
     private int price;
     private int amount;
 
-    public Book(int id, String name, String des, int par, int idAuthor, int pages, int price, int amount) {
-        super(id, name, des, par, ItemType.Book);
-        this.idAuthor=idAuthor;
-        this.pages=pages;
-        this.price=price;
-        this.amount=amount;
+    public Book(int id, String name, String des, Item rubric, Author author, int pages, int price, int amount) {
+        super(id, name, des, rubric.getName(), ItemType.Book);
+        if(rubric.getType()!=ItemType.Rubric){
+            throw  new IllegalArgumentException("This is not a rubric!");
+        }
+            this.author = author;
+            this.pages = pages;
+            this.price = price;
+            this.amount = amount;
+
+
     }
 
-    public int getIdAuthor() {
-        return idAuthor;
+    public Author getAuthor() {
+        return author;
     }
 
-    public void setIdAuthor(int idAuthor) {
-        this.idAuthor = idAuthor;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 
     public int getPages() {

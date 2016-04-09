@@ -13,6 +13,6 @@ import javax.servlet.http.HttpServletResponse;
  * @version %I%, %G%
  */
 public interface GeneralProcess {
-    void process(HttpServletRequest request, HttpServletResponse response);
+    void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException;
 
 }

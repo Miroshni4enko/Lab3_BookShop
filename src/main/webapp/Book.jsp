@@ -1,4 +1,4 @@
-<%--
+<%@ page import="model.Book" %><%--
   Created by IntelliJ IDEA.
   User: Veleri
   Date: 31.03.2016
@@ -7,6 +7,7 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%   Book book = (Book )session.getAttribute("DetailBook");%>
 <html>
 <head>
     <title>Books information</title>
@@ -23,12 +24,12 @@
     <table class="table">
         <tr>
             <td>Book's name:</td>
-            <td></td>
+            <td><%=book.getName()%></td>
         </tr>
         <tr>
             <th></th>
             <td>Rubric:</td>
-            <td></td>
+            <td><%=book.getParent()%></td>
     </table>
 </div>
 
@@ -39,13 +40,13 @@
 
     <table class="table">
         <tr>
-            <td>Price:</td>  <td></td>
+            <td>Price:</td> <td><%=book.getPrice()%> </td>
         </tr>
     <tr>
-        <td>Pages:</td>  <td></td>
+        <td>Pages:</td>  <td><%=book.getPages()%></td>
     </tr>
     <tr>
-        <td>Amount:</td>  <td></td>
+        <td>Amount:</td>  <td><%=book.getAmount() %></td>
     </tr>
         <tr>
             <td>Buy now:</td> <th><form name="buyBook" method="GET" action="Buy"><p>
@@ -64,7 +65,7 @@
         <tr>
             <th></th>
             <td>Author:</td>
-            <td></td>
+            <td><%=book.getAuthor()%></td>
         </tr>
     </table>
 </div>
@@ -77,7 +78,7 @@
                 </tr>
                 <tr>
                     <th></th>
-                    <td>Demo discription of book. Demo discription of book. Demo discription of book. Demo discription of book.</td>
+                    <td><%=book.getDescription()%></td>
                 </tr>
             </table>
 

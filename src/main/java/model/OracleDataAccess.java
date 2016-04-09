@@ -94,6 +94,7 @@ public class OracleDataAccess implements ModelDataBase{
      */
     public void updateBook(Book book) {
 
+
     }
 
     /**
@@ -125,8 +126,24 @@ public class OracleDataAccess implements ModelDataBase{
      * @param customer customer, that needed to create.
      * @return created customer.
      */
-    public Customer createCustomer(Customer customer) {
-        return null;
+    public void createCustomer(Customer customer) throws DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.CREATE_CUSTOMER);
+            statement.setString(1, customer.getLogin());
+            statement.setString(2, customer.getPassword());
+            statement.setString(3, customer.geteMail());
+            statement.setString(4, customer.getPhone());
+            statement.setInt(5, customer.getRole());
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+
     }
 
     /**
@@ -134,8 +151,8 @@ public class OracleDataAccess implements ModelDataBase{
      * @param order order, that needed to create.
      * @return created order.
      */
-    public Order createOrder(Order order) {
-        return null;
+    public void createOrder(Order order) {
+
     }
 
     /**
@@ -143,8 +160,8 @@ public class OracleDataAccess implements ModelDataBase{
      * @param book book, that needed to create.
      * @return created book.
      */
-    public Book createBook(Book book) {
-        return null;
+    public void createBook(Book book) {
+
     }
 
     /**
@@ -152,8 +169,20 @@ public class OracleDataAccess implements ModelDataBase{
      * @param author author, that needed to create.
      * @return created author.
      */
-    public Author createAuthor(Author author) {
-        return null;
+    public void createAuthor(Author author) throws DataBaseException {
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.CREATE_AUTHOR);
+            statement.setString(1, author.getSurname());
+            statement.setString(2, author.getName());
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
     }
 
     /**
@@ -168,8 +197,20 @@ public class OracleDataAccess implements ModelDataBase{
      * Method for remove author.
      * @param authorId id of author, that needed to remove.
      */
-    public void removeAuthor(int authorId) {
-
+    public void removeAuthor(int authorId) throws DataBaseException {
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.DELETE_AUTHOR);
+            statement.setInt(1, authorId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for remove", e);
+        }
+        finally {
+            disconnect(connection, result, statement);
+        }
     }
 
     /**
@@ -184,8 +225,20 @@ public class OracleDataAccess implements ModelDataBase{
      * Method for remove customer.
      * @param customerId id of customer, that needed to remove.
      */
-    public void removeCustomer(int customerId) {
-
+    public void removeCustomer(int customerId)  throws DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.DELETE_CUSTOMER);
+            statement.setInt(1, customerId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for remove", e);
+        }
+        finally {
+            disconnect(connection, result, statement);
+        }
     }
 
     /**
@@ -200,7 +253,7 @@ public class OracleDataAccess implements ModelDataBase{
         PreparedStatement statement = null;
         List<Customer> listCustomer = new ArrayList<Customer>();
         try {
-            statement = connection.prepareStatement(SqlScripts.selectAllCustomer);
+            statement = connection.prepareStatement(SqlScripts.SELECT_ALL_CUSTOMER);
             result = statement.executeQuery();
             while (result.next()) {
                 listCustomer.add(getCustomer(result));
@@ -243,7 +296,7 @@ public class OracleDataAccess implements ModelDataBase{
         PreparedStatement statement = null;
         List<Author> listAuthor = new ArrayList<Author>();
         try {
-            statement = connection.prepareStatement(SqlScripts.selectAllAuthor);
+            statement = connection.prepareStatement(SqlScripts.SELECT_ALL_AUTHOR);
             result = statement.executeQuery();
             while (result.next()) {
                 listAuthor.add(getAuthor(result));
@@ -280,7 +333,7 @@ public class OracleDataAccess implements ModelDataBase{
         PreparedStatement statement = null;
         List<Order> listOrder = new ArrayList<Order>();
         try {
-            statement = connection.prepareStatement(SqlScripts.selectAllOrder);
+            statement = connection.prepareStatement(SqlScripts.SELECT_ALL_ORDER);
             result = statement.executeQuery();
             while (result.next()) {
                 listOrder.add(getOrder(result));
@@ -299,7 +352,7 @@ public class OracleDataAccess implements ModelDataBase{
         ResultSet result = null;
         PreparedStatement statement = null;
         try {
-            statement = connection.prepareStatement(SqlScripts.selectConOfOrder);
+            statement = connection.prepareStatement(SqlScripts.SELECT_CON_OF_ORDER);
             statement.setInt(1, order.getIdOrder());
             result = statement.executeQuery();
             while (result.next()) {
@@ -336,7 +389,23 @@ public class OracleDataAccess implements ModelDataBase{
      * @throws DataBaseException
      */
     public Book getBookById(int bookId) throws DataBaseException {
-        return null;
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        Book book = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.SELECT_ALL_BOOK_BY_ID);
+            statement.setInt(1, bookId);
+            result = statement.executeQuery();
+            while (result.next()) {
+                book = getBook(result);
+            }
+        } catch (Exception e) {
+            throw new DataBaseException("Exception with data from database", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+        return book;
     }
 
     /**
@@ -351,7 +420,7 @@ public class OracleDataAccess implements ModelDataBase{
         PreparedStatement statement = null;
         Customer cus = null;
         try {
-            statement = connection.prepareStatement(SqlScripts.selectCustomerById);
+            statement = connection.prepareStatement(SqlScripts.SELECT_CUSTOMER_BY_ID);
             statement.setInt(1, customerId);
             result = statement.executeQuery();
             while (result.next()) {
@@ -377,7 +446,7 @@ public class OracleDataAccess implements ModelDataBase{
         PreparedStatement statement = null;
         Order order = null;
         try {
-            statement = connection.prepareStatement(SqlScripts.selectOderById);
+            statement = connection.prepareStatement(SqlScripts.SELECT_ODER_BY_ID);
             statement.setInt(1, orderId);
             result = statement.executeQuery();
             while (result.next()) {
@@ -403,7 +472,7 @@ public class OracleDataAccess implements ModelDataBase{
         PreparedStatement statement = null;
         Author author = null;
         try {
-            statement = connection.prepareStatement(SqlScripts.selectAuthorById);
+            statement = connection.prepareStatement(SqlScripts.SELECT_AUTHOR_BY_ID);
             statement.setInt(1, authorId);
             result = statement.executeQuery();
             while (result.next()) {
@@ -428,7 +497,7 @@ public class OracleDataAccess implements ModelDataBase{
         PreparedStatement statement = null;
         List<Item> listRubric = new ArrayList<Item>();
         try {
-            statement = connection.prepareStatement(SqlScripts.selectAllRubric);
+            statement = connection.prepareStatement(SqlScripts.SELECT_ALL_RUBRIC);
             result = statement.executeQuery();
             while (result.next()) {
                 listRubric.add(getItem(result, Item.ItemType.Rubric));
@@ -448,7 +517,8 @@ public class OracleDataAccess implements ModelDataBase{
             String name = result.getString("NAME");
             String description = result.getString("DESCRIPTION");
             int par = result.getInt("PARENT_ID");
-            item = new Item(id, name, description, par, type);
+            String parStr = String.valueOf(par);
+            item = new Item(id, name, description, parStr, type);
         } catch (SQLException e) {
             throw new DataBaseException("Exception with data from result set", e);
         }
@@ -466,7 +536,7 @@ public class OracleDataAccess implements ModelDataBase{
         PreparedStatement statement = null;
         List<Item> listSection = new ArrayList<Item>();
         try {
-            statement = connection.prepareStatement(SqlScripts.selectAllSection);
+            statement = connection.prepareStatement(SqlScripts.SELECT_ALL_SECTION);
             result = statement.executeQuery();
             while (result.next()) {
                 listSection.add(getItem(result, Item.ItemType.Section));
@@ -479,13 +549,64 @@ public class OracleDataAccess implements ModelDataBase{
         return listSection;
     }
 
+    public List<Book> getAllBooks() throws DataBaseException {
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        List<Book> listBooks = new ArrayList<Book>();
+
+        try {
+            statement = connection.prepareStatement(SqlScripts.SELECT_ALL_BOOK);
+            result = statement.executeQuery();
+            while (result.next()) {
+                listBooks.add(getBook(result));
+            }
+        } catch (Exception e) {
+            throw new DataBaseException("Exception with data from database", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+        return listBooks;
+    }
+    private Book getBook(ResultSet result) throws DataBaseException {
+        Book book;
+        try {
+            int id = result.getInt("ID_ITEM");
+            String name = result.getString("NAME");
+            int rubricId = result.getInt("RUBRIC");
+            int authorId = result.getInt("AUTHOR");
+            int pages = result.getInt("PAGES");
+            int price = result.getInt("PRICE");
+            int amount = result.getInt("AMOUNT");
+            String description = result.getString("DESCRIPTION");
+            Author findAuthor = getAuthorById(authorId);
+            Item findRubric = getRubricById(rubricId);
+            book = new Book(id, name, description, findRubric,findAuthor,pages,price,amount);
+
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception with data from result set", e);
+        }
+        return book;
+    }
     /**
      *
      * @param rubricId
      * @throws DataBaseException
      */
     public void removeRubric(int rubricId) throws DataBaseException {
-
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.DELETE_RUBRIC);
+            statement.setInt(1, rubricId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for remove", e);
+        }
+        finally {
+            disconnect(connection, result, statement);
+        }
     }
 
     /**
@@ -494,7 +615,19 @@ public class OracleDataAccess implements ModelDataBase{
      * @throws DataBaseException
      */
     public void removeSection(int sectionId) throws DataBaseException {
-
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.DELETE_SECTION);
+            statement.setInt(1, sectionId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for remove", e);
+        }
+        finally {
+            disconnect(connection, result, statement);
+        }
     }
 
     /**
@@ -503,8 +636,8 @@ public class OracleDataAccess implements ModelDataBase{
      * @return
      * @throws DataBaseException
      */
-    public Item createRubric(Item rubric) throws DataBaseException {
-        return null;
+    public void createRubric(Item rubric) throws DataBaseException {
+
     }
 
     /**
@@ -513,8 +646,8 @@ public class OracleDataAccess implements ModelDataBase{
      * @return
      * @throws DataBaseException
      */
-    public Item createSection(Item section) throws DataBaseException {
-        return null;
+    public void createSection(Item section) throws DataBaseException {
+
     }
 
     /**
@@ -547,7 +680,7 @@ public class OracleDataAccess implements ModelDataBase{
         PreparedStatement statement = null;
         Item rubric = null;
         try {
-            statement = connection.prepareStatement(SqlScripts.selectRubricById);
+            statement = connection.prepareStatement(SqlScripts.SELECT_RUBRIC_BY_ID);
             statement.setInt(1, rubricId);
             result = statement.executeQuery();
             while (result.next()) {
@@ -573,7 +706,7 @@ public class OracleDataAccess implements ModelDataBase{
         PreparedStatement statement = null;
         Item section = null;
         try {
-            statement = connection.prepareStatement(SqlScripts.selectSectionById);
+            statement = connection.prepareStatement(SqlScripts.SELECT_SECTION_BY_ID);
             statement.setInt(1, sectionId);
             result = statement.executeQuery();
             while (result.next()) {

@@ -21,7 +21,7 @@ public class AddCustomer implements GeneralProcess {
     public static String CUS_PHONE="PHOME_NUMBER";
     public static String CUS_ROLE="ROLE";
 
-    public void process(HttpServletRequest request,HttpServletResponse response)  {
+    public void process(HttpServletRequest request,HttpServletResponse response) throws DataBaseException  {
         int id = Integer.valueOf(request.getParameter(CUS_ID));
         String login = request.getParameter(CUS_LOGIN);
         String password = request.getParameter(CUS_PASSWORD);

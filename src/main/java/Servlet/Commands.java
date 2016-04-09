@@ -1,6 +1,7 @@
 package Servlet;
 
 import controller.processors.AddCustomer;
+import controller.processors.DetailBook;
 import controller.processors.Welcome;
 import org.apache.log4j.Logger;
 
@@ -9,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -38,9 +40,10 @@ public class Commands {
     }
 
     private void initMap() {
+        map = new HashMap<String, Object>();
         map.put(ACTION_WELCOME, new Welcome());
         map.put(ACTION__ADD_CUSTOMER, new AddCustomer());
-
+        map.put(ACTION_DETAIL, new DetailBook());
         /////////////////////////////////////////////////////////////////
         /*
 
@@ -74,6 +77,7 @@ action=viewDetailBooks переход на детал книги
 
     public static final String ACTION__ADD_CUSTOMER = "addCustomer";
     public static final String ACTION_WELCOME = "welcome";
+    public static final String ACTION_DETAIL = "viewDetailBooks";
     /*
      public static final String ACTION_OTHER = "otherAction";
     public static final String ACTION_WELCOME = "welcome";

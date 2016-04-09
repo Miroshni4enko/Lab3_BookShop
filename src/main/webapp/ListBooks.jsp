@@ -6,12 +6,12 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="content">
-    <%   List<Book> listOfAllBooks = (List<Book>) request.getSession().getAttribute("listOfAllBooks");
-        <%for (int i = listOfAllBooks.size(); i > 0; i--) {%>
+    <%     List<Book> listOfAllBooks = (List<Book>) request.getSession().getAttribute("listOfAllBooks");
+        for (Book book:listOfAllBooks) {%>
             <div class="book">
                 <form name="book" method="GET" action="MainServlet?action=Buy"><p>/////////////////////////////////
                     <b>
-                        <a href="MainServlet?action=viewDetailBooks"><% listOfAllBooks.get(i).getName(); %></a>//////////
+                        <a href="MainServlet?action=viewDetailBooks"><%= book.getName() %></a>//////////
 
                     </b>
                     <p align="right">

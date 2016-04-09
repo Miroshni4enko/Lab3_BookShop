@@ -23,12 +23,12 @@ public interface ModelDataBase {
     void updateRubric(Item rubric) throws DataBaseException;
     void updateSection(Item section) throws DataBaseException;
 
-    Customer createCustomer(Customer customer)throws DataBaseException;
-    Order createOrder(Order order)throws DataBaseException;
-    Book createBook(Book book)throws DataBaseException;
-    Author createAuthor(Author author)throws DataBaseException;
-    Item createRubric(Item rubric) throws DataBaseException;
-    Item createSection(Item section) throws DataBaseException;
+    void createCustomer(Customer customer)throws DataBaseException;
+    void createOrder(Order order)throws DataBaseException;
+    void createBook(Book book)throws DataBaseException;
+    void createAuthor(Author author)throws DataBaseException;
+    void createRubric(Item rubric) throws DataBaseException;
+    void createSection(Item section) throws DataBaseException;
 
     void removeBook(int bookId)throws DataBaseException;
     void removeAuthor(int authorId)throws DataBaseException;
@@ -42,6 +42,7 @@ public interface ModelDataBase {
     List<Order> getAllOrder() throws DataBaseException;
     List<Item> getAllRubric() throws DataBaseException;
     List<Item> getAllSection() throws DataBaseException;
+    List<Book> getAllBooks() throws DataBaseException;
 
     Book getBookById(int bookId) throws DataBaseException;
     Customer getCustomerById(int customerId) throws DataBaseException;

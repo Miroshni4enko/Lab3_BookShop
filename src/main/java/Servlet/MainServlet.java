@@ -20,6 +20,7 @@ import java.util.Map;
  * @version %I%, %G%
  */
 public class MainServlet extends HttpServlet {
+    private static final Logger LOG = Logger.getLogger(MainServlet.class);
     private Map<String, Object> map = Commands.getInstance().getCommandsMap();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,7 +47,12 @@ public class MainServlet extends HttpServlet {
         process = (GeneralProcess) map.get(action);
 
         if (process != null) {
-            process.process(request, response);
+            try {
+                process.process(request, response);
+            }
+            catch (DataBaseException e){
+                LOG.error(e);
+            }
         }
         else{
             //exception
