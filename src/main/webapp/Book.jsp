@@ -7,7 +7,7 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%   Book book = (Book )session.getAttribute("DetailBook");%>
+<%   Book book = (Book)session.getAttribute("DetailBook");%>
 <html>
 <head>
     <title>Books information</title>

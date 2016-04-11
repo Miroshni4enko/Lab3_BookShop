@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class DetailBook implements GeneralProcess {
     public void process(HttpServletRequest request, HttpServletResponse response) throws  DataBaseException{
-           int id= Integer.parseInt(request.getSession().getAttribute("IdDetail").toString());
+           int id=Integer.parseInt(request.getSession().getAttribute("IdDetail").toString());
             Book book =  OracleDataAccess.getInstance().getBookById(id);
             request.getSession().setAttribute("DetailBook",book);
             Commands.forward("/Book.jsp",request,response);

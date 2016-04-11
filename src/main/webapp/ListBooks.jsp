@@ -19,9 +19,10 @@
             <div class="book">
                 <form name="book" method="GET" action="MainServlet?action=Buy"><p><%--/////////////////////////////////--%>
                     <b>
-                        <a href="MainServlet?action=viewDetailBooks"><% book.getName();
-                                request.getSession().setAttribute("DetailBook", book);
-                        %></a><%--/////////////////////////////////--%>
+                        <a href="MainServlet?action=viewDetailBooks"><%= book.getName() %>
+                            <%
+                                request.getSession().setAttribute("IdDetail", book.getId());
+                            %></a><%--/////////////////////////////////--%>
                     </b>
                     <p align="right">
                         <input type="submit" value="Buy"><%--/////////////////////////////////--%>
@@ -29,8 +30,6 @@
                     </p>
                 </form>
             </div>
-            <br>
-            <br>
             <br>
 
         <%}%>
