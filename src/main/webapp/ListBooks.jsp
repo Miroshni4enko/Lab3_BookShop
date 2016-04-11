@@ -1,31 +1,47 @@
 <%@ page import="model.Book" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page errorPage="errorPage.jsp"%>
+<%--
     Document   : ListBooks
     Author     : Sasha
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="content">
-    <%     List<Book> listOfAllBooks = (List<Book>) request.getSession().getAttribute("listOfAllBooks");
-        for (Book book:listOfAllBooks) {%>
+    <%  List<Book> listOfAllBooks;
+        try {
+            listOfAllBooks = (List<Book>) request.getSession().getAttribute("listOfAllBooks");
+        } catch (Exception e) {
+            listOfAllBooks = null;
+        }
+        if (listOfAllBooks != null || listOfAllBooks.size() == 0) {
+        for (Book book : listOfAllBooks) {%>
             <div class="book">
-                <form name="book" method="GET" action="MainServlet?action=Buy"><p>/////////////////////////////////
+                <form name="book" method="GET" action="MainServlet?action=Buy"><p><%--/////////////////////////////////--%>
                     <b>
-                        <a href="MainServlet?action=viewDetailBooks"><%= book.getName() %></a>//////////
-
+                        <a href="MainServlet?action=viewDetailBooks"><% book.getName();
+                                request.getSession().setAttribute("DetailBook", book);
+                        %></a><%--/////////////////////////////////--%>
                     </b>
                     <p align="right">
-                        <input type="submit" value="Buy">//////////////////////
+                        <input type="submit" value="Buy"><%--/////////////////////////////////--%>
                     </p>
                     </p>
                 </form>
             </div>
             <br>
             <br>
-        <%} %>
-    <br>
-    <br>
-    <a href="MainServlet?action=viewListBooks">view more books</a>//////////////////////
+            <br>
+
+        <%}%>
+            <center>
+                <a href="MainServlet?action=viewListBooks">view more books</a><%--/////////////////////////////////--%>
+            </center>
+        <%} else { %>
+            List of books is empty.
+            <br>
+            <br>
+        <%}%>
     <br>
     <br>
 </div>

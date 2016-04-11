@@ -19,7 +19,7 @@
 
 <table border="2" cellspacing="1" cellpadding="15" align="center" class="login">
     <tr>
-        <td>                                                                ///loginUser!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        <td>                                                   <%--///loginUser!!!!!!!!!!!!!!!!!!!!!!!!!!--%>
             <FORM NAME="login_form" name="login_form" ACTION="MainServlet?action=loginUser" method="GET"  <%--onSubmit="<%%>"--%>  >
                 <hr size="3">
                 Name:

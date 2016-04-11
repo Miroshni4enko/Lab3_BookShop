@@ -2,10 +2,8 @@ package Servlet;
 
 import controller.processors.GeneralProcess;
 import exception.DataBaseException;
-import model.ActionResult;
 import org.apache.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,12 +30,8 @@ public class MainServlet extends HttpServlet {
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       /* CmdExecs cmdExecs = map.get(request.getParameter());
-        if (cmdExecs != null) {
-            cmdExecs.doIt(request, response);
-        }*/
-
         request.setCharacterEncoding("UTF-8");
+
         String action = request.getParameter("action");
         if (action == null || action.isEmpty()) {
             action = Commands.ACTION_WELCOME;

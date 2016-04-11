@@ -1,7 +1,6 @@
 package controller.processors;
 
 import exception.DataBaseException;
-import model.ActionResult;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

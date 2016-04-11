@@ -19,7 +19,7 @@ import java.util.List;
  */
 
 public class OracleDataAccess implements ModelDataBase{
-    private static final Logger LOG        = Logger.getLogger(OracleDataAccess.class);
+    private static final Logger LOG = Logger.getLogger(OracleDataAccess.class);
 
     protected static class Singleton {
         public static final OracleDataAccess _INSTANCE = new OracleDataAccess();
