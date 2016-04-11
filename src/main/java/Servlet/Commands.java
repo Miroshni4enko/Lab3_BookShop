@@ -2,6 +2,7 @@ package Servlet;
 
 import controller.processors.AddCustomer;
 import controller.processors.DetailBook;
+import controller.processors.ViewListBooks;
 import controller.processors.Welcome;
 import org.apache.log4j.Logger;
 
@@ -44,6 +45,8 @@ public class Commands {
         map.put(ACTION_WELCOME, new Welcome());
         map.put(ACTION__ADD_CUSTOMER, new AddCustomer());
         map.put(ACTION_DETAIL, new DetailBook());
+        map.put(VIEW_LIST_BOOKS, new ViewListBooks());
+
         /////////////////////////////////////////////////////////////////
         /*
 
@@ -76,8 +79,9 @@ action=viewDetailBooks переход на детал книги
     }
 
     public static final String ACTION__ADD_CUSTOMER = "addCustomer";
-    public static final String ACTION_WELCOME = "welcome";
-    public static final String ACTION_DETAIL = "viewDetailBooks";
+    public static final String ACTION_WELCOME  = "welcome";
+    public static final String ACTION_DETAIL   = "viewDetailBooks";
+    public static final String VIEW_LIST_BOOKS = "viewListBooks";
     /*
      public static final String ACTION_OTHER = "otherAction";
     public static final String ACTION_WELCOME = "welcome";

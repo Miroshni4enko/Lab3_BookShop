@@ -19,13 +19,11 @@
             <div class="book">
                 <form name="book" method="GET" action="MainServlet?action=Buy"><p><%--/////////////////////////////////--%>
                     <b>
-                        <a href="MainServlet?action=viewDetailBooks"><%= book.getName() %>
-                            <%
-                                request.getSession().setAttribute("IdDetail", book.getId());
-                            %></a><%--/////////////////////////////////--%>
-                    </b>
-                    <p align="right">
-                        <input type="submit" value="Buy"><%--/////////////////////////////////--%>
+                         <a href="<%="MainServlet?action=viewDetailBooks&IdDetail=" + book.getId() %>"><%= book.getName() %></a>
+                         </a>
+                     </b>
+                     <p align="right">
+                         <input type="submit" value="Buy"><%--/////////////////////////////////--%>
                     </p>
                     </p>
                 </form>
@@ -34,7 +32,7 @@
 
         <%}%>
             <center>
-                <a href="MainServlet?action=viewListBooks">view more books</a><%--/////////////////////////////////--%>
+                <a href="MainServlet?action=viewListBook">view more books</a><%--/////////////////////////////////--%>
             </center>
         <%} else { %>
             List of books is empty.
