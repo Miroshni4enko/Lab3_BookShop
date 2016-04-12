@@ -19,7 +19,6 @@
     <%  List<Book> listOfAllBooks;
         try {
             listOfAllBooks = (List<Book>) request.getSession().getAttribute("listOfAllBooks");
-            listOfAllBooks = null;
         } catch (Exception e) {
             listOfAllBooks = null;
         }
