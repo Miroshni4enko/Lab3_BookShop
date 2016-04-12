@@ -1,3 +1,36 @@
+---------------------------------------------------------
+ ---  DDL for Sequence SEQUENCE_AUTHOR
+ ---------------------------------------------------------
+
+  CREATE SEQUENCE  "SEQUENCE_AUTHOR"  MINVALUE 1 MAXVALUE 9999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+ ---------------------------------------------------------
+ ---  DDL for Sequence SEQUENCE_BOOK
+ ---------------------------------------------------------
+
+   CREATE SEQUENCE  "SEQUENCE_BOOK"  MINVALUE 1 MAXVALUE 9999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+ ---------------------------------------------------------
+ ---  DDL for Sequence SEQUENCE_CONTENT
+ ---------------------------------------------------------
+
+    CREATE SEQUENCE  "SEQUENCE_CONTENT"  MINVALUE 1 MAXVALUE 9999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+ ---------------------------------------------------------
+ ---  DDL for Sequence SEQUENCE_CUSTOMER
+ ---------------------------------------------------------
+
+   CREATE SEQUENCE  "SEQUENCE_CUSTOMER"  MINVALUE 1 MAXVALUE 9999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+ ---------------------------------------------------------
+ ---  DDL for Sequence SEQUENCE_ITEMS
+ ---------------------------------------------------------
+
+  CREATE SEQUENCE  "SEQUENCE_ITEMS"  MINVALUE 1 MAXVALUE 9999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+ ---------------------------------------------------------
+ ---  DDL for Sequence SEQUENCE_ORDERS
+ ---------------------------------------------------------
+
+  CREATE SEQUENCE  "SEQUENCE_ORDERS"  MINVALUE 1 MAXVALUE 9999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+ ---------------------------------------------------------
+ ---  DDL for Table AUTHOR
+ ---------------------------------------------------------
 
   CREATE TABLE "AUTHOR"
    (	"ID_AUTHOR" NUMBER, 
