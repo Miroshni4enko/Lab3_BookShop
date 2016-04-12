@@ -27,9 +27,8 @@
             <div class="book">
                 <form name="book" method="GET" action="MainServlet?action=Buy"><p><%--/////////////////////////////////--%>
                     <b>
-                        <a href="MainServlet?action=viewDetailBooks"> <%= book.getName()%>
-                               <% request.getSession().setAttribute("DetailBook", book);
-                        %></a><%--/////////////////////////////////--%>
+                        <a href="<%="MainServlet?action=viewDetailBooks&IdDetail=" + book.getId() %>"><%= book.getName() %></a>
+                        </a>
                     </b>
                     <p align="right">
                     <a href="#" id="go" >
@@ -58,11 +57,7 @@
                     </p>
                 </form>
             </div>
-
             <br>
-            <br>
-            <br>
-
         <%}%>
             <center>
                 <a href="MainServlet?action=viewListBooks">view more books</a><%--/////////////////////////////////--%>
