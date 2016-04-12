@@ -16,7 +16,7 @@ public class Book extends Item{
     private int amount;
 
     public Book(int id, String name, String des, Item rubric, Author author, int pages, int price, int amount) {
-        super(id, name, des, rubric.getName(), ItemType.Book);
+        super(id, name, des, rubric, ItemType.Book);
         if(rubric.getType()!=ItemType.Rubric){
             throw  new IllegalArgumentException("This is not a rubric!");
         }

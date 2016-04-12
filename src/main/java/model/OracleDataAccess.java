@@ -151,8 +151,21 @@ public class OracleDataAccess implements ModelDataBase{
      * @param order order, that needed to create.
      * @return created order.
      */
-    public void createOrder(Order order) {
-
+    public void createOrder(Order order)throws DataBaseException {
+          /*  Connection connection = getConnection();
+            ResultSet result = null;
+            PreparedStatement statement = null;
+            try {
+                statement = connection.prepareStatement(SqlScripts.CREATE_ORDER);
+                statement.setInt(1, order.getIdCustomer());
+                statement.setInt(2, order.getContents().getBooks().);
+                statement.execute();
+            } catch (SQLException e) {
+                throw new DataBaseException("Exception for create", e);
+            } finally {
+                disconnect(connection, result, statement);
+            }
+        */
     }
 
     /**
@@ -160,8 +173,25 @@ public class OracleDataAccess implements ModelDataBase{
      * @param book book, that needed to create.
      * @return created book.
      */
-    public void createBook(Book book) {
-
+    public void createBook(Book book) throws DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.CREATE_BOOK);
+            statement.setString(1, book.getName());
+            statement.setString(2, book.getDescription());
+            statement.setInt(3, book.getParent().getId());
+            statement.setInt(4, book.getAuthor().getId());
+            statement.setInt(5, book.getPages());
+            statement.setInt(6, book.getPrice());
+            statement.setInt(7, book.getAmount());
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
     }
 
     /**
@@ -510,15 +540,24 @@ public class OracleDataAccess implements ModelDataBase{
         return listRubric;
     }
 
-    private Item getItem(ResultSet result, Item.ItemType type) throws DataBaseException {
+    private Item getItem(ResultSet result, Item.ItemType type) throws DataBaseException,IllegalArgumentException {
         Item item;
         try {
             int id = result.getInt("ID_ITEM");
             String name = result.getString("NAME");
             String description = result.getString("DESCRIPTION");
             int par = result.getInt("PARENT_ID");
-            String parStr = String.valueOf(par);
-            item = new Item(id, name, description, parStr, type);
+            Item newRubric=null;
+            if(type==Item.ItemType.Rubric){
+               newRubric = getRubricById(par);
+            }
+            if(type==Item.ItemType.Rubric){
+                newRubric = getSectionById(par);
+            }
+           else{
+                throw new IllegalArgumentException();
+            }
+            item = new Item(id, name, description, newRubric, type);
         } catch (SQLException e) {
             throw new DataBaseException("Exception with data from result set", e);
         }
@@ -668,7 +707,21 @@ public class OracleDataAccess implements ModelDataBase{
      * @throws DataBaseException
      */
     public void createRubric(Item rubric) throws DataBaseException {
-
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.CREATE_RUBRIC);
+            statement.setString(1, rubric.getName());
+            statement.setInt(2, rubric.getParent().getId());
+            statement.setString(3, rubric.getDescription());
+            statement.setInt(4, 1);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
     }
 
     /**
@@ -678,7 +731,21 @@ public class OracleDataAccess implements ModelDataBase{
      * @throws DataBaseException
      */
     public void createSection(Item section) throws DataBaseException {
-
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.CREATE_SECTION);
+            statement.setString(1, section.getName());
+            statement.setInt(2, section.getParent().getId());
+            statement.setString(3, section.getDescription());
+            statement.setInt(4, 2);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
     }
 
     /**

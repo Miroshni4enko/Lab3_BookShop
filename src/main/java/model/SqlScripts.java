@@ -38,4 +38,10 @@ public class SqlScripts {
     public static final String DELETE_RUBRIC="DELETE FROM ITEM WHERE ID_ITEM = ? AND TYPE=1";
     public static final String DELETE_SECTION="DELETE FROM ITEM WHERE ID_ITEM = ? AND TYPE=2";
 
+
+    public static final String CREATE_BOOK="execute ADDBOOK(?,?,?,?,?,?,?)";
+    public static final String CREATE_RUBRIC="INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values(?,?,?,1);";
+    public static final String CREATE_SECTION="INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values(?,?,?,2);";
+    public static final String CREATE_ORDER="execute ADDORDER(?,?,?,?)";
+
 }

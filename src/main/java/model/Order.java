@@ -91,6 +91,7 @@ public class Order {
         public Map<Book, Integer> getAmount() {
             return amount;
         }
+
         public void addBook(Book book,int count){
             books.add(book);
             amount.put(book,count);
