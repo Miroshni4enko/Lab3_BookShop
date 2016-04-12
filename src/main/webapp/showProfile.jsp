@@ -1,3 +1,4 @@
+<%@ page errorPage="errorPage.jsp"%>
 <%--
   Created by IntelliJ IDEA.
   User: Фокстрот

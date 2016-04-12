@@ -1,3 +1,4 @@
+<%@ page errorPage="errorPage.jsp"%>
 <%--
     Document   : index
     Author     : Sasha

@@ -1,3 +1,4 @@
+<%@ page errorPage="errorPage.jsp"%>
 <%--
     Document   : Login
     Author     : Slava, Sasha

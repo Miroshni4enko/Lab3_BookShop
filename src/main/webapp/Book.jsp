@@ -1,4 +1,6 @@
-<%@ page import="model.Book" %><%--
+<%@ page import="model.Book" %>
+<%@ page errorPage="errorPage.jsp"%>
+<%--
   Created by IntelliJ IDEA.
   User: Veleri
   Date: 31.03.2016

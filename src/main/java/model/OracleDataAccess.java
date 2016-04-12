@@ -38,7 +38,7 @@ public class OracleDataAccess implements ModelDataBase{
         ht.put(Context.PROVIDER_URL, "t3://localhost:7001");
         try {
             ctx = new InitialContext(ht);
-            ds = (javax.sql.DataSource) ctx.lookup("bookshop"); // change your JNDI_name
+            ds = (javax.sql.DataSource) ctx.lookup("myJNDIDBName"); // change your JNDI_name
         } catch (NamingException e) {
             LOG.error("InitialContext or DataSource error", e);
         }finally {
@@ -547,6 +547,37 @@ public class OracleDataAccess implements ModelDataBase{
             disconnect(connection, result, statement);
         }
         return listSection;
+    }
+
+    /**
+     * Method return amount of books that you need.
+     * @param amoount of books.
+     * @return List<Book>.
+     * @throws DataBaseException Exception with data.
+     */
+    public List<Book> getAmountOfBooks(int amoount) throws DataBaseException {
+        Connection connection       = getConnection();
+        ResultSet result            = null;
+        PreparedStatement statement = null;
+        int count = 0;
+
+        List<Book> listBooks = new ArrayList<Book>();
+        try {
+            statement = connection.prepareStatement(SqlScripts.SELECT_ALL_BOOK);
+            result    = statement.executeQuery();
+
+            while (result.next() && count < amoount) {
+                listBooks.add(getBook(result));
+                count++;
+            }
+
+        } catch (Exception e) {
+            throw new DataBaseException("Exception with data from database", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+
+        return listBooks;
     }
 
     public List<Book> getAllBooks() throws DataBaseException {

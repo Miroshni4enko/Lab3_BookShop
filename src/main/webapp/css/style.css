@@ -32,7 +32,15 @@ body{
     font-weight:bold; /*Текст жирный*/
     padding:6px 0px 30px 0px;
 }
+A {
+    text-decoration: none; /* Убирает подчеркивание для ссылок */
+}
+A:hover {
+    text-decoration: underline; /* Добавляем подчеркивание при наведении курсора на ссылку */
+    color: red; /* Ссылка красного цвета */
+}
 .menu a{
+
     color:#fff;
     margin:0px 6px;
 }

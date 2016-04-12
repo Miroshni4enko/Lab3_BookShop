@@ -41,7 +41,7 @@ public class Commands {
     }
 
     private void initMap() {
-        map = new HashMap<String, Object>();
+        map = new HashMap<>();
         map.put(ACTION_WELCOME, new Welcome());
         map.put(ACTION__ADD_CUSTOMER, new AddCustomer());
         map.put(ACTION_DETAIL, new DetailBook());
@@ -49,18 +49,11 @@ public class Commands {
 
         /////////////////////////////////////////////////////////////////
         /*
-
-
         loginUser -принимает имя пароль, ставит атрибут login если залогинился
 
-        attribute in session listOfAllBooks - сначала 10
 
 action Buy
-action=viewListBooks сначала было 10, при след запросе 20 итд
 action=viewDetailBooks переход на детал книги
-
-
-
 
 
          */
@@ -71,9 +64,7 @@ action=viewDetailBooks переход на детал книги
         RequestDispatcher rd = request.getRequestDispatcher(url);
         try {
             rd.forward(request, response);
-        } catch (ServletException e) {
-            LOG.error(e);
-        } catch (IOException e) {
+        } catch (ServletException | IOException e) {
             LOG.error(e);
         }
     }
@@ -82,7 +73,11 @@ action=viewDetailBooks переход на детал книги
 
     public static final String ACTION_WELCOME  = "welcome";
     public static final String ACTION_DETAIL   = "viewDetailBooks";
+
     public static final String VIEW_LIST_BOOKS = "viewListBooks";
+    public static       int    AMOUNT_OF_BOOKS_ON_LIST = 6;             // when session starts it equals 6 and after each
+    public static final int    PLUS_BOOKS_TO_LIST      = 6;             // request + 6 in ViewListBooks.java
+
 
     /*
      public static final String ACTION_OTHER = "otherAction";
