@@ -38,7 +38,7 @@ public class OracleDataAccess implements ModelDataBase{
         ht.put(Context.PROVIDER_URL, "t3://localhost:7001");
         try {
             ctx = new InitialContext(ht);
-            ds = (javax.sql.DataSource) ctx.lookup("myJNDIDBName"); // change your JNDI_name
+            ds = (javax.sql.DataSource) ctx.lookup("bookshop"); // change your JNDI_name
         } catch (NamingException e) {
             LOG.error("InitialContext or DataSource error", e);
         }finally {

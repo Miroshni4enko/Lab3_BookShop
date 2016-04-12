@@ -79,9 +79,11 @@ action=viewDetailBooks переход на детал книги
     }
 
     public static final String ACTION__ADD_CUSTOMER = "addCustomer";
+
     public static final String ACTION_WELCOME  = "welcome";
     public static final String ACTION_DETAIL   = "viewDetailBooks";
     public static final String VIEW_LIST_BOOKS = "viewListBooks";
+
     /*
      public static final String ACTION_OTHER = "otherAction";
     public static final String ACTION_WELCOME = "welcome";
