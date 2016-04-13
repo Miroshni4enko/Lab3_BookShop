@@ -51,9 +51,10 @@
         <td>Amount:</td>  <td><%=book.getAmount() %></td>
     </tr>
         <tr>
-            <td>Buy now:</td> <th><form name="buyBook" method="GET" action="Buy"><p>
+            <td>Buy now:</td> <th><form name="buyBook" method="GET" action="MainServlet?action=Buy"><p>
             <p align="right">
-                <input type="submit" value="Buy" style="width:100px;height: 60px;align-content: center">
+                <input type="submit" value="Buy" class="book2">
+
             </p>
         </form>
         </th>

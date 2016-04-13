@@ -83,10 +83,6 @@ public class OracleDataAccess implements ModelDataBase{
         }
     }
 
- /*   public boolean isConnection() {
-        return false;
-    }
-*/
 
     /**
      * Method for update book.
@@ -547,17 +543,12 @@ public class OracleDataAccess implements ModelDataBase{
             String name = result.getString("NAME");
             String description = result.getString("DESCRIPTION");
             int par = result.getInt("PARENT_ID");
-            Item newRubric=null;
+            Item newItem=null;
             if(type==Item.ItemType.Rubric){
-               newRubric = getRubricById(par);
+                newItem = getSectionById(par);
             }
-            if(type==Item.ItemType.Rubric){
-                newRubric = getSectionById(par);
-            }
-           else{
-                throw new IllegalArgumentException();
-            }
-            item = new Item(id, name, description, newRubric, type);
+
+            item = new Item(id, name, description, newItem, type);
         } catch (SQLException e) {
             throw new DataBaseException("Exception with data from result set", e);
         }
@@ -590,11 +581,11 @@ public class OracleDataAccess implements ModelDataBase{
 
     /**
      * Method return amount of books that you need.
-     * @param amoount of books.
+     * @param amount of books.
      * @return List<Book>.
      * @throws DataBaseException Exception with data.
      */
-    public List<Book> getAmountOfBooks(int amoount) throws DataBaseException {
+    public List<Book> getAmountOfBooks(int amount) throws DataBaseException {
         Connection connection       = getConnection();
         ResultSet result            = null;
         PreparedStatement statement = null;
@@ -605,7 +596,7 @@ public class OracleDataAccess implements ModelDataBase{
             statement = connection.prepareStatement(SqlScripts.SELECT_ALL_BOOK);
             result    = statement.executeQuery();
 
-            while (result.next() && count < amoount) {
+            while (result.next() && count < amount) {
                 listBooks.add(getBook(result));
                 count++;
             }

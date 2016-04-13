@@ -1,7 +1,10 @@
 package exception;
 
 /**
- * Created by Фокстрот on 03.04.2016.
+ * Class that describes the exception for database.
+ *
+ * @author Veleri Rechembei
+ * @version %I%, %G%
  */
 public class DataBaseException  extends Exception {
     private String message;

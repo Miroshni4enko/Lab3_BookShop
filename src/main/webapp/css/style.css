@@ -107,7 +107,7 @@ p {
     border: 1px solid #ddd;
     border-spacing: 10px;
     border-radius: 3px;
-    background: #85abff fixed;
+    background: #FAF0E6 fixed;
     font-size: 18px;
     width: AUTO;
 }
@@ -124,6 +124,7 @@ td{
     border: 1px solid #ddd;
     padding: 5px;
     border-radius: 3px;
+    border:0.5px solid #CD853F;
     width: 450px;
     high:50px;
 }
@@ -131,6 +132,7 @@ th{
     margin: auto;
     padding: 5px;
     border-radius: 3px;
+
     width: 450px;
     high:50px;
 }
@@ -141,6 +143,7 @@ th{
     top: 140px;
     higt: 650;
     border:3px solid #00FA9A;
+    background: #FAF0E6 fixed;
     margin: 90px 350px 50px 350px;
 }
 #modal_form {
@@ -226,5 +229,20 @@ th{
 }
 .close:hover {
     background-color: rgba(255, 69, 0, 0.8);
+}
+.book2{
+    width:90px;
+    height: 50px;
+    align-content: center;
+    position: relative;
+    display: inline-block;
+    outline: none; border: none;
+    padding: 5px 10px 6px;
+    background: #3D9970;
+    box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    align: center;
 }
 
