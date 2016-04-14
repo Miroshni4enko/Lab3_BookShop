@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class Welcome implements GeneralProcess{
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException{
+
         ArrayList books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
         request.getSession().setAttribute("listOfAllBooks", books);
 

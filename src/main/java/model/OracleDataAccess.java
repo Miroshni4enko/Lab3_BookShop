@@ -591,7 +591,7 @@ public class OracleDataAccess implements ModelDataBase{
         PreparedStatement statement = null;
         int count = 0;
 
-        List<Book> listBooks = new ArrayList<Book>();
+        List<Book> listBooks = new ArrayList<>();
         try {
             statement = connection.prepareStatement(SqlScripts.SELECT_ALL_BOOK);
             result    = statement.executeQuery();
