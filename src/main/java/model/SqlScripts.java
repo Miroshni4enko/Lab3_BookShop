@@ -44,4 +44,6 @@ public class SqlScripts {
     public static final String CREATE_SECTION="INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values(?,?,?,2);";
     public static final String CREATE_ORDER="execute ADDORDER(?,?,?,?)";
 
+    public static final String SELECT_RUBRIC_BY_SECTION="SELECT * FROM ITEM WHERE TYPE =1 AND ITEM.PARENT_ID=?";
+
 }

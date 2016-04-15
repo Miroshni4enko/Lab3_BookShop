@@ -609,6 +609,25 @@ public class OracleDataAccess implements ModelDataBase{
 
         return listBooks;
     }
+    public List<Item> getRubricBySection(int id)throws  DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        List<Item> listRubric = new ArrayList<>();
+        try {
+            statement = connection.prepareStatement(SqlScripts.SELECT_RUBRIC_BY_SECTION);
+            statement.setInt(1, id);
+            result = statement.executeQuery();
+            while (result.next()) {
+                listRubric.add(getItem(result, Item.ItemType.Rubric));
+            }
+        } catch (Exception e) {
+            throw new DataBaseException("Exception with data from database", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+        return listRubric;
+    }
 
     public List<Book> getAllBooks() throws DataBaseException {
         Connection connection = getConnection();
