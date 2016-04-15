@@ -16,8 +16,9 @@ public class SqlScripts {
     public static final String SELECT_ALL_SECTION = "SELECT * FROM ITEM WHERE TYPE =2";
     public static final String SELECT_ALL_CUSTOMER = "SELECT * FROM CUSTOMER";
     public static final String SELECT_ALL_ORDER = "SELECT * FROM ORDERS o";
-    public static final String SELECT_CON_OF_ORDER = "SELECT * FROM CONTENR_ORDER WHERE ID_CONTENT=?";
 
+    public static final String SELECT_CON_OF_ORDER = "SELECT * FROM CONTENR_ORDER WHERE ID_CONTENT=?";
+    public static final String SELECT_ID_ORDER = "SELECT ORDERS.ID_ORDER,c.ID_CONTENT FROM ORDERS,CONTENR_ORDER c  WHERE ID_CUSTOMER=? AND DATA=? AND c.ID_BOOK=? AND c.ID_ORDER=ORDERS.ID_ORDER";
     public static final String SELECT_AUTHOR_BY_ID = "SELECT * FROM AUTHOR WHERE ID_AUTHOR =?";
     public static final String SELECT_ODER_BY_ID = "SELECT * FROM ORDERS WHERE ID_ORDER =?";
     public static final String SELECT_CUSTOMER_BY_ID = "SELECT * FROM CUSTOMER WHERE ID_CUSTOMER=?";
@@ -40,6 +41,7 @@ public class SqlScripts {
     public static final String CREATE_RUBRIC="INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values(?,?,?,1);";
     public static final String CREATE_SECTION="INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values(?,?,?,2);";
     public static final String CREATE_ORDER="{call  ADDORDER(?,?,?,?)}";
+    public static final String CREATE_NEW_CON="INSERT INTO CONTENR_ORDER(ID_ORDER,ID_BOOK,AMOUNT) values(?,?,?)";
 
     public static final String DELETE_AUTHOR="DELETE FROM AUTHOR WHERE ID_AUTHOR = ?";
     public static final String DELETE_CUSTOMER="DELETE FROM CUSTOMER WHERE ID_CUSTOMER = ?";
@@ -52,7 +54,11 @@ public class SqlScripts {
     public static final String UPDATE_AUTHOR="UPDATE AUTHOR SET SURNAME=?,NAME=? WHERE ID_AUTHOR = ?";
     public static final String UPDATE_CUSTOMER="UPDATE CUSTOMER SET LOGIN=?,PASSWORD=?,E_MAIL=?,PHOME_NUBMER=?,ROLE=? WHERE ID_CUSTOMER = ?";
 
-
+    public static final String SELECT_LAST_ID_ORDER = "SELECT MAX(ID_ORDER) FROM ORDERS";
+    public static final String DELETE_ORDER="DELETE ORDERS WHERE ID_ORDER = ?";
+    public static final String DELETE_CON_FOR_ORDERS="DELETE CONTENR_ORDER WHERE ID_ORDER = ?";
+    public static final String UPDATE_ORDER_CON="UPDATE CONTENR_ORDER SET AMOUNT=? WHERE ID_ORDER = ? AND ID_BOOK=?";
+    public static final String DELETE_ONE_CON_FROM_ORDER="DELETE CONTENR_ORDER WHERE ID_ORDER = ? AND ID_BOOK=?";
 
 
 }

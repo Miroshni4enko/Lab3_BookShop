@@ -104,9 +104,11 @@ public class OracleDataAccess implements ModelDataBase{
         }
         return id;
     }
+
     /**
      * Method for update book.
      * @param book book,that needed to update.
+     * @throws DataBaseException exception with data.
      */
     public void updateBook(Book book) throws  DataBaseException{
         Connection connection = getConnection();
@@ -144,6 +146,7 @@ public class OracleDataAccess implements ModelDataBase{
     /**
      * Method for update author.
      * @param author author,that needed to update.
+     * throws DataBaseException exception with data.
      */
     public void updateAuthor(Author author) throws DataBaseException {
         Connection connection = getConnection();
@@ -164,16 +167,9 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     * Method for update order.
-     * @param order order,that needed to update.
-     */
-    public void updateOrder(Order order) {
-
-    }
-
-    /**
      * Method for update customer.
      * @param customer customer, that needed to update.
+     * @throws DataBaseException exception with data.
      */
     public void updateCustomer(Customer customer) throws DataBaseException{
         Connection connection = getConnection();
@@ -200,6 +196,7 @@ public class OracleDataAccess implements ModelDataBase{
      * Method for create customer.
      * @param customer customer, that needed to create.
      * @return created customer.
+     * @throws DataBaseException exception with data.
      */
     public void createCustomer(Customer customer) throws DataBaseException{
         Connection connection = getConnection();
@@ -225,28 +222,129 @@ public class OracleDataAccess implements ModelDataBase{
      * Method for create order.
      * @param order order, that needed to create.
      * @return created order.
+     * @throws DataBaseException exception with data.
      */
     public void createOrder(Order order)throws DataBaseException {
-          /*  Connection connection = getConnection();
-            ResultSet result = null;
-            PreparedStatement statement = null;
-            try {
-                statement = connection.prepareStatement(SqlScripts.CREATE_ORDER);
-                statement.setInt(1, order.getIdCustomer());
-                statement.setInt(2, order.getContents().getBooks().);
-                statement.execute();
-            } catch (SQLException e) {
-                throw new DataBaseException("Exception for create", e);
-            } finally {
-                disconnect(connection, result, statement);
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.CREATE_ORDER);
+            statement.setInt(1,order.getCustomer().getId());
+            statement.setInt(2, order.getContents().get(0).getBooks().getId());
+            statement.setInt(3,order.getContents().get(0).getAmount());
+            statement.setDate(4, (java.sql.Date) order.getDateOfOrder());
+            statement.execute();
+            statement = null;
+            result = null;
+
+            statement = connection.prepareStatement(SqlScripts.SELECT_LAST_ID_ORDER);
+            result= statement.executeQuery();
+            while (result.next()) {
+                int idOr = result.getInt("MAX(ID_ORDER)");
+                order.setIdOrder(idOr);
             }
-        */
+            statement = null;
+            for(int i=1;i<=order.getContents().size()-1;i++){
+                statement = connection.prepareStatement(SqlScripts.CREATE_NEW_CON);
+                statement.setInt(1, order.getIdOrder());
+                statement.setInt(2, order.getContents().get(i).getBooks().getId());
+                statement.setInt(3, order.getContents().get(i).getAmount());
+                statement.execute();
+                statement = null;
+            }
+
+
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+    }
+    /**
+     * Method for remove book from order.
+     * @param idOrder id of order, that needed to update.
+     * @param idBook id of book, that needed to remove.
+     * @throws DataBaseException  exception with data.
+     */
+    public void removeBookFromOrder(int idOrder,int idBook)throws  DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.DELETE_ONE_CON_FROM_ORDER);
+            statement.setInt(1, idOrder);
+            statement.setInt(2, idBook);
+            statement.execute();
+        }
+        catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+
+    }
+    /**
+     * Method that add book to order.
+     * @param order order, that needed to update.
+     * @param book book,that needed to add.
+     * @param count amount of book.
+     * @throws DataBaseException exception with data.
+     */
+    public void addBookToOrder(Order order,Book book, int count)throws  DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        Order.ContentOrder newCon = order.new ContentOrder();
+        newCon.setBook(book,count);
+        int id = order.getContents().size()+1;
+        order.addCon(newCon);
+        try {
+            statement = connection.prepareStatement(SqlScripts.CREATE_NEW_CON);
+            statement.setInt(1, order.getIdOrder());
+            statement.setInt(2, order.getContents().get(id).getBooks().getId());
+            statement.setInt(3, order.getContents().get(id).getAmount());
+            statement.execute();
+        }
+        catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+
+    }
+
+    /**
+     * Method for update book of order.
+     * @param idOrder id of order, that needed to update.
+     * @param idBook id of book,that needed to update.
+     * @param count amount of book.
+     * @throws DataBaseException  exception with data.
+     */
+    public void updateBookOfOrder(int idOrder,int idBook, int count)throws  DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.UPDATE_ORDER_CON);
+            statement.setInt(1, count);
+            statement.setInt(2, idOrder);
+            statement.setInt(3, idBook);
+            statement.execute();
+        }
+        catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+
     }
 
     /**
      * Method for create book.
      * @param book book, that needed to create.
      * @return created book.
+     * @throws DataBaseException  exception with data.
      */
     public void createBook(Book book) throws DataBaseException{
         Connection connection = getConnection();
@@ -273,6 +371,7 @@ public class OracleDataAccess implements ModelDataBase{
      * Method for create author.
      * @param author author, that needed to create.
      * @return created author.
+     * @throws DataBaseException  exception with data.
      */
     public void createAuthor(Author author) throws DataBaseException {
         Connection connection = getConnection();
@@ -293,6 +392,7 @@ public class OracleDataAccess implements ModelDataBase{
     /**
      * Method for remove book.
      * @param bookId id of book, that needed to remove.
+     * @throws DataBaseException  exception with data.
      */
     public void removeBook(int bookId) throws DataBaseException{
         Connection connection = getConnection();
@@ -312,6 +412,7 @@ public class OracleDataAccess implements ModelDataBase{
     /**
      * Method for remove author.
      * @param authorId id of author, that needed to remove.
+     * @throws DataBaseException  exception with data.
      */
     public void removeAuthor(int authorId) throws DataBaseException {
         Connection connection = getConnection();
@@ -329,17 +430,41 @@ public class OracleDataAccess implements ModelDataBase{
         }
     }
 
+
     /**
      * Method for remove order.
-     * @param orderId id of order, that needed to remove.
+     * @param order is order, that needed to remove.
+     * @throws DataBaseException  exception with data.
      */
-    public void removeOrder(int orderId) {
+    public void removeOrder(Order order) throws  DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.DELETE_ORDER);
+            statement.setInt(1,order.getIdOrder());
+            statement.execute();
+            statement = null;
+            result = null;
 
+            for(int i=1;i<=order.getContents().size()-1;i++){
+                statement = connection.prepareStatement(SqlScripts.DELETE_CON_FOR_ORDERS);
+                statement.setInt(1,order.getIdOrder());
+                statement.execute();
+                statement = null;
+            }
+
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
     }
 
     /**
      * Method for remove customer.
      * @param customerId id of customer, that needed to remove.
+     * @throws DataBaseException  exception with data.
      */
     public void removeCustomer(int customerId)  throws DataBaseException{
         Connection connection = getConnection();
@@ -410,7 +535,7 @@ public class OracleDataAccess implements ModelDataBase{
         Connection connection = getConnection();
         ResultSet result = null;
         PreparedStatement statement = null;
-        List<Author> listAuthor = new ArrayList<Author>();
+        List<Author> listAuthor = new ArrayList<>();
         try {
             statement = connection.prepareStatement(SqlScripts.SELECT_ALL_AUTHOR);
             result = statement.executeQuery();
@@ -447,7 +572,7 @@ public class OracleDataAccess implements ModelDataBase{
         Connection connection = getConnection();
         ResultSet result = null;
         PreparedStatement statement = null;
-        List<Order> listOrder = new ArrayList<Order>();
+        List<Order> listOrder = new ArrayList<>();
         try {
             statement = connection.prepareStatement(SqlScripts.SELECT_ALL_ORDER);
             result = statement.executeQuery();
@@ -474,7 +599,9 @@ public class OracleDataAccess implements ModelDataBase{
             while (result.next()) {
                 int idBook = result.getInt("ID_BOOK");
                 int amount = result.getInt("AMOUNT");
-                order.getContents().addBook(getBookById(idBook), amount);
+                Order.ContentOrder con = order.new ContentOrder();
+                con.setBook(getBookById(idBook),amount);
+                order.getContents().add(con);
             }
         } catch (Exception e) {
             throw new DataBaseException("Exception with data from database", e);
@@ -485,14 +612,15 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     private Order getOrder(ResultSet result) throws DataBaseException {
-        Order order;
+        Order order=null;
         try {
             int idOr = result.getInt("ID_ORDER");
             int idCus = result.getInt("ID_CUSTOMER");
-            Customer cus = getCustomerById(idCus);
+            Customer cus = OracleDataAccess.getInstance().getCustomerById(idCus);
             Date data = result.getDate("DATE");
-            int idCon = result.getInt("ID_CONTENT");
-            order = new Order(idOr, cus, data, idCon);
+            Order.ContentOrder con = order.new ContentOrder();
+            order = new Order(idOr, cus, data);
+            order.addCon(con);
         } catch (SQLException e) {
             throw new DataBaseException("Exception with data from result set", e);
         }
@@ -500,10 +628,10 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     *
-     * @param bookId
-     * @return
-     * @throws DataBaseException
+     * Method for get book by id.
+     * @param bookId id of book.
+     * @return book.
+     * @throws DataBaseException exception with data.
      */
     public Book getBookById(int bookId) throws DataBaseException {
         Connection connection = getConnection();
@@ -526,10 +654,10 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     *
-     * @param customerId
-     * @return
-     * @throws DataBaseException
+     * Method for get customer by id.
+     * @param customerId id of customer.
+     * @return customer.
+     * @throws DataBaseException  exception with data.
      */
     public Customer getCustomerById(int customerId) throws DataBaseException {
         Connection connection = getConnection();
@@ -552,10 +680,10 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     *
-     * @param orderId
-     * @return
-     * @throws DataBaseException
+     * Method for get order by id.
+     * @param orderId if of order.
+     * @return order.
+     * @throws DataBaseException exception with data.
      */
     public Order getOrderById(int orderId) throws DataBaseException {
         Connection connection = getConnection();
@@ -578,10 +706,10 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     *
-     * @param authorId
-     * @return
-     * @throws DataBaseException
+     * Method for get author by id.
+     * @param authorId if of author.
+     * @return author.
+     * @throws DataBaseException exception with data.
      */
     public Author getAuthorById(int authorId) throws DataBaseException {
         Connection connection = getConnection();
@@ -604,9 +732,9 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     *
-     * @return
-     * @throws DataBaseException
+     * Method for get all rubrics.
+     * @return list of all rubrics.
+     * @throws DataBaseException exception with data.
      */
     public List<Item> getAllRubric() throws DataBaseException {
         Connection connection = getConnection();
@@ -647,9 +775,9 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     *
-     * @return
-     * @throws DataBaseException
+     * Method for get all sections.
+     * @return list of all sections.
+     * @throws DataBaseException exception with data.
      */
     public List<Item> getAllSection() throws DataBaseException {
         Connection connection = getConnection();
@@ -700,6 +828,13 @@ public class OracleDataAccess implements ModelDataBase{
 
         return listBooks;
     }
+
+    /**
+     * Method for get rubrics by section.
+     * @param id id of rubric.
+     * @return list of all rubrics by section.
+     * @throws DataBaseException  exception with data.
+     */
     public List<Item> getRubricBySection(int id)throws  DataBaseException{
         Connection connection = getConnection();
         ResultSet result = null;
@@ -720,6 +855,11 @@ public class OracleDataAccess implements ModelDataBase{
         return listRubric;
     }
 
+    /**
+     * Method for get all books.
+     * @return list of books.
+     * @throws DataBaseException  exception with data.
+     */
     public List<Book> getAllBooks() throws DataBaseException {
         Connection connection = getConnection();
         ResultSet result = null;
@@ -741,10 +881,10 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     *
-     * @param idRubric
-     * @return
-     * @throws DataBaseException
+     * Method for get all books by rubric.
+     * @param idRubric id of rubric.
+     * @return list of all books by rubric.
+     * @throws @throws DataBaseException  exception with data.
      */
     public List<Book> getAllBooksByRubric(int idRubric) throws DataBaseException {
         Connection connection = getConnection();
@@ -787,9 +927,9 @@ public class OracleDataAccess implements ModelDataBase{
         return book;
     }
     /**
-     *
-     * @param rubricId
-     * @throws DataBaseException
+     * Method for remove rubric.
+     * @param rubricId if of rubric, that needed to remove.
+     * @throws @throws DataBaseException  exception with data.
      */
     public void removeRubric(int rubricId) throws DataBaseException {
         Connection connection = getConnection();
@@ -808,9 +948,9 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     *
-     * @param sectionId
-     * @throws DataBaseException
+     * Method for remove section.
+     * @param sectionId id of section,that needed to remove.
+     * @throws @throws DataBaseException  exception with data.
      */
     public void removeSection(int sectionId) throws DataBaseException {
         Connection connection = getConnection();
@@ -829,10 +969,9 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     *
-     * @param rubric
-     * @return
-     * @throws DataBaseException
+     * Method for create rubric.
+     * @param rubric rubric, that needed to create.
+     * @throws @throws DataBaseException  exception with data.
      */
     public void createRubric(Item rubric) throws DataBaseException {
         Connection connection = getConnection();
@@ -853,10 +992,9 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     *
-     * @param section
-     * @return
-     * @throws DataBaseException
+     * Method for create section.
+     * @param section section, that needed to create.
+     * @throws @throws DataBaseException  exception with data.
      */
     public void createSection(Item section) throws DataBaseException {
         Connection connection = getConnection();
@@ -877,9 +1015,9 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     *
-     * @param item
-     * @throws DataBaseException
+     * Method for update item(rubric or section).
+     * @param item item,that needed to update.
+     * @throws @throws DataBaseException  exception with data.
      */
     public void updateItem(Item item) throws DataBaseException {
         Connection connection = getConnection();
@@ -908,10 +1046,10 @@ public class OracleDataAccess implements ModelDataBase{
 
 
     /**
-     *
-     * @param rubricId
-     * @return
-     * @throws DataBaseException
+     * Method, that get rubric by id.
+     * @param rubricId id of rubric.
+     * @return rubric.
+     * @throws @throws DataBaseException  exception with data.
      */
     public Item getRubricById(int rubricId)throws DataBaseException{
         Connection connection = getConnection();
@@ -934,10 +1072,10 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     /**
-     *
-     * @param sectionId
-     * @return
-     * @throws DataBaseException
+     * Method, that get section by id.
+     * @param sectionId id of section.
+     * @return section.
+     * @throws @throws DataBaseException  exception with data.
      */
     public  Item getSectionById(int sectionId)throws DataBaseException{
         Connection connection = getConnection();
