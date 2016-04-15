@@ -19,8 +19,10 @@
             }
                 if (login == true) { %>
                 <a href="index.jsp">Exit</a>
+                <a href="showProfile.jsp">Profile</a>
             <%} else {%>
                 <a href="Login.jsp">Entry</a>
+                <a href="showProfile.jsp">Registration</a>
             <%}%>
         </a>
     </p>

@@ -42,7 +42,8 @@
                     <div >
                         <form>
                             <p class="prob"><input type="text" placeholder="telephone" /></p>
-                            <p class="prob"><input type="text" placeholder="@mail" /></p>
+                            <p class="prob"><input type="email" placeholder="email" /></p>
+                            <p class="prob"><input type="number" placeholder="amount" /></p>
                             <div><input class="btn" type="submit" value="Buy book" /></div>
                         </form>
                     </div>
