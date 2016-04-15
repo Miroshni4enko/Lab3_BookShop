@@ -14,29 +14,32 @@ import java.util.Map;
  */
 public class Order {
 
-    private final int           idOrder;
-    private int                 idCustomer;
+    private int                 idOrder;
+    private Customer            customer;
     private Date                dateOfOrder;
     private ContentOrder        content;
 
-    public Order(int id, int idCustomer,Date dateOfOrder,int con ) {
+    public Order(int id, Customer customer,Date dateOfOrder,int con ) {
         this.idOrder = id;
-        this.idCustomer = idCustomer;
+        this.customer = customer;
         this.dateOfOrder = dateOfOrder;
         this.content=new ContentOrder(con);
         //this.contents.add(new ContentOrder(con));
+
+    }
+    public Order(){
 
     }
     public int getIdOrder() {
         return idOrder;
     }
 
-    public int getIdCustomer() {
-        return idCustomer;
+    public Customer getIdCustomer() {
+        return customer;
     }
 
-    public void setIdCustomer(int idCustomer) {
-        this.idCustomer = idCustomer;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Date getDateOfOrder() {

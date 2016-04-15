@@ -9,12 +9,13 @@ package model;
  */
 public class Book extends Item{
 
-    //private int idAuthor;
     private Author author;
     private int pages;
     private int price;
     private int amount;
+    public Book(){
 
+    }
     public Book(int id, String name, String des, Item rubric, Author author, int pages, int price, int amount) {
         super(id, name, des, rubric, ItemType.Book);
         if(rubric.getType()!=ItemType.Rubric){

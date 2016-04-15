@@ -7,14 +7,17 @@ package model;
  * @version %I%, %G%
  */
 public class Item {
-    private final int idItem;
+    private int idItem;
     private String name;
     private String description;
-   // private int parent;
     private ItemType type;
     private Item parent;
+    public Item(){
 
-
+    }
+    public Item(int id ){
+        this.idItem=id;
+    }
     public Item(int id, String name, String des,Item par,ItemType itemType){
         this.idItem=id;
         this.name=name;
@@ -27,9 +30,10 @@ public class Item {
         Book,
         Section;
     }
-    public Item(int id ){
+    public void setId(int id){
         this.idItem=id;
     }
+
     public int getId() {
         return idItem;
     }

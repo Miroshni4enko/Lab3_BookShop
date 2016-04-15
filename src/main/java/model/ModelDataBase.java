@@ -14,14 +14,14 @@ import java.util.List;
 public interface ModelDataBase {
 
     Connection getConnection();
-    // boolean isConnection();
+
 
     void updateBook(Book book)throws DataBaseException;
     void updateAuthor(Author author)throws DataBaseException;
     void updateOrder(Order order)throws DataBaseException;
     void updateCustomer(Customer customer)throws DataBaseException;
-    void updateRubric(Item rubric) throws DataBaseException;
-    void updateSection(Item section) throws DataBaseException;
+    void updateItem(Item item) throws DataBaseException;
+
 
     void createCustomer(Customer customer)throws DataBaseException;
     void createOrder(Order order)throws DataBaseException;
@@ -43,6 +43,7 @@ public interface ModelDataBase {
     List<Item> getAllRubric() throws DataBaseException;
     List<Item> getAllSection() throws DataBaseException;
     List<Book> getAllBooks() throws DataBaseException;
+    List<Book> getAllBooksByRubric(int idRubric) throws DataBaseException;
 
     Book getBookById(int bookId) throws DataBaseException;
     Customer getCustomerById(int customerId) throws DataBaseException;

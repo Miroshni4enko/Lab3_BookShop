@@ -84,12 +84,60 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
 
+    private int propertiesId(Book book)throws  DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        int id=-1;
+        try {
+            statement = connection.prepareStatement(SqlScripts.SELECT_PROPERTIES_BY_ID);
+            statement.setInt(1, book.getId());
+            result= statement.executeQuery();
+            while (result.next()) {
+                id =result.getInt("ID_PROPERTIES");
+            }
+        }
+        catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+        return id;
+    }
     /**
      * Method for update book.
      * @param book book,that needed to update.
      */
-    public void updateBook(Book book) {
-
+    public void updateBook(Book book) throws  DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.UPDATE_ITEM);
+            statement.setInt(1, book.getParent().getId());
+            statement.setString(2, book.getName());
+            statement.setString(3, book.getDescription());
+            statement.setInt(4, book.getId());
+            statement.executeUpdate();
+            statement=null;
+            int idP=propertiesId(book);
+            if(idP!=-1) {
+                statement = connection.prepareStatement(SqlScripts.UPDATE_BOOK_PROPERTIES);
+                statement.setInt(1, book.getAuthor().getId());
+                statement.setInt(2, book.getPages());
+                statement.setInt(3, book.getPrice());
+                statement.setInt(4, book.getAmount());
+                statement.setInt(5, idP);
+                statement.executeUpdate();
+            }
+            else {
+                throw new SQLException();
+            }
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
 
     }
 
@@ -97,8 +145,22 @@ public class OracleDataAccess implements ModelDataBase{
      * Method for update author.
      * @param author author,that needed to update.
      */
-    public void updateAuthor(Author author) {
+    public void updateAuthor(Author author) throws DataBaseException {
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.UPDATE_AUTHOR);
+            statement.setString(1, author.getSurname());
+            statement.setString(2, author.getName());
+            statement.setInt(3, author.getId());
+            statement.executeUpdate();
 
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
     }
 
     /**
@@ -113,8 +175,25 @@ public class OracleDataAccess implements ModelDataBase{
      * Method for update customer.
      * @param customer customer, that needed to update.
      */
-    public void updateCustomer(Customer customer) {
+    public void updateCustomer(Customer customer) throws DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.UPDATE_CUSTOMER);
+            statement.setString(1, customer.getLogin());
+            statement.setString(2, customer.getPassword());
+            statement.setString(3, customer.geteMail());
+            statement.setString(4, customer.getPhone());
+            statement.setInt(5, customer.getRole());
+            statement.setInt(6, customer.getId());
+            statement.executeUpdate();
 
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
     }
 
     /**
@@ -215,8 +294,19 @@ public class OracleDataAccess implements ModelDataBase{
      * Method for remove book.
      * @param bookId id of book, that needed to remove.
      */
-    public void removeBook(int bookId) {
-
+    public void removeBook(int bookId) throws DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.DELETE_BOOK);
+            statement.setInt(1, bookId);
+            statement.execute();
+        } catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
     }
 
     /**
@@ -399,9 +489,10 @@ public class OracleDataAccess implements ModelDataBase{
         try {
             int idOr = result.getInt("ID_ORDER");
             int idCus = result.getInt("ID_CUSTOMER");
+            Customer cus = getCustomerById(idCus);
             Date data = result.getDate("DATE");
             int idCon = result.getInt("ID_CONTENT");
-            order = new Order(idOr, idCus, data, idCon);
+            order = new Order(idOr, cus, data, idCon);
         } catch (SQLException e) {
             throw new DataBaseException("Exception with data from result set", e);
         }
@@ -648,6 +739,33 @@ public class OracleDataAccess implements ModelDataBase{
         }
         return listBooks;
     }
+
+    /**
+     *
+     * @param idRubric
+     * @return
+     * @throws DataBaseException
+     */
+    public List<Book> getAllBooksByRubric(int idRubric) throws DataBaseException {
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        List<Book> listBooks = new ArrayList<Book>();
+
+        try {
+            statement = connection.prepareStatement(SqlScripts.SELECT_BOOK_BY_RUBRIC);
+            statement.setInt(1, idRubric);
+            result = statement.executeQuery();
+            while (result.next()) {
+                listBooks.add(getBook(result));
+            }
+        } catch (Exception e) {
+            throw new DataBaseException("Exception with data from database", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+        return listBooks;
+    }
     private Book getBook(ResultSet result) throws DataBaseException {
         Book book;
         try {
@@ -760,21 +878,34 @@ public class OracleDataAccess implements ModelDataBase{
 
     /**
      *
-     * @param rubric
+     * @param item
      * @throws DataBaseException
      */
-    public void updateRubric(Item rubric) throws DataBaseException {
+    public void updateItem(Item item) throws DataBaseException {
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.UPDATE_ITEM);
+            if(item.getType()== Item.ItemType.Rubric) {
+                statement.setInt(1, item.getParent().getId());
+            }
+            else{
+                statement.setNull(1,java.sql.Types.NULL );
+            }
 
+            statement.setString(2, item.getName());
+            statement.setString(3, item.getDescription());
+            statement.setInt(4, item.getId());
+            statement.executeUpdate();
+        }
+        catch (SQLException e) {
+            throw new DataBaseException("Exception for create", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
     }
 
-    /**
-     *
-     * @param section
-     * @throws DataBaseException
-     */
-    public void updateSection(Item section) throws DataBaseException {
-
-    }
 
     /**
      *
