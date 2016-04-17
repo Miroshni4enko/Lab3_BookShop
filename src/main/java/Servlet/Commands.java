@@ -41,7 +41,7 @@ public class Commands {
     }
 
     private void initMap() {
-        map = new HashMap<>();
+        map = new HashMap<String, Object>();
         map.put(ACTION_WELCOME, new Welcome());
         map.put(ACTION__ADD_CUSTOMER, new AddCustomer());
         map.put(ACTION_DETAIL, new DetailBook());
@@ -64,7 +64,9 @@ action=viewDetailBooks переход на детал книги
         RequestDispatcher rd = request.getRequestDispatcher(url);
         try {
             rd.forward(request, response);
-        } catch (ServletException | IOException e) {
+        } catch (ServletException e) {
+            LOG.error(e);
+        } catch (IOException e) {
             LOG.error(e);
         }
     }

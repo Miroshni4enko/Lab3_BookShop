@@ -18,7 +18,7 @@ public class Order {
     private ArrayList<ContentOrder>    content;
 
     public Order(int id, Customer customer,Date dateOfOrder,ArrayList<ContentOrder>  con ) {
-        content = new ArrayList<>();
+        content = new ArrayList<ContentOrder>();
         this.idOrder = id;
         this.customer = customer;
         this.dateOfOrder = dateOfOrder;
@@ -26,7 +26,7 @@ public class Order {
 
     }
     public Order(int id, Customer customer,Date dateOfOrder ) {
-        content = new ArrayList<>();
+        content = new ArrayList<ContentOrder>();
         this.idOrder = id;
         this.customer = customer;
         this.dateOfOrder = dateOfOrder;
@@ -34,7 +34,7 @@ public class Order {
 
     }
     public Order(){
-        content = new ArrayList<>();
+        content = new ArrayList<ContentOrder>();
     }
     public int getIdOrder() {
         return idOrder;

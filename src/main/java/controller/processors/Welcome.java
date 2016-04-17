@@ -35,7 +35,7 @@ public class Welcome implements GeneralProcess{
             }
         });
        */
-        HashMap<Item,ArrayList<Item>> list = new HashMap<>();
+        HashMap<Item,ArrayList<Item>> list = new HashMap<Item,ArrayList<Item>>();
         for(int i=0;i<=sectionAll.size()-1;i++){
             ArrayList<Item> rubric = (ArrayList) OracleDataAccess.getInstance().getRubricBySection(sectionAll.get(i).getId());
             list.put(sectionAll.get(i),rubric);

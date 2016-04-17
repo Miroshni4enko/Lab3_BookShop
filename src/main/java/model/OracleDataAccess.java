@@ -535,7 +535,7 @@ public class OracleDataAccess implements ModelDataBase{
         Connection connection = getConnection();
         ResultSet result = null;
         PreparedStatement statement = null;
-        List<Author> listAuthor = new ArrayList<>();
+        List<Author> listAuthor = new ArrayList<Author>();
         try {
             statement = connection.prepareStatement(SqlScripts.SELECT_ALL_AUTHOR);
             result = statement.executeQuery();
@@ -572,7 +572,7 @@ public class OracleDataAccess implements ModelDataBase{
         Connection connection = getConnection();
         ResultSet result = null;
         PreparedStatement statement = null;
-        List<Order> listOrder = new ArrayList<>();
+        List<Order> listOrder = new ArrayList<Order>();
         try {
             statement = connection.prepareStatement(SqlScripts.SELECT_ALL_ORDER);
             result = statement.executeQuery();
@@ -810,7 +810,7 @@ public class OracleDataAccess implements ModelDataBase{
         PreparedStatement statement = null;
         int count = 0;
 
-        List<Book> listBooks = new ArrayList<>();
+        List<Book> listBooks = new ArrayList<Book>();
         try {
             statement = connection.prepareStatement(SqlScripts.SELECT_ALL_BOOK);
             result    = statement.executeQuery();
@@ -839,7 +839,7 @@ public class OracleDataAccess implements ModelDataBase{
         Connection connection = getConnection();
         ResultSet result = null;
         PreparedStatement statement = null;
-        List<Item> listRubric = new ArrayList<>();
+        List<Item> listRubric = new ArrayList<Item>();
         try {
             statement = connection.prepareStatement(SqlScripts.SELECT_RUBRIC_BY_SECTION);
             statement.setInt(1, id);
