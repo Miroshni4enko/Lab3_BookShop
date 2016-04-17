@@ -9,15 +9,15 @@ import org.apache.log4j.Logger;
  * @version %I%, %G%
  */
 public class Customer {
-    private final int           id;
-    private String              login;
-    private String              password;
-    private String              eMail;
-    private String              phone;
-    private int                 role;
-    private static final Logger LOG  = Logger.getLogger(Customer.class);
+    private int        id;
+    private String     login;
+    private String     password;
+    private String     eMail;
+    private String     phone;
+    private int        role;
+    private static final Logger LOG = Logger.getLogger(Customer.class);
 
-    public Customer(int id, String login, String password, String eMail,String phone, int role) {
+    public Customer(int id, String login, String password, String eMail, String phone, int role) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -25,6 +25,22 @@ public class Customer {
         this.phone = phone;
         this.role = role;
 
+    }
+
+    public Customer(String login, String password, String eMail, String phone, int role) {
+        this.login = login;
+        this.password = password;
+        this.eMail = eMail;
+        this.phone = phone;
+        this.role = role;
+
+    }
+
+    public Customer() {
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -68,10 +84,9 @@ public class Customer {
     }
 
     public void setRole(int role) {
-        if((role!=0)||(role!=10)||(role!=1)){
+        if ((role != 0) || (role != 10) || (role != 1)) {
             LOG.info("Wrong number of role. Operation rejected!");
-        }
-        else {
+        } else {
             this.role = role;
         }
     }

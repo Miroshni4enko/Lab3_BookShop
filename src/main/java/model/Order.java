@@ -1,7 +1,6 @@
 package model;
 
 
-
 import java.util.*;
 
 /**
@@ -12,20 +11,21 @@ import java.util.*;
  */
 public class Order {
 
-    private  int                       idOrder;
-    private Customer                   customer;
-    private Date                       dateOfOrder;
-    private ArrayList<ContentOrder>    content;
+    private int                     idOrder;
+    private Customer                customer;
+    private Date                    dateOfOrder;
+    private ArrayList<ContentOrder> content;
 
-    public Order(int id, Customer customer,Date dateOfOrder,ArrayList<ContentOrder>  con ) {
+    public Order(int id, Customer customer, Date dateOfOrder, ArrayList<ContentOrder> con) {
         content = new ArrayList<ContentOrder>();
         this.idOrder = id;
         this.customer = customer;
         this.dateOfOrder = dateOfOrder;
-        this.content=con;
+        this.content = con;
 
     }
-    public Order(int id, Customer customer,Date dateOfOrder ) {
+
+    public Order(int id, Customer customer, Date dateOfOrder) {
         content = new ArrayList<ContentOrder>();
         this.idOrder = id;
         this.customer = customer;
@@ -33,15 +33,27 @@ public class Order {
 
 
     }
-    public Order(){
+
+    public Order(Customer customer, Date dateOfOrder) {
+        content = new ArrayList<ContentOrder>();
+        this.customer = customer;
+        this.dateOfOrder = dateOfOrder;
+
+
+    }
+
+    public Order() {
         content = new ArrayList<ContentOrder>();
     }
+
     public int getIdOrder() {
         return idOrder;
     }
+
     public void setIdOrder(int id) {
         this.idOrder = id;
     }
+
     public Customer getCustomer() {
         return customer;
     }
@@ -58,24 +70,25 @@ public class Order {
         this.dateOfOrder = dateOfOrder;
     }
 
-    public ArrayList<ContentOrder>  getContents() {
+    public ArrayList<ContentOrder> getContents() {
         return content;
     }
 
-    public void setContents(ArrayList<ContentOrder>  contents) {
+    public void setContents(ArrayList<ContentOrder> contents) {
         this.content = contents;
     }
-    public void addCon(ContentOrder con){
+
+    public void addCon(ContentOrder con) {
         content.add(con);
     }
 
 
-    public class ContentOrder{
+    public class ContentOrder {
 
-        private Book   book;
-        private int    amount;
+        private Book book;
+        private int amount;
 
-        public ContentOrder(){
+        public ContentOrder() {
 
         }
 
@@ -87,13 +100,14 @@ public class Order {
             return amount;
         }
 
-        public void setBook(Book book,int count){
-            this.book=book;
-            this.amount=count;
+        public void setBook(Book book, int count) {
+            this.book = book;
+            this.amount = count;
         }
-        public void removeBook(){
-            this.book=null;
-            this.amount=0;
+
+        public void removeBook() {
+            this.book = null;
+            this.amount = 0;
         }
 
     }
