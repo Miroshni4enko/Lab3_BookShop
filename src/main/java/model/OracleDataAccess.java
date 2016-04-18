@@ -179,7 +179,7 @@ public class OracleDataAccess implements ModelDataBase{
             statement = connection.prepareStatement(SqlScripts.UPDATE_CUSTOMER);
             statement.setString(1, customer.getLogin());
             statement.setString(2, customer.getPassword());
-            statement.setString(3, customer.geteMail());
+            statement.setString(3, customer.getMail());
             statement.setString(4, customer.getPhone());
             statement.setInt(5, customer.getRole());
             statement.setInt(6, customer.getId());
@@ -206,7 +206,7 @@ public class OracleDataAccess implements ModelDataBase{
             statement = connection.prepareStatement(SqlScripts.CREATE_CUSTOMER);
             statement.setString(1, customer.getLogin());
             statement.setString(2, customer.getPassword());
-            statement.setString(3, customer.geteMail());
+            statement.setString(3, customer.getMail());
             statement.setString(4, customer.getPhone());
             statement.setInt(5, customer.getRole());
             statement.execute();
