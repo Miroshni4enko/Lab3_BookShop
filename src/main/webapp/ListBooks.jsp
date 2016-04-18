@@ -44,7 +44,7 @@
                         <%Customer cus = (Customer) request.getSession().getAttribute("customer");%>
                         <form>
                             <p class="prob"><input type="text" <%=cus!=null?"value=" + cus.getPhone():"placeholder=phone" %> /></p>
-                            <p class="prob"><input type="email" <%=cus!=null?"value=" + cus.geteMail():"placeholder=email"%> /></p>
+                            <p class="prob"><input type="email" <%=cus!=null?"value=" + cus.getMail():"placeholder=email"%> /></p>
                             <p class="prob"><input type="number" placeholder="amount" /></p>
                             <div><input class="btn" type="submit" value="Buy book" /></div>
                         </form>

@@ -38,7 +38,7 @@ if(cus==null){
     list.add(cus.getLogin());
     //System.out.println(cus.getLogin());
     list.add(cus.getPassword());
-    list.add(cus.geteMail());
+    list.add(cus.getMail());
     list.add(cus.getPhone());
     list.add("Edit");
 }%>
