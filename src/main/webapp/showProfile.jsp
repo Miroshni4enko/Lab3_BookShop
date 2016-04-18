@@ -1,3 +1,7 @@
+<%@ page import="controller.processors.AddCustomer" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="model.Customer" %>
 <%@ page errorPage="errorPage.jsp"%>
 <%--
   Created by IntelliJ IDEA.
@@ -18,18 +22,38 @@
 <body>
 <jsp:include page="Head.jsp" />
 <jsp:include page="Menu.jsp" />
+<%!List<String> list =null;%>
+<% Customer cus  = (Customer) request.getSession().getAttribute("customer");
+if(cus==null){
+    list = new ArrayList<String> ();
+    list.add("Registration");
+    list.add("Login");
+    list.add("Password");
+    list.add("Email");
+    list.add("Phone");
+    list.add("Sign_up");
+}else{
+    list =new ArrayList<String> ();
+    list.add("Profile");
+    list.add(cus.getLogin());
+    //System.out.println(cus.getLogin());
+    list.add(cus.getPassword());
+    list.add(cus.geteMail());
+    list.add(cus.getPhone());
+    list.add("Edit");
+}%>
 <div id="login">
     <div >
         <div class="form-signup">
-            <h1>Registration</h1>
+            <h1><%=list.get(0)%></h1>
             <fieldset>
 
-                <form>
-                    <input type="text" placeholder="login" required />
-                    <input type="password" placeholder="password" required />
-                    <input type="email" placeholder="email " required />
-                    <input type="text" placeholder="telephone" required />
-                    <input type="submit" value="sign up" />
+                <form method="post" action="MainServlet?action=addCustomer">
+                    <input type="text" name = "<%=AddCustomer.CUS_LOGIN%>" placeholder="<%=list.get(1)%>" required />
+                    <input type="password" name = "<%=AddCustomer.CUS_PASSWORD%>" placeholder="<%=list.get(2)%>" required />
+                    <input type="email" name = "<%=AddCustomer.CUS_E_MAIL%>" placeholder="<%=list.get(3)%>" required />
+                    <input type="text" name = "<%=AddCustomer.CUS_PHONE%>" placeholder="<%=list.get(4)%>" required />
+                    <input type="submit" value=<%=list.get(5)%> />
                 </form>
             </fieldset>
         </div>

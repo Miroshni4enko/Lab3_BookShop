@@ -1,5 +1,6 @@
 <%@ page import="model.Book" %>
 <%@ page import="java.util.List" %>
+<%@ page import="model.Customer" %>
 <%@ page errorPage="errorPage.jsp"%>
 <%--
     Document   : ListBooks
@@ -40,9 +41,10 @@
                         <h3>Do you want to buy a book?<br>Write your phone number and <br> e-mail!</h3>
                     </div>
                     <div >
+                        <%Customer cus = (Customer) request.getSession().getAttribute("customer");%>
                         <form>
-                            <p class="prob"><input type="text" placeholder="telephone" /></p>
-                            <p class="prob"><input type="email" placeholder="email" /></p>
+                            <p class="prob"><input type="text" <%=cus!=null?"value=" + cus.getPhone():"placeholder=phone" %> /></p>
+                            <p class="prob"><input type="email" <%=cus!=null?"value=" + cus.geteMail():"placeholder=email"%> /></p>
                             <p class="prob"><input type="number" placeholder="amount" /></p>
                             <div><input class="btn" type="submit" value="Buy book" /></div>
                         </form>

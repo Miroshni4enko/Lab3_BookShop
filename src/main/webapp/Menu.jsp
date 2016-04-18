@@ -11,15 +11,16 @@
     </p>
     <p class="rightstr">
         <a href="index.jsp"><%
-            boolean login;
+            String login = null;
             try{
-                login = (boolean) request.getSession().getAttribute("login");//login!!!!!!!!!!!!!!!
+                login = (String) request.getSession().getAttribute("login");//login!!!!!!!!!!!!!!!
             } catch (Exception e){
-                login = false;
+                login = null;
             }
-                if (login == true) { %>
-                <a href="index.jsp">Exit</a>
+                if (login != null) { %>
+                <a><%=login%></a>
                 <a href="showProfile.jsp">Profile</a>
+                <a href="index.jsp">Exit</a>
             <%} else {%>
                 <a href="Login.jsp">Entry</a>
                 <a href="showProfile.jsp">Registration</a>

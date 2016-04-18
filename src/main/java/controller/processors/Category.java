@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Category implements GeneralProcess {
 
-    @Override
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
 
     }

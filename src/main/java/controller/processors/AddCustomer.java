@@ -21,18 +21,19 @@ public class AddCustomer implements GeneralProcess {
     public static String CUS_ROLE="ROLE";
 
     public void process(HttpServletRequest request,HttpServletResponse response) throws DataBaseException  {
-        int id = Integer.valueOf(request.getParameter(CUS_ID));
+       // int id = Integer.valueOf(request.getParameter(CUS_ID));
         String login = request.getParameter(CUS_LOGIN);
         String password = request.getParameter(CUS_PASSWORD);
         String eMail = request.getParameter(CUS_E_MAIL);
-        int role = Integer.valueOf(request.getParameter(CUS_ROLE));
+        int role = 40;
         String phone = request.getParameter(CUS_PHONE);
-        Customer cus = new Customer(id, login, password,eMail,phone,role);
+        Customer cus = new Customer( login, password,eMail,phone,role);
         OracleDataAccess.getInstance().createCustomer(cus);
 
-        request.getSession().setAttribute("CusId", cus.getId());
+        request.getSession().setAttribute("login", login);
+        request.getSession().setAttribute("customer",cus);
 
-        Commands.forward("/showProfile.jsp",request,response);
+        Commands.forward("/index.jsp",request,response);
 
 
     }
