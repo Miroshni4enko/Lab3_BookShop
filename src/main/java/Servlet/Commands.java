@@ -44,6 +44,7 @@ public class Commands {
         map.put(ACTION_DETAIL, new DetailBook());
         map.put(VIEW_LIST_BOOKS, new ViewListBooks());
         map.put(LOGIN_USER, new LoginUser());
+        map.put(ACTION_EDIT_BOOK, new EditBook());
 
         /////////////////////////////////////////////////////////////////
         /*
@@ -51,6 +52,9 @@ public class Commands {
 
 
 action Buy
+action=viewDetailBooks переход на детал книги
+
+
          */
         ////////////////////////////////////////////////////////////////
     }
@@ -75,6 +79,8 @@ action Buy
     public static       int    AMOUNT_OF_BOOKS_ON_LIST = 6;             // when session starts it equals 6 and after each
     public static final int    PLUS_BOOKS_TO_LIST      = 6;             // request + 6 in ViewListBooks.java
     public static final String LOGIN_USER           = "loginUser";
+
+    public static final String ACTION_EDIT_BOOK  = "editBook";
 
     /*
      public static final String ACTION_OTHER = "otherAction";
