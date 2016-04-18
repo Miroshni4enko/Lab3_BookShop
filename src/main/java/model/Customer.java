@@ -1,5 +1,6 @@
 package model;
 
+
 import org.apache.log4j.Logger;
 
 /**
@@ -17,22 +18,22 @@ public class Customer {
     private int        role;
     private static final Logger LOG = Logger.getLogger(Customer.class);
 
-    public Customer(int id, String login, String password, String eMail, String phone, int role) {
+    public Customer(int id, String login, String password, String eMail, String phone, int role) throws  IllegalArgumentException{
         this.id = id;
         this.login = login;
         this.password = password;
         this.eMail = eMail;
         this.phone = phone;
-        this.role = role;
+        setRole(role);
 
     }
 
-    public Customer(String login, String password, String eMail, String phone, int role) {
+    public Customer(String login, String password, String eMail, String phone, int role) throws  IllegalArgumentException{
         this.login = login;
         this.password = password;
         this.eMail = eMail;
         this.phone = phone;
-        this.role = role;
+        setRole(role);
 
     }
 
@@ -71,7 +72,7 @@ public class Customer {
         this.password = password;
     }
 
-    public String geteMail() {
+    public String getMail() {
         return eMail;
     }
 
@@ -83,9 +84,10 @@ public class Customer {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(int role) throws  IllegalArgumentException{
         if ((role != 0) || (role != 10) || (role != 1)) {
-            LOG.info("Wrong number of role. Operation rejected!");
+            LOG.error("Wrong number of role. Operation rejected!");
+            throw  new IllegalArgumentException("Wrong number of role. Operation rejected!");
         } else {
             this.role = role;
         }
