@@ -239,3 +239,36 @@ th{
     align: center;
 }
 
+.textArea1{
+    align: center;
+    width: 100px;
+    height: 30px;
+    font-size: 14px;
+    color: #000000;
+    background: #FAF0E6;
+    text-align: center;
+    resize: none;
+    border:0px;
+}
+.textArea2{
+    align: center;
+    width: 300px;
+    height: 50px;
+    resize: none;
+    font-size: 14px;
+    color: #000000;
+    background: #FAF0E6;
+    text-align: center;
+    border:0px;
+}
+.textArea3{
+    align: center;
+    width: 490px;
+    height:70px;
+    resize: none;
+    font-size: 14px;
+    color: #000000;
+    background: #FAF0E6;
+    text-align: center;
+    border:0px;
+}

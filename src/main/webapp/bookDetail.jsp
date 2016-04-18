@@ -1,15 +1,38 @@
 <%@ page import="model.Book" %>
+<%@ page import="model.Customer" %>
 <%@ page errorPage="errorPage.jsp"%>
 <%--
-  Created by IntelliJ IDEA.
-  User: Veleri
-  Date: 31.03.2016
-  Time: 23:15
-  To change this template use File | Settings | File Templates.
+ Document   : bookDetail
+ Author     : Veleri
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%   Book book = (Book)session.getAttribute("DetailBook");%>
+<%   Book book = (Book)session.getAttribute("DetailBook");
+    Boolean isAdmin=false;
+    String action="";
+    String buttonName ="";
+    Boolean isEdit;
+    String  textareaType="";
+    try {
+         Customer cus = (Customer) session.getAttribute("customer");
+      //  Customer cus = new Customer();
+        //cus.setLogin("Admin");
+       // if(cus.getLogin().equals("Admin")){
+           if(cus.getRole()==10){
+            isAdmin=true;
+            action="MainServlet?action=editBook";
+            buttonName ="Edit";
+            isEdit=true;
+        }
+    }
+    catch (NullPointerException e1){
+        isAdmin= false;
+        action="MainServlet?action=Buy";
+        buttonName ="Buy";
+        textareaType= "readonly";
+        isEdit=false;
+    }
+%>
 <html>
 <head>
     <title>Books information</title>
@@ -26,12 +49,15 @@
     <table class="table">
         <tr>
             <td>Book's name:</td>
-            <td><%=book.getName()%></td>
+
+            <td> <textarea class="textArea2" <%=textareaType%> placeholder="<%=book.getName()%> "
+                                                 name="bookName" id="book",form="buyBook" ></textarea> </td>
         </tr>
         <tr>
             <th></th>
             <td>Rubric:</td>
-            <td><%=book.getParent()%></td>
+            <td> <textarea class="textArea2" <%=textareaType%> placeholder="<%=book.getParent().getName()%> "
+                           name="bookRubric" id="rubric",form="buyBook"></textarea></td>
     </table>
 </div>
 
@@ -42,22 +68,29 @@
 
     <table class="table">
         <tr>
-            <td>Price:</td> <td><%=book.getPrice()%> </td>
+            <td>Price:</td> <td>  <textarea class="textArea1" <%=textareaType%> placeholder= " <%=book.getPrice()%> "
+                                            name="bookPrice"></textarea></td>
         </tr>
     <tr>
-        <td>Pages:</td>  <td><%=book.getPages()%></td>
+        <td>Pages:</td>  <td><textarea class="textArea1" <%=textareaType%> placeholder="<%=book.getPages()%> "
+                                       name="bookPages"></textarea></td>
     </tr>
     <tr>
-        <td>Amount:</td>  <td><%=book.getAmount() %></td>
+        <td>Amount:</td>  <td> <textarea class="textArea1"  <%=textareaType%> placeholder= "<%=book.getAmount()%> "
+                                         name="bookAmount"></textarea></td>
     </tr>
         <tr>
-            <td>Buy now:</td> <th><form name="buyBook" method="GET" action="MainServlet?action=Buy"><p>
+            <td>Buy now:</td> <th><form name="buyBook" method="GET" action="<%=action%>"><p>
             <p align="right">
-                <input type="submit" value="Buy" class="book2">
+                <input type="submit" value="<%=buttonName %>" class="book2">
 
             </p>
         </form>
         </th>
+
+
+
+
         </tr>
     </table>
     </div>
@@ -68,7 +101,8 @@
         <tr>
             <th></th>
             <td>Author:</td>
-            <td><%=book.getAuthor()%></td>
+            <td><textarea class="textArea2" <%=textareaType%> placeholder=" <%=book.getAuthor()%> "
+                          name="bookAuthor"></textarea></td>
         </tr>
     </table>
 </div>
@@ -77,11 +111,12 @@
 
             <table>
                 <tr>
-                <td>Discription:</td>
+                <td>Description:</td>
                 </tr>
                 <tr>
                     <th></th>
-                    <td><%=book.getDescription()%></td>
+                    <td><textarea class="textArea3"  <%=textareaType%> placeholder= " <%=book.getDescription()%> "
+                                  name="bookDescription"></textarea></td>
                 </tr>
             </table>
 
