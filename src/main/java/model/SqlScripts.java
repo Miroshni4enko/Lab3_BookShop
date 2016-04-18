@@ -60,5 +60,7 @@ public class SqlScripts {
     public static final String UPDATE_ORDER_CON="UPDATE CONTENR_ORDER SET AMOUNT=? WHERE ID_ORDER = ? AND ID_BOOK=?";
     public static final String DELETE_ONE_CON_FROM_ORDER="DELETE CONTENR_ORDER WHERE ID_ORDER = ? AND ID_BOOK=?";
 
+    public static final String SELECT_CUSTOMER          = "SELECT * FROM CUSTOMER WHERE LOGIN=? and PASSWORD=?";
+
 
 }

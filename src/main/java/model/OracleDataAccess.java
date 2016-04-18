@@ -509,6 +509,36 @@ public class OracleDataAccess implements ModelDataBase{
         return listCustomer;
     }
 
+    /**
+     * Method that return customer if he exists.
+     * @param login    is String.
+     * @param password is String.
+     * @return customers
+     * @throws DataBaseException if was error.
+     */
+    public Customer getCustomer(String login, String password) throws DataBaseException {
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+
+        Customer customer = null;
+        try {
+            statement = connection.prepareStatement(SqlScripts.SELECT_CUSTOMER);
+            statement.setString(1, login);
+            statement.setString(2, password);
+            result = statement.executeQuery();
+            while (result.next()) {
+                customer = getCustomer(result);
+            }
+        } catch (Exception e) {
+            throw new DataBaseException("Exception with data from database", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+
+        return customer;
+    }
+
     private Customer getCustomer(ResultSet result) throws DataBaseException {
         Customer customer;
         try {

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="controller.processors.LoginUser" %><%--
     Document   : Menu
     Author     : Sasha
 --%>
@@ -11,15 +11,10 @@
     </p>
     <p class="rightstr">
         <a href="index.jsp"><%
-            String login;
-            try{
-                login = (String) request.getSession().getAttribute("login");//login!!!!!!!!!!!!!!!
-            } catch (Exception e){
-                login = null;
-            }
-                if (login != null) { %>
+            String login = (String) request.getSession().getAttribute(LoginUser.ATTRIBUTE_LOGIN);
+                if (!login.equals("false")) { %>
                 <a href="showProfile.jsp"><%=login%></a>
-                <a href="index.jsp">Exit</a>
+                <a href="/">Exit</a>        <%--  НА ВЕЛКОМ --%>
             <%} else {%>
                 <a href="Login.jsp">Entry</a>
                 <a href="showProfile.jsp">Registration</a>

@@ -41,9 +41,12 @@ public class Welcome implements GeneralProcess{
             list.put(sectionAll.get(i),rubric);
 
         }
+
         request.getSession().setAttribute("Category", list);
         request.getSession().setAttribute("Section", sectionAll);
 
+        request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, "false");
+       // Commands.AMOUNT_OF_BOOKS_ON_LIST
         Commands.forward("/index.jsp", request, response);
     }
 

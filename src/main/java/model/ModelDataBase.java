@@ -38,6 +38,7 @@ public interface ModelDataBase {
     void removeBookFromOrder(int idOrder,int idBook)throws  DataBaseException;
 
     List<Customer> getAllCustomer() throws DataBaseException;
+    Customer getCustomer(String login, String Password) throws DataBaseException;
     List<Author> getAllAuthor() throws DataBaseException;
     List<Order> getAllOrder() throws DataBaseException;
     List<Item> getAllRubric() throws DataBaseException;

@@ -45,18 +45,6 @@ public class Commands {
         map.put(VIEW_LIST_BOOKS, new ViewListBooks());
         map.put(LOGIN_USER, new LoginUser());
         map.put(ACTION_EDIT_BOOK, new EditBook());
-
-        /////////////////////////////////////////////////////////////////
-        /*
-        loginUser -принимает имя пароль, ставит атрибут login если залогинился
-
-
-action Buy
-action=viewDetailBooks переход на детал книги
-
-
-         */
-        ////////////////////////////////////////////////////////////////
     }
 
     public static void forward(String url, HttpServletRequest request, HttpServletResponse response) {
