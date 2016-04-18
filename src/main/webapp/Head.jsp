@@ -8,8 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 
 <div class="head">
-    <a name="top"></a>
-    <div style="text-align: center;">
-        <span class="headText">Book Shop</span>
-    </div>
+    <a href="index.jsp"><img src="images/Head.png"/></a>
 </div>
+
+
+
