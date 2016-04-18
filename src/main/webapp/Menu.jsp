@@ -18,8 +18,7 @@
                 login = null;
             }
                 if (login != null) { %>
-                <a><%=login%></a>
-                <a href="showProfile.jsp">Profile</a>
+                <a href="showProfile.jsp"><%=login%></a>
                 <a href="index.jsp">Exit</a>
             <%} else {%>
                 <a href="Login.jsp">Entry</a>
