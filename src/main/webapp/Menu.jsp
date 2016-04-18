@@ -7,7 +7,7 @@
 <div class="menu">
     <p class="leftstr">
         <a href="index.jsp">Shop</a> |
-        <a href="index.jsp">About us</a>
+        <a href="AboutUs.jsp">About us</a>
     </p>
     <p class="rightstr">
         <a href="index.jsp"><%
