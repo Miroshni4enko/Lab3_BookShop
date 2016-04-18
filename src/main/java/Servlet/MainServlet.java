@@ -37,20 +37,18 @@ public class MainServlet extends HttpServlet {
             action = Commands.ACTION_WELCOME;
         }
 
-        GeneralProcess process = null;
+        GeneralProcess process;
         process = (GeneralProcess) map.get(action);
 
+        if (process == null) {
+            process = (GeneralProcess) map.get(Commands.ACTION_WELCOME);
+        }
         if (process != null) {
             try {
                 process.process(request, response);
-            }
-            catch (DataBaseException e){
+            } catch (DataBaseException e) {
                 LOG.error(e);
             }
         }
-        else{
-            //exception
-        }
-
     }
 }

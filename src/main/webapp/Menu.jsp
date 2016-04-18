@@ -11,7 +11,7 @@
     </p>
     <p class="rightstr">
         <a href="index.jsp"><%
-            String login = null;
+            String login;
             try{
                 login = (String) request.getSession().getAttribute("login");//login!!!!!!!!!!!!!!!
             } catch (Exception e){

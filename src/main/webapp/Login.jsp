@@ -1,3 +1,4 @@
+<%@ page import="controller.processors.LoginUser" %>
 <%@ page errorPage="errorPage.jsp"%>
 <%--
     Document   : Login
@@ -20,18 +21,18 @@
 
 <table border="2" cellspacing="1" cellpadding="15" align="center" class="login">
     <tr>
-        <td>                                                   <%--///loginUser!!!!!!!!!!!!!!!!!!!!!!!!!!--%>
-            <FORM NAME="login_form" name="login_form" ACTION="MainServlet?action=loginUser" method="GET"  <%--onSubmit="<%%>"--%>  >
+        <td>
+            <FORM NAME="login_form" name="login_form" ACTION="MainServlet?action=loginUser" method="GET">
                 <hr size="3">
                 Name:
                 <BR>
-                <INPUT TYPE="text" NAME="user_login" placeholder="name" VALUE="" SIZE="17" MAXLENGTH="60">
+                <INPUT TYPE="text" NAME="<%=LoginUser.NAME_LOGIN_INPUT%>" placeholder="login" VALUE="" SIZE="17" MAXLENGTH="60">
                 <BR>
                 <hr size="3">
                 <BR>
                 Password:
                 <BR>
-                <INPUT TYPE="password" name="user_password" placeholder="password" SIZE="17" NAME="password">
+                <INPUT TYPE="password" name="<%=LoginUser.NAME_PASSWORD_INPUT%>" placeholder="password" SIZE="17" NAME="password">
                 <BR>
                 <hr size="3">
                     <INPUT TYPE="submit" VALUE=" Enter ">

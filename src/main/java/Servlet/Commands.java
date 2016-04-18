@@ -1,9 +1,6 @@
 package Servlet;
 
-import controller.processors.AddCustomer;
-import controller.processors.DetailBook;
-import controller.processors.ViewListBooks;
-import controller.processors.Welcome;
+import controller.processors.*;
 import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
@@ -46,6 +43,7 @@ public class Commands {
         map.put(ACTION__ADD_CUSTOMER, new AddCustomer());
         map.put(ACTION_DETAIL, new DetailBook());
         map.put(VIEW_LIST_BOOKS, new ViewListBooks());
+        map.put(LOGIN_USER, new LoginUser());
 
         /////////////////////////////////////////////////////////////////
         /*
@@ -53,9 +51,6 @@ public class Commands {
 
 
 action Buy
-action=viewDetailBooks переход на детал книги
-
-
          */
         ////////////////////////////////////////////////////////////////
     }
@@ -73,13 +68,13 @@ action=viewDetailBooks переход на детал книги
 
     public static final String ACTION__ADD_CUSTOMER = "addCustomer";
 
-    public static final String ACTION_WELCOME  = "welcome";
-    public static final String ACTION_DETAIL   = "viewDetailBooks";
+    public static final String ACTION_WELCOME       = "welcome";
+    public static final String ACTION_DETAIL        = "viewDetailBooks";
 
-    public static final String VIEW_LIST_BOOKS = "viewListBooks";
+    public static final String VIEW_LIST_BOOKS      = "viewListBooks";
     public static       int    AMOUNT_OF_BOOKS_ON_LIST = 6;             // when session starts it equals 6 and after each
     public static final int    PLUS_BOOKS_TO_LIST      = 6;             // request + 6 in ViewListBooks.java
-
+    public static final String LOGIN_USER           = "loginUser";
 
     /*
      public static final String ACTION_OTHER = "otherAction";

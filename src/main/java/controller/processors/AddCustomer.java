@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AddCustomer implements GeneralProcess {
 
-    public static String CUS_ID="ID_CUSTOMER";
+    public static String CUS_ID = "ID_CUSTOMER";
     public static String CUS_LOGIN="LOGIN";
     public static String CUS_PASSWORD="PASSWORD";
     public static String CUS_E_MAIL="E_MAIL";
