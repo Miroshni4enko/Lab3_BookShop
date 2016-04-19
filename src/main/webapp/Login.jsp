@@ -22,7 +22,7 @@
 <table border="2" cellspacing="1" cellpadding="15" align="center" class="login">
     <tr>
         <td>
-            <FORM NAME="login_form" name="login_form" ACTION="MainServlet?action=loginUser" method="GET">
+            <FORM NAME="login_form" ACTION="MainServlet?action=loginUser" method="POST">
                 <hr size="3">
                 Name:
                 <BR>
