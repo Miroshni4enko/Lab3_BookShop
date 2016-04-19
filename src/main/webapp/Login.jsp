@@ -23,6 +23,7 @@
     <tr>
         <td>
             <FORM NAME="login_form" ACTION="MainServlet?action=loginUser" method="POST">
+                <%-- <INPUT TYPE="hidden" NAME="action" value="loginUser"> --%>
                 <hr size="3">
                 Name:
                 <BR>

@@ -25,28 +25,18 @@ public class Welcome implements GeneralProcess{
         ArrayList books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
         request.getSession().setAttribute("listOfAllBooks", books);
 
-
-        ArrayList<Item> sectionAll = (ArrayList) OracleDataAccess.getInstance().getAllSection();
-      /*  TreeMap<Item,ArrayList<Item>> list = new TreeMap<>((Comparator) (section, section2) -> {
-            if (section.equals(section2)) {
-                return 1;
-            } else {
-                return -1;
-            }
-        });
-       */
-        HashMap<Item,ArrayList<Item>> list = new HashMap<Item,ArrayList<Item>>();
-        for(int i=0;i<=sectionAll.size()-1;i++){
-            ArrayList<Item> rubric = (ArrayList) OracleDataAccess.getInstance().getRubricBySection(sectionAll.get(i).getId());
-            list.put(sectionAll.get(i),rubric);
+        ArrayList<Item> sectionAll = (ArrayList<Item>) OracleDataAccess.getInstance().getAllSection();
+        HashMap<Item, ArrayList<Item>> list = new HashMap<Item, ArrayList<Item>>();
+        for(int i=0; i <= sectionAll.size() - 1; i++){
+            ArrayList<Item> rubric = (ArrayList<Item>) OracleDataAccess.getInstance().getRubricBySection(sectionAll.get(i).getId());
+            list.put(sectionAll.get(i), rubric);
 
         }
 
         request.getSession().setAttribute("Category", list);
-        request.getSession().setAttribute("Section", sectionAll);
-
+        request.getSession().setAttribute("Section" , sectionAll);
         request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, "false");
-       // Commands.AMOUNT_OF_BOOKS_ON_LIST
+
         Commands.forward("/index.jsp", request, response);
     }
 
