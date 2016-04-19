@@ -19,22 +19,29 @@ public class AddCustomer implements GeneralProcess {
     public static String CUS_E_MAIL="E_MAIL";
     public static String CUS_PHONE="PHOME_NUMBER";
     public static String CUS_ROLE="ROLE";
+    public static String CUS_IS_REG="isRegistration";
 
     public void process(HttpServletRequest request,HttpServletResponse response) throws DataBaseException  {
        // int id = Integer.valueOf(request.getParameter(CUS_ID));
         String login = request.getParameter(CUS_LOGIN);
         String password = request.getParameter(CUS_PASSWORD);
-        String eMail = request.getParameter(CUS_E_MAIL);
-        int role = 40;
-        String phone = request.getParameter(CUS_PHONE);
-        Customer cus = new Customer( login, password,eMail,phone,role);
-        OracleDataAccess.getInstance().createCustomer(cus);
+        Customer cusWithId  = OracleDataAccess.getInstance().getCustomer(login,password);
+        if(cusWithId==null) {
+            String eMail = request.getParameter(CUS_E_MAIL);
+            int role = 1;
+            String phone = request.getParameter(CUS_PHONE);
+            Customer cus = new Customer(login, password, eMail, phone, role);
+            OracleDataAccess.getInstance().createCustomer(cus);
+            request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, login);
+            cusWithId = OracleDataAccess.getInstance().getCustomer(login, password);
+            request.getSession().setAttribute(LoginUser.ATTRIBUTE_CUSTTOMER, cusWithId);
 
-        request.getSession().setAttribute("login", login);
-        request.getSession().setAttribute("customer",cus);
+            Commands.forward("/index.jsp", request, response);
+        }else{
+            request.getSession().setAttribute(CUS_IS_REG,"This login and password is already use");
 
-        Commands.forward("/index.jsp",request,response);
-
+            Commands.forward("/showProfile.jsp", request, response);
+        }
 
     }
 }

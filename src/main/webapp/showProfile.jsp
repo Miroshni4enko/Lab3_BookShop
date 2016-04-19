@@ -22,11 +22,15 @@
 <body>
 <jsp:include page="Head.jsp" />
 <jsp:include page="Menu.jsp" />
-<%!List<String> list =null;%>
+<% String isReg = (String) request.getSession().getAttribute(AddCustomer.CUS_IS_REG);%>
+<h4 class="center"><%=isReg!=null?isReg:""%></h4>
+<%!List<String> list =null; int i = 0;%>
 <% Customer cus  = (Customer) request.getSession().getAttribute("customer");
+    i =0;
 if(cus==null){
     list = new ArrayList<String> ();
     list.add("Registration");
+    list.add("MainServlet?action=addCustomer");
     list.add("Login");
     list.add("Password");
     list.add("Email");
@@ -35,6 +39,7 @@ if(cus==null){
 }else{
     list =new ArrayList<String> ();
     list.add("Profile");
+    list.add("MainServlet?action=updateCustomer");
     list.add(cus.getLogin());
     //System.out.println(cus.getLogin());
     list.add(cus.getPassword());
@@ -45,15 +50,15 @@ if(cus==null){
 <div id="login">
     <div >
         <div class="form-signup">
-            <h1><%=list.get(0)%></h1>
+            <h1><%=list.get(i++)%></h1>
             <fieldset>
 
-                <form method="post" action="MainServlet?action=addCustomer">
-                    <input type="text" name = "<%=AddCustomer.CUS_LOGIN%>" placeholder="<%=list.get(1)%>" required />
-                    <input type="password" name = "<%=AddCustomer.CUS_PASSWORD%>" placeholder="<%=list.get(2)%>" required />
-                    <input type="email" name = "<%=AddCustomer.CUS_E_MAIL%>" placeholder="<%=list.get(3)%>" required />
-                    <input type="text" name = "<%=AddCustomer.CUS_PHONE%>" placeholder="<%=list.get(4)%>" required />
-                    <input type="submit" value=<%=list.get(5)%> />
+                <form method="post" action="<%=list.get(i++)%>">
+                    <input type="text" name = "<%=AddCustomer.CUS_LOGIN%>" <%= cus==null?"placeholder=":"value ="%> <%= list.get(i++)%> required />
+                    <input type="password" name = "<%=AddCustomer.CUS_PASSWORD%>" <%= cus==null?"placeholder=":"value ="%> <%=list.get(i++)%> required />
+                    <input type="email" name = "<%=AddCustomer.CUS_E_MAIL%>" <%= cus==null?"placeholder=":"value ="%> <%=list.get(i++)%> required />
+                    <input type="text" name = "<%=AddCustomer.CUS_PHONE%>" <%= cus==null?"placeholder=":"value ="%> <%=list.get(i++)%> required />
+                    <input type="submit" value=<%=list.get(i)%> />
                 </form>
             </fieldset>
         </div>

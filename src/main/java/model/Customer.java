@@ -85,7 +85,7 @@ public class Customer {
     }
 
     public void setRole(int role) throws  IllegalArgumentException{
-        if ((role != 0) || (role != 10) || (role != 1)) {
+        if ((role != 0) && (role != 10) && (role != 1)) {
             LOG.error("Wrong number of role. Operation rejected!");
             throw  new IllegalArgumentException("Wrong number of role. Operation rejected!");
         } else {

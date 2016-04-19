@@ -11,6 +11,9 @@ html{
     background-size: 100%;
     background: #f2f8ff fixed;
 }
+.center{
+    text-align: center;
+}
 body{
     width:100%;
 }
