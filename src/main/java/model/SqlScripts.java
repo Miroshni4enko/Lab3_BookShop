@@ -15,9 +15,12 @@ public class SqlScripts {
     public static final String SELECT_ALL_RUBRIC = "SELECT * FROM ITEM WHERE TYPE =1";
     public static final String SELECT_ALL_SECTION = "SELECT * FROM ITEM WHERE TYPE =2";
     public static final String SELECT_ALL_CUSTOMER = "SELECT * FROM CUSTOMER";
-    public static final String SELECT_ALL_ORDER = "SELECT * FROM ORDERS o";
+   // public static final String SELECT_ALL_ORDER = "SELECT * FROM ORDERS o";
+   public static final String SELECT_ALL_ORDER = "SELECT ID_ORDER FROM ORDERS";
 
-    public static final String SELECT_CON_OF_ORDER = "SELECT * FROM CONTENR_ORDER WHERE ID_CONTENT=?";
+
+   // public static final String SELECT_CON_OF_ORDER = "SELECT * FROM CONTENR_ORDER WHERE ID_CONTENT=?";
+   public static final String SELECT_CON_OF_ORDER = "SELECT ID_BOOK,AMOUNT FROM CONTENR_ORDER WHERE ID_ORDER=?";
     public static final String SELECT_ID_ORDER = "SELECT ORDERS.ID_ORDER,c.ID_CONTENT FROM ORDERS,CONTENR_ORDER c  WHERE ID_CUSTOMER=? AND DATA=? AND c.ID_BOOK=? AND c.ID_ORDER=ORDERS.ID_ORDER";
     public static final String SELECT_AUTHOR_BY_ID = "SELECT * FROM AUTHOR WHERE ID_AUTHOR =?";
     public static final String SELECT_ODER_BY_ID = "SELECT * FROM ORDERS WHERE ID_ORDER =?";

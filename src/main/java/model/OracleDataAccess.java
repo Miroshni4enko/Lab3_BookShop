@@ -38,7 +38,7 @@ public class OracleDataAccess implements ModelDataBase{
         ht.put(Context.PROVIDER_URL, "t3://localhost:7001");
         try {
             ctx = new InitialContext(ht);
-            ds = (javax.sql.DataSource) ctx.lookup("bookshop"); // change your JNDI_name
+            ds = (javax.sql.DataSource) ctx.lookup("myJNDIDBName"); // change your JNDI_name
         } catch (NamingException e) {
             LOG.error("InitialContext or DataSource error", e);
         }finally {
@@ -607,8 +607,12 @@ public class OracleDataAccess implements ModelDataBase{
             statement = connection.prepareStatement(SqlScripts.SELECT_ALL_ORDER);
             result = statement.executeQuery();
             while (result.next()) {
-                listOrder.add(getOrder(result));
+               /* listOrder.add(getOrder(result));
                 getConOfOrder(getOrder(result));
+                */
+                int idOr = result.getInt("ID_ORDER");
+                Order or = getOrderById(idOr);
+                listOrder.add(or);
             }
         } catch (Exception e) {
             throw new DataBaseException("Exception with data from database", e);
@@ -648,9 +652,10 @@ public class OracleDataAccess implements ModelDataBase{
             result = statement.executeQuery();
             while (result.next()) {
                 int idBook = result.getInt("ID_BOOK");
+                Book book = getBookById(idBook);
                 int amount = result.getInt("AMOUNT");
                 Order.ContentOrder con = order.new ContentOrder();
-                con.setBook(getBookById(idBook),amount);
+                con.setBook(book,amount);
                 order.getContents().add(con);
             }
         } catch (Exception e) {
@@ -662,12 +667,12 @@ public class OracleDataAccess implements ModelDataBase{
     }
 
     private Order getOrder(ResultSet result) throws DataBaseException {
-        Order order=null;
+        Order order=new Order();
         try {
             int idOr = result.getInt("ID_ORDER");
             int idCus = result.getInt("ID_CUSTOMER");
             Customer cus = OracleDataAccess.getInstance().getCustomerById(idCus);
-            Date data = result.getDate("DATE");
+            Date data = result.getDate("DATA");
             Order.ContentOrder con = order.new ContentOrder();
             order = new Order(idOr, cus, data);
             order.addCon(con);
@@ -746,6 +751,7 @@ public class OracleDataAccess implements ModelDataBase{
             result = statement.executeQuery();
             while (result.next()) {
                 order = getOrder(result);
+                getConOfOrder(order);
             }
         } catch (Exception e) {
             throw new DataBaseException("Exception with data from database", e);
