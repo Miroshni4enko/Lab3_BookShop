@@ -46,7 +46,7 @@ public class Commands {
         map.put(LOGIN_USER, new LoginUser());
         map.put(ACTION_EDIT_BOOK, new EditBook());
         map.put(ACTION__UPDATE_CUSTOMER, new UpdateCustomer());
-        map.put(ACTION__ADD_ORDER,new AddOrder());
+        map.put(ACTION_UN_LOGIN, new UnLogin());
     }
 
     public static void forward(String url, HttpServletRequest request, HttpServletResponse response) {
@@ -70,10 +70,10 @@ public class Commands {
     public static final int    PLUS_BOOKS_TO_LIST      = 6;             // request + 6 in ViewListBooks.java
     public static final String LOGIN_USER           = "loginUser";
 
-    public static final String ACTION_EDIT_BOOK  = "editBook";
+    public static final String ACTION_EDIT_BOOK     = "editBook";
+    public static final String ACTION_UN_LOGIN      = "unLogin";
 
     public static final String ACTION__UPDATE_CUSTOMER = "updateCustomer";
-    public static final String ACTION__ADD_ORDER = "addOrder";
     /*
      public static final String ACTION_OTHER = "otherAction";
     public static final String ACTION_WELCOME = "welcome";

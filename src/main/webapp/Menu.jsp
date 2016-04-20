@@ -14,7 +14,7 @@
             String login = (String) request.getSession().getAttribute(LoginUser.ATTRIBUTE_LOGIN);
                 if (!login.equals("false")) { %>
                 <a href="showProfile.jsp"><%=login%></a>
-                <a href="/">Exit</a>        <%--  НА ВЕЛКОМ --%>
+                <a href="MainServlet?action=unLogin">Exit</a>
             <%} else {%>
                 <a href="Login.jsp">Entry</a>
                 <a href="showProfile.jsp">Registration</a>
