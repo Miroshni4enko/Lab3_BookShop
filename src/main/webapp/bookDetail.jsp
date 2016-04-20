@@ -11,18 +11,20 @@
     Boolean isAdmin=false;
     //String action="";
     String buttonName ="";
+    String modalForm ;
     Boolean isEdit;
     String  textareaType="";
     try {
-         Customer cus = (Customer) session.getAttribute("customer");
-      //  Customer cus = new Customer();
+        Customer cus = (Customer) session.getAttribute("customer");
+        buttonName ="Buy";
+        //  Customer cus = new Customer();
         //cus.setLogin("Admin");
        // if(cus.getLogin().equals("Admin")){
            if(cus.getRole()==10){
             isAdmin=true;
             //action="MainServlet?action=editBook";
             buttonName ="Edit";
-            isEdit=true;
+               isEdit=true;
         }
     }
     catch (NullPointerException e1){
@@ -43,6 +45,7 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/modal.js"></script>
 </head>
 <br>
 <jsp:include page="Head.jsp" />
@@ -88,10 +91,15 @@
 
                     <p>
                         <p align="right">
-                            <a href="#" id="go">
+                            <a href="#" id="<%=isAdmin?"edit":"go"%>">
                                 <input type="submit" value="<%=buttonName %>" class="book2">
                             </a>
-                            <%@include file="BuyModalForm.jsp"%>
+
+                            <%if( isAdmin) {%>
+                                <%@include file="EditModalForm.jsp"%>
+                            <%}else {%>
+                                <%@include file="BuyModalForm.jsp"%>
+                            <%}%>
                         </p>
                     </p>
             </th>
