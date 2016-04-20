@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%   Book book = (Book)session.getAttribute("DetailBook");
     Boolean isAdmin=false;
-    String action="";
+    //String action="";
     String buttonName ="";
     Boolean isEdit;
     String  textareaType="";
@@ -20,14 +20,14 @@
        // if(cus.getLogin().equals("Admin")){
            if(cus.getRole()==10){
             isAdmin=true;
-            action="MainServlet?action=editBook";
+            //action="MainServlet?action=editBook";
             buttonName ="Edit";
             isEdit=true;
         }
     }
     catch (NullPointerException e1){
         isAdmin= false;
-        action="MainServlet?action=Buy";
+       // action="MainServlet?action=Buy";
         buttonName ="Buy";
         textareaType= "readonly";
         isEdit=false;
@@ -41,6 +41,8 @@
         @import url("css/style.css");
         -->
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="js/main.js"></script>
 </head>
 <br>
 <jsp:include page="Head.jsp" />
@@ -80,16 +82,19 @@
                                          name="bookAmount"></textarea></td>
     </tr>
         <tr>
-            <td>Buy now:</td> <th><form name="buyBook" method="GET" action="<%=action%>"><p>
-            <p align="right">
-                <input type="submit" value="<%=buttonName %>" class="book2">
+            <td>Buy now:</td>
 
-            </p>
-        </form>
-        </th>
+            <th>
 
-
-
+                    <p>
+                        <p align="right">
+                            <a href="#" id="go">
+                                <input type="submit" value="<%=buttonName %>" class="book2">
+                            </a>
+                            <%@include file="BuyModalForm.jsp"%>
+                        </p>
+                    </p>
+            </th>
 
         </tr>
     </table>

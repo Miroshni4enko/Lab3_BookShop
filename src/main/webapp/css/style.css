@@ -139,10 +139,10 @@ th{
     margin: auto;
     padding: 5px;
     border-radius: 3px;
-
     width: 450px;
     high:50px;
 }
+
 .sideBook2 {
     position: center;
     overflow: auto;
@@ -156,7 +156,7 @@ th{
 #modal_form {
     text-align: center;
     width: 300px;
-    height: 200px;
+    height: 220px;
     border-radius: 5px;
     border: 3px #000 solid;
     background: #fff;
