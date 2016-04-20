@@ -180,14 +180,14 @@ th{
 #edit_modal_form {
     text-align: center;
     width: 300px;
-    height: 450px;
+    height: 530px;
     border-radius: 5px;
     border: 3px #000 solid;
     background: #fff;
     position: fixed;
-    top: 45%;
+    top: 20%;
     left: 50%;
-    margin-top: -280px;
+    margin-top: -300px;
     margin-left: -150px;
     display: none;
     opacity: 0;

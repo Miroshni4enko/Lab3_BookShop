@@ -18,7 +18,7 @@
         <h3>Change the fields that you need</h3>
     </div>
     <div >
-        <form name = "edit_form" method="post" action="<%="MainServlet?action=editBook&IdDetail=" + book.getId()%>">
+        <form name = "edit_form" method="post" action="<%="MainServlet?action=updateBook&IdDetail=" + book.getId()%>">
 
             <p class="prob">
                 <div><label for="<%=UpdateBook.BOOK_NAME + "ID"%>">Name</label></div>
@@ -55,6 +55,10 @@
             <p class="prob">
                  <div><label for="<%=UpdateBook.BOOK_DESCRIPTION + "ID"%>">Description </label></div>
                 <input id ="<%=UpdateBook.BOOK_DESCRIPTION+"ID"%>" type="text" name ="<%=UpdateBook.BOOK_DESCRIPTION%>" value= "<%=book.getDescription() %>" />
+            </p>
+            <p class="prob">
+            <div><label for="<%=UpdateBook.BOOK_RUBRIC + "ID"%>">Description </label></div>
+            <input id ="<%=UpdateBook.BOOK_RUBRIC+"ID"%>" type="text" name ="<%=UpdateBook.BOOK_RUBRIC%>" value= "<%=book.getParent().getName()%>" />
             </p>
 
             <div class="prob">  <input class="btn" type="submit"  value="Edit book" /></div>

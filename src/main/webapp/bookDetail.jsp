@@ -95,7 +95,11 @@
                                 <input type="submit" value="<%=buttonName %>" class="book2">
                             </a>
 
-                            <%if( isAdmin) {%>
+                            <%if( isAdmin) {
+                                request.getSession().setAttribute("AuthorID",book.getAuthor().getId());
+                                request.getSession().setAttribute(UpdateBook.BOOK_RUBRIC,book.getParent());
+                            %>
+
                                 <%@include file="EditModalForm.jsp"%>
                             <%}else {%>
                                 <%@include file="BuyModalForm.jsp"%>
