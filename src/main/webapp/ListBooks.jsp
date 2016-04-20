@@ -1,6 +1,8 @@
 <%@ page import="model.Book" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Customer" %>
+<%@ page import="controller.processors.AddCustomer" %>
+<%@ page import="controller.processors.AddOrder" %>
 <%@ page errorPage="errorPage.jsp"%>
 <%--
     Document   : ListBooks
@@ -26,7 +28,7 @@
         if (listOfAllBooks != null || listOfAllBooks.size() == 0) {
         for (Book book : listOfAllBooks) {%>
             <div class="book">
-                <form name="book" method="GET" action="MainServlet?action=Buy"><p><%--/////////////////////////////////--%>
+                <form name = "buy_form" method="get"></form> <p><%--/////////////////////////////////--%>
                     <b>
                         <a href="<%="MainServlet?action=viewDetailBooks&IdDetail=" + book.getId() %>"><%= book.getName() %></a>
                         </a>
@@ -42,11 +44,11 @@
                     </div>
                     <div >
                         <%Customer cus = (Customer) request.getSession().getAttribute("customer");%>
-                        <form>
-                            <p class="prob"><input type="text" <%=cus!=null?"value=" + cus.getPhone():"placeholder=phone" %> /></p>
-                            <p class="prob"><input type="email" <%=cus!=null?"value=" + cus.getMail():"placeholder=email"%> /></p>
-                            <p class="prob"><input type="number" placeholder="amount" /></p>
-                            <div><input class="btn" type="submit" value="Buy book" /></div>
+                        <form name = "buy_form" method="post" action="<%="MainServlet?action=addOrder&IdDetail=" + book.getId() %>">
+                            <p class="prob"><input type="text" name ="<%=AddCustomer.CUS_PHONE %>" <%=cus!=null?"value=" + cus.getPhone():"placeholder=phone" %> /></p>
+                            <p class="prob"><input type="email" name="<%=AddCustomer.CUS_E_MAIL %>" <%=cus!=null?"value=" + cus.getMail():"placeholder=email"%> /></p>
+                            <p class="prob"><input type="number" name=<%=AddOrder.Book_Amount %> placeholder="amount" /></p>
+                            <input class="btn" type="submit"  value="Buy book" />
                         </form>
                     </div>
                     <span id="modal_close">

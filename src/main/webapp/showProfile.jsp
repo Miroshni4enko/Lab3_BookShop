@@ -29,6 +29,7 @@
     i =0;
 if(cus==null){
     list = new ArrayList<String> ();
+    list.add(" ");
     list.add("Registration");
     list.add("MainServlet?action=addCustomer");
     list.add("Login");
@@ -38,6 +39,7 @@ if(cus==null){
     list.add("Sign_up");
 }else{
     list =new ArrayList<String> ();
+    list.add("class=\"rightstr\"");
     list.add("Profile");
     list.add("MainServlet?action=updateCustomer");
     list.add(cus.getLogin());
@@ -47,7 +49,7 @@ if(cus==null){
     list.add(cus.getPhone());
     list.add("Edit");
 }%>
-<div id="login">
+<div id="login" <%=list.get(i++)%>>
     <div >
         <div class="form-signup">
             <h1><%=list.get(i++)%></h1>
@@ -64,6 +66,8 @@ if(cus==null){
         </div>
     </div>
 </div>
+<%if(cus!=null){%>
+<%}%>
 <jsp:include page="Footer.jsp" />
 </body>
 </html>

@@ -38,7 +38,7 @@ public class OracleDataAccess implements ModelDataBase{
         ht.put(Context.PROVIDER_URL, "t3://localhost:7001");
         try {
             ctx = new InitialContext(ht);
-            ds = (javax.sql.DataSource) ctx.lookup("myJNDIDBName"); // change your JNDI_name
+            ds = (javax.sql.DataSource) ctx.lookup("bookshop"); // change your JNDI_name
         } catch (NamingException e) {
             LOG.error("InitialContext or DataSource error", e);
         }finally {
@@ -617,6 +617,26 @@ public class OracleDataAccess implements ModelDataBase{
         }
         return listOrder;
     }
+    /*public List<Order> getOrderByIdCustomer(int idCustomer) throws DataBaseException {
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        List<Order> listOrder = new ArrayList<Order>();
+        try {
+            statement = connection.prepareStatement(SqlScripts.SELECT_ORDER_BY_ID_CUSTOMER);
+            statement.setInt(1,idCustomer);
+            result = statement.executeQuery();
+            while (result.next()) {
+                listOrder.add(getOrder(result));
+                getConOfOrder(getOrder(result));
+            }
+        } catch (Exception e) {
+            throw new DataBaseException("Exception with data from database", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+        return listOrder;
+    }*/
 
     private void getConOfOrder(Order order) throws DataBaseException {
         Connection connection = getConnection();
