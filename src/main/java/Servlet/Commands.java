@@ -49,6 +49,7 @@ public class Commands {
         map.put(ACTION_UN_LOGIN, new UnLogin());
         map.put(ACTION__UPDATE_BOOK,new UpdateBook());
         map.put(ACTION__DELETE_BOOK,new DeleteBook());
+        map.put(ACTION__ADD_BOOK,new AddBook());
     }
 
     public static void forward(String url, HttpServletRequest request, HttpServletResponse response) {
@@ -79,6 +80,7 @@ public class Commands {
     public static final String ACTION__UPDATE_BOOK = "updateBook";
     public static final String ACTION__ADD_ORDER = "addOrder";
     public static final String ACTION__DELETE_BOOK = "deleteBook";
+    public static final String ACTION__ADD_BOOK = "addBook";
     /*
      public static final String ACTION_OTHER = "otherAction";
     public static final String ACTION_WELCOME = "welcome";
@@ -86,7 +88,6 @@ public class Commands {
     public static final String ACTION_DETAIL = "detail";
     public static final String ACTION__DELETE = "delete";
 
-    public static final String ACTION__ADD_BOOK = "addBook";
     public static final String ACTION__ADD_AUTHOR = "addAuthor";
     public static final String ACTION__ADD_RUBRIC = "addRubric";
     public static final String ACTION__ADD_SECTION = "addSection";

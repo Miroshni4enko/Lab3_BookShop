@@ -63,12 +63,12 @@
                     <%=isEdit?"value=" + "\""+ book.getDescription()+ "\"":"placeholder=\"description\"" %>/>
             </p>
             <p class="prob">
-            <div><label for="<%=UpdateBook.BOOK_RUBRIC + "ID"%>">Description </label></div>
-            <input id ="<%=UpdateBook.BOOK_RUBRIC+"ID"%>" type="text" name ="<%=UpdateBook.BOOK_RUBRIC%>"
-                    <%=isEdit?"value=" + "\""+ book.getParent().getName()+ "\"":"placeholder=\"parent\"" %>/>
+            <div><label for="<%=UpdateBook.BOOK_RUBRIC_NAME + "ID"%>">Rubric</label></div>
+            <input id ="<%=UpdateBook.BOOK_RUBRIC_NAME+"ID"%>" type="text" name ="<%=UpdateBook.BOOK_RUBRIC_NAME%>"
+                    <%=isEdit?"value=" + "\""+ book.getParent().getName()+ "\"":"placeholder=\"rubric\"" %>/>
             </p>
 
-            <div class="prob">  <input class="btn" type="submit"  value="Edit book" /></div>
+            <div class="prob">  <input class="btn" type="submit"  value="<%=isEdit?"Edit book":"Create book"%>" /></div>
         </form>
     </div>
                     <span id="edit_modal_close">

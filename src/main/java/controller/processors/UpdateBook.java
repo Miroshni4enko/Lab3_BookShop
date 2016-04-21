@@ -24,6 +24,7 @@ public class UpdateBook implements GeneralProcess {
     public final static String BOOK_AMOUNT = "bookAmount";
     public final static String BOOK_PRICE = "bookPrice";
     public final static String BOOK_RUBRIC = "bookRubric";
+    public final static String BOOK_RUBRIC_NAME = "nameRubric";
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
         String authorSurname =request.getParameter(BOOK_AUTHOR_SURNAME);
