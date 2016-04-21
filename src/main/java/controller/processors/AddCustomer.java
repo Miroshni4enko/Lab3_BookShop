@@ -4,9 +4,12 @@ import Servlet.Commands;
 import exception.DataBaseException;
 import model.Customer;
 import model.OracleDataAccess;
+import model.Order;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Фокстрот on 05.04.2016.
@@ -35,7 +38,8 @@ public class AddCustomer implements GeneralProcess {
             request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, login);
             cusWithId = OracleDataAccess.getInstance().getCustomer(login, password);
             request.getSession().setAttribute(LoginUser.ATTRIBUTE_CUSTTOMER, cusWithId);
-
+            List<Order> listOrders = new ArrayList<Order>();
+            request.getSession().setAttribute("listOfAllOrders", listOrders);
             Commands.forward("/index.jsp", request, response);
         }else{
             request.getSession().setAttribute(CUS_IS_REG,"This login and password is already use");

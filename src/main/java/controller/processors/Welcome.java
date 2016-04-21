@@ -20,8 +20,6 @@ public class Welcome implements GeneralProcess{
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException{
 
-        List<Order> listOrders = OracleDataAccess.getInstance().getAllOrder();
-        request.getSession().setAttribute("listOfAllOrders", listOrders);
         ArrayList books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
         request.getSession().setAttribute("listOfAllBooks", books);
 

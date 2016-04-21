@@ -24,7 +24,7 @@ public class SqlScripts {
     public static final String SELECT_ID_ORDER = "SELECT ORDERS.ID_ORDER,c.ID_CONTENT FROM ORDERS,CONTENR_ORDER c  WHERE ID_CUSTOMER=? AND DATA=? AND c.ID_BOOK=? AND c.ID_ORDER=ORDERS.ID_ORDER";
     public static final String SELECT_AUTHOR_BY_ID = "SELECT * FROM AUTHOR WHERE ID_AUTHOR =?";
     public static final String SELECT_ODER_BY_ID = "SELECT * FROM ORDERS WHERE ID_ORDER =?";
-    //public static final String SELECT_ORDER_BY_ID_CUSTOMER  ="SELECT * FROM ORDERS WHERE ID_CUSTOMER = ?";
+    public static final String SELECT_ORDER_BY_ID_CUSTOMER  ="SELECT * FROM ORDERS WHERE ID_CUSTOMER = ?";
     public static final String SELECT_CUSTOMER_BY_ID = "SELECT * FROM CUSTOMER WHERE ID_CUSTOMER=?";
     public static final String SELECT_RUBRIC_BY_ID = "SELECT * FROM ITEM WHERE TYPE=1 AND ID_ITEM=?";
     public static final String SELECT_SECTION_BY_ID = "SELECT * FROM ITEM WHERE TYPE=2 AND ID_ITEM=?";

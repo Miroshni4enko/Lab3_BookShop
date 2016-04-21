@@ -45,7 +45,7 @@
         if (listOfAllBooks != null || listOfAllBooks.size() == 0) {
         for (Book book : listOfAllBooks) {%>
             <div class="book">
-                 <p><%--/////////////////////////////////--%>
+                 <p>
                     <b>
                         <a href="<%="MainServlet?action=viewDetailBooks&IdDetail=" + book.getId() %>"><%= book.getName() %></a>
                         </a>

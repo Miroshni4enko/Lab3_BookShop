@@ -15,35 +15,39 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/order.css">
     <title>Title</title>
 </head>
 <body>
-<div class="order_content">
+    <div class="order_content">
         <%List<Order> listOrders = null;
-        try {
-            //System.out.println(cus);
-             listOrders = (List<Order>) request.getSession().getAttribute("listOfAllOrders");
-            //System.out.println(listOrders);
-        } catch (Exception e) {
-            listOrders = null;
+            try {
+                //System.out.println(cus);
+                 listOrders = (List<Order>) request.getSession().getAttribute("listOfAllOrders");
+                //System.out.println(listOrders);
+            } catch (Exception e) {
+                listOrders = null;
+            }
+            if (listOrders != null && listOrders.size() > 0) {%>
+        <table >
+            <tr>
+            <td>Book name</td>
+            <td>Amount</td>
+            <td>Price</td>
+            </tr>
+        <%for (Order order : listOrders) {%>
+
+        <%for(Order.ContentOrder con:order.getContents()){
+        if(con.getBooks()!=null){%>
+                <tr>
+                    <td><%=con.getBooks().getName()%></td>
+                    <td><%=con.getAmount()%></td>
+                    <td><%=con.getBooks().getPrice()%></td>
+                </tr>
+    <%}
         }
-        if (listOrders != null && listOrders.size() > 0) {
-        for (Order order : listOrders) {%>
-    <div class="book"> <p><%--/////////////////////////////////--%>
-        <b>
-            <a href="<%="MainServlet?action=viewDetailBooks" + order.getIdOrder() %>"><%= order.getContents().get(1).getBooks().getName() %></a>
-            </a>
-        </b>
-        <p align="right">
-            <a href="#" id="go" >
-                <input type="submit" value="edit">
-            </a>
-            <%}%>
-        </p>
-        </p>
-    </div>
-    <br>
+        }%>
+        </table>
     <%} else { %>
     List of books is empty.
     <br>
@@ -51,6 +55,7 @@
     <%}%>
     <br>
     <br>
+
 </div>
 </body>
 </html>

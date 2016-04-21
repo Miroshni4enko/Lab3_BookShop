@@ -47,6 +47,9 @@ public class AddOrder implements GeneralProcess {
         contents.add(cont);
         order.setContents(contents);
         OracleDataAccess.getInstance().createOrder(order);
+        List<Order> listOrders = (List<Order>) request.getSession().getAttribute("listOfAllOrders");
+        listOrders.add(order);
+        request.getSession().setAttribute("listOfAllOrders", listOrders);
         Commands.forward("/index.jsp", request, response);
     }
 

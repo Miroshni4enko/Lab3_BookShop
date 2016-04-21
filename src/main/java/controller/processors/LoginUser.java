@@ -4,11 +4,13 @@ import Servlet.Commands;
 import exception.DataBaseException;
 import model.Customer;
 import model.OracleDataAccess;
+import model.Order;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
- /**
+/**
  * Class that specified precess for login.
  *
  * @author Sasha Kostyan
@@ -28,6 +30,8 @@ import javax.servlet.http.HttpServletResponse;
          if (customer != null) {
              request.getSession().setAttribute(ATTRIBUTE_CUSTTOMER, customer);
              request.getSession().setAttribute(ATTRIBUTE_LOGIN, login);
+             List<Order> listOrders = OracleDataAccess.getInstance().getOrderByIdCustomer(customer.getId());
+             request.getSession().setAttribute("listOfAllOrders", listOrders);
              Commands.forward("/index.jsp", request, response);
          } else {
              Commands.forward("/Login.jsp", request, response);
