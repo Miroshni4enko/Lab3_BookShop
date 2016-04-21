@@ -5,7 +5,7 @@
   Time: 4:34
   To change this template use File | Settings | File Templates.
 --%>
-<div id="modal_form">
+<div id="<%="modal_form" + book.getId()%>" >
     <div >
         <h3>Are you sure?</h3>
     </div>

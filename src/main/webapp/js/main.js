@@ -3,7 +3,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		$('#overlay').fadeIn(400,
 		 	function(){
-				$('#modal_form') 
+				$('#modal_form')
 					.css('display', 'block')
 					.animate({opacity: 1, top: '50%'}, 200);
 		});
