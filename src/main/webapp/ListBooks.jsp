@@ -28,7 +28,7 @@
         if (listOfAllBooks != null || listOfAllBooks.size() == 0) {
         for (Book book : listOfAllBooks) {%>
             <div class="book">
-                <form name = "buy_form" method="get"></form> <p><%--/////////////////////////////////--%>
+                 <p><%--/////////////////////////////////--%>
                     <b>
                         <a href="<%="MainServlet?action=viewDetailBooks&IdDetail=" + book.getId() %>"><%= book.getName() %></a>
                         </a>
@@ -40,7 +40,6 @@
                         <%@include file="BuyModalForm.jsp"%>
                     </p>
                     </p>
-                </form>
             </div>
             <br>
         <%}%>

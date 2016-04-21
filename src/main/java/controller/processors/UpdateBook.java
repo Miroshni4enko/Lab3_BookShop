@@ -15,15 +15,15 @@ import java.util.ArrayList;
  * Created by Слава on 20.04.2016.
  */
 public class UpdateBook implements GeneralProcess {
-    public static String BOOK_NAME = "bookName";
-    public static String BOOK_PAGES = "bookPages";
-    public static String BOOK_AUTHOR_ID ="AuthorID";
-    public static String BOOK_AUTHOR_NAME ="bookAuthorName";
-    public static String BOOK_AUTHOR_SURNAME = "bookAuthorSurname";
-    public static String BOOK_DESCRIPTION = "bookDescription";
-    public static String BOOK_AMOUNT = "bookAmount";
-    public static String BOOK_PRICE = "bookPrice";
-    public static String BOOK_RUBRIC = "bookRubric";
+    public final static String BOOK_NAME = "bookName";
+    public final static String BOOK_PAGES = "bookPages";
+    public final static String BOOK_AUTHOR_ID ="AuthorID";
+    public final static String BOOK_AUTHOR_NAME ="bookAuthorName";
+    public final static String BOOK_AUTHOR_SURNAME = "bookAuthorSurname";
+    public final static String BOOK_DESCRIPTION = "bookDescription";
+    public final static String BOOK_AMOUNT = "bookAmount";
+    public final static String BOOK_PRICE = "bookPrice";
+    public final static String BOOK_RUBRIC = "bookRubric";
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
         String authorSurname =request.getParameter(BOOK_AUTHOR_SURNAME);

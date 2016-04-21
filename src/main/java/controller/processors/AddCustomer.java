@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AddCustomer implements GeneralProcess {
 
-    public static String CUS_ID = "ID_CUSTOMER";
-    public static String CUS_LOGIN="LOGIN";
-    public static String CUS_PASSWORD="PASSWORD";
-    public static String CUS_E_MAIL="E_MAIL";
-    public static String CUS_PHONE="PHOME_NUMBER";
-    public static String CUS_ROLE="ROLE";
-    public static String CUS_IS_REG="isRegistration";
+    public final static String CUS_ID = "ID_CUSTOMER";
+    public final static String CUS_LOGIN="LOGIN";
+    public final static String CUS_PASSWORD="PASSWORD";
+    public final static String CUS_E_MAIL="E_MAIL";
+    public final static String CUS_PHONE="PHOME_NUMBER";
+    public final static String CUS_ROLE="ROLE";
+    public final static String CUS_IS_REG="isRegistration";
 
     public void process(HttpServletRequest request,HttpServletResponse response) throws DataBaseException  {
        // int id = Integer.valueOf(request.getParameter(CUS_ID));

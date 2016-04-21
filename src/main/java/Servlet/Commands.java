@@ -44,7 +44,7 @@ public class Commands {
         map.put(ACTION_DETAIL, new DetailBook());
         map.put(VIEW_LIST_BOOKS, new ViewListBooks());
         map.put(LOGIN_USER, new LoginUser());
-        map.put(ACTION_EDIT_BOOK, new EditBook());
+        map.put(ACTION__ADD_ORDER, new AddOrder());
         map.put(ACTION__UPDATE_CUSTOMER, new UpdateCustomer());
         map.put(ACTION_UN_LOGIN, new UnLogin());
         map.put(ACTION__UPDATE_BOOK,new UpdateBook());
@@ -76,6 +76,7 @@ public class Commands {
 
     public static final String ACTION__UPDATE_CUSTOMER = "updateCustomer";
     public static final String ACTION__UPDATE_BOOK = "updateBook";
+    public static final String ACTION__ADD_ORDER = "addOrder";
     /*
      public static final String ACTION_OTHER = "otherAction";
     public static final String ACTION_WELCOME = "welcome";
@@ -88,7 +89,6 @@ public class Commands {
     public static final String ACTION__ADD_RUBRIC = "addRubric";
     public static final String ACTION__ADD_SECTION = "addSection";
     public static final String ACTION__ADD_CUSTOMER = "addCustomer";
-    public static final String ACTION__ADD_ORDER = "addOrder";
 
 
     public static final String ACTION__DELETE_BOOK = "deleteBook";

@@ -67,6 +67,7 @@ if(cus==null){
     </div>
 </div>
 <%if(cus!=null){%>
+<jsp:include page="ListOrders.jsp"/>
 <%}%>
 <jsp:include page="Footer.jsp" />
 </body>

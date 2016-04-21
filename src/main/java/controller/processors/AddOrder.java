@@ -18,21 +18,25 @@ import java.util.List;
  * Created by Слава on 19.04.2016.
  */
 public class AddOrder implements GeneralProcess {
-    public static String user ="Common user";
-    public static String Book_Amount ="amount";
-    public static String pass_user ="1111";
+    public final static String user ="Common user";
+    public final static String Book_Amount ="amount";
+    int pass_user =1111;
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
         Customer cus = (Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTTOMER);
+        System.out.println("sadasdsa");
         if(cus == null){
-            /*cus =OracleDataAccess.getInstance().getCustomer(user,pass_user);
-            if(cus==null) {
-                cus = new Customer(user, pass_user, " ", " ", 1);
-                OracleDataAccess.getInstance().createCustomer(cus);
-            }
-            cus =  OracleDataAccess.getInstance().getCustomer(user,pass_user);
-            List<Order> order =  OracleDataAccess.getInstance().getOrderByIdCustomer(cus.getId());
-            ArrayList<Order.ContentOrder> content = order.get(0).getContents();
-           */
+            int i = 0;
+            do{
+                cus = OracleDataAccess.getInstance().getCustomer(user,String.valueOf(pass_user++));
+            }while (cus!=null);
+            System.out.println("sadasdsa");
+            String phone =  request.getParameter(AddCustomer.CUS_PHONE);
+            String mail  = request.getParameter(AddCustomer.CUS_E_MAIL);
+            cus = new Customer(user,String.valueOf(pass_user),mail,phone, 1);
+            OracleDataAccess.getInstance().createCustomer(cus);
+            cus =  OracleDataAccess.getInstance().getCustomer(user,String.valueOf(pass_user));
+            //List<Order> order =  OracleDataAccess.getInstance().(cus.getId());
+            //ArrayList<Order.ContentOrder> content = order.get(0).getContents();
         }
         int IdDetail = Integer.valueOf(request.getParameter("IdDetail"));
         int amount = Integer.valueOf(request.getParameter(Book_Amount));
