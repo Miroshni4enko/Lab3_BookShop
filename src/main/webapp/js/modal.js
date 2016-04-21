@@ -2,7 +2,7 @@
  * Created by Слава on 20.04.2016.
  */
 $(document).ready(function() {
-    $('a#Edit').click( function(event){
+    $('a#edit').click( function(event){
         event.preventDefault();
         $('#overlay').fadeIn(400,
             function(){

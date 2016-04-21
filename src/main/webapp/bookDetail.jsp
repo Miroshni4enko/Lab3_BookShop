@@ -17,6 +17,7 @@
     try {
         Customer cus = (Customer) session.getAttribute("customer");
         buttonName ="Buy";
+        isEdit=false;
         //  Customer cus = new Customer();
         //cus.setLogin("Admin");
        // if(cus.getLogin().equals("Admin")){
