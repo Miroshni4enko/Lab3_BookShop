@@ -4,11 +4,13 @@ import Servlet.Commands;
 import exception.DataBaseException;
 import model.Item;
 import model.OracleDataAccess;
+import model.Order;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.*;
 
 /**
  * Class that handling command Welcome.
@@ -22,6 +24,8 @@ public class Welcome implements GeneralProcess{
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException{
 
+        List<Order> listOrders = OracleDataAccess.getInstance().getAllOrder();
+        request.getSession().setAttribute("listOfAllOrders", listOrders);
         ArrayList books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
         request.getSession().setAttribute("listOfAllBooks", books);
 

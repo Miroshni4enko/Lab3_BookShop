@@ -20,33 +20,37 @@
 </head>
 <body>
 <div class="order_content">
-        <%!  List<Order> listOrders = null;%>
-        <%
+        <%List<Order> listOrders = null;
         try {
-            Customer cus = (Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTTOMER);
             //System.out.println(cus);
-           // listOrders = OracleDataAccess.getInstance().getAllOrder();
+             listOrders = (List<Order>) request.getSession().getAttribute("listOfAllOrders");
             //System.out.println(listOrders);
         } catch (Exception e) {
             listOrders = null;
         }
         if (listOrders != null && listOrders.size() > 0) {
         for (Order order : listOrders) {%>
-    <div class="book">
-        <form name="order" method="GET" action="MainServlet?action=Buy">
-            <p><%--/////////////////////////////////--%>
-                <b>
-                    <a href="<%="MainServlet?action=viewDetailBooks&IdDetail=" + order.getIdOrder() %>"><%= order.getContents().get(0).getBooks().getName()%></a>
-                </b>
-            </p>
-        </form>
+    <div class="book"> <p><%--/////////////////////////////////--%>
+        <b>
+            <a href="<%="MainServlet?action=viewDetailBooks" + order.getIdOrder() %>"><%= order.getContents().get(1).getBooks().getName() %></a>
+            </a>
+        </b>
+        <p align="right">
+            <a href="#" id="go" >
+                <input type="submit" value="edit">
+            </a>
+            <%}%>
+        </p>
+        </p>
     </div>
-    <%}%>
+    <br>
     <%} else { %>
     List of books is empty.
     <br>
     <br>
     <%}%>
+    <br>
+    <br>
 </div>
 </body>
 </html>

@@ -22,7 +22,7 @@ public class UnLogin implements GeneralProcess {
         if (session != null) {
             session.invalidate();
         }*/
-
+        request.getSession().setAttribute(LoginUser.ATTRIBUTE_CUSTTOMER,null);
         request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, "false");
         Commands.forward("/index.jsp", request, response);
     }

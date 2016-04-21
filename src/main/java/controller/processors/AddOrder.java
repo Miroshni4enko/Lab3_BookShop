@@ -36,6 +36,7 @@ public class AddOrder implements GeneralProcess {
             //List<Order> order =  OracleDataAccess.getInstance().(cus.getId());
             //ArrayList<Order.ContentOrder> content = order.get(0).getContents();
         }
+
         int IdDetail = Integer.valueOf(request.getParameter("IdDetail"));
         int amount = Integer.valueOf(request.getParameter(Book_Amount));
         Book book = OracleDataAccess.getInstance().getBookById(IdDetail);

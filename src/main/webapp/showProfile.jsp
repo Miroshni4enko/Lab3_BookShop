@@ -39,7 +39,7 @@ if(cus==null){
     list.add("Sign_up");
 }else{
     list =new ArrayList<String> ();
-    list.add("class=\"rightstr\"");
+    list.add("class=\"leftstr\"");
     list.add("Profile");
     list.add("MainServlet?action=updateCustomer");
     list.add(cus.getLogin());
