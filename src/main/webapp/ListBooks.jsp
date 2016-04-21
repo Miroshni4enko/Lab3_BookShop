@@ -1,8 +1,8 @@
 <%@ page import="model.Book" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Customer" %>
-<%@ page import="controller.processors.AddCustomer" %>
-<%@ page import="controller.processors.AddOrder" %>
+<%@ page import="Servlet.Commands" %>
+<%@ page import="controller.processors.DetailBook" %>
 <%@ page errorPage="errorPage.jsp"%>
 <%--
     Document   : ListBooks
@@ -11,21 +11,18 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%
-    Boolean isAdmin=false;
-    String buttonName ="";
+<%  Boolean isAdmin = false;
+    String buttonName;
     try {
         Customer cus = (Customer) session.getAttribute("customer");
-        buttonName ="Buy";
-        if(cus.getRole()==10){
-            isAdmin=true;
-            buttonName ="Delete";
+        buttonName = "Buy";
+        if(cus.getRole() == 10){
+            isAdmin = true;
+            buttonName = "Delete";
         }
-    }
-    catch (NullPointerException e1){
-        isAdmin= false;
-        buttonName ="Buy";
-
+    } catch (NullPointerException e1){
+        isAdmin = false;
+        buttonName = "Buy";
     }
 %>
 <head>
@@ -47,7 +44,8 @@
             <div class="book">
                  <p>
                     <b>
-                        <a href="<%="MainServlet?action=viewDetailBooks&IdDetail=" + book.getId() %>"><%= book.getName() %></a>
+                        <a href="<%="MainServlet?action=" + Commands.ACTION_DETAIL +
+                            "&" + DetailBook.ID_DETAIL + "=" + book.getId() %>"><%= book.getName() %></a>
                         </a>
                     </b>
                     <p align="right">
@@ -121,7 +119,9 @@
             <br>
         <%}%>
             <center>
-                <a href="MainServlet?action=viewListBooks">view more books</a><%--/////////////////////////////////--%>
+           <%--     <% if( !(Commands.AMOUNT_OF_BOOKS_ON_LIST >= listOfAllBooks.size()) ) {%> --%>
+                    <a href="MainServlet?action=viewListBooks">view more books</a>
+              <%--  <%}%> --%>
             </center>
         <%} else { %>
             List of books is empty.
