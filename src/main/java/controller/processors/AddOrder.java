@@ -23,13 +23,11 @@ public class AddOrder implements GeneralProcess {
     int pass_user =1111;
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
         Customer cus = (Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTTOMER);
-        System.out.println("sadasdsa");
         if(cus == null){
             int i = 0;
             do{
                 cus = OracleDataAccess.getInstance().getCustomer(user,String.valueOf(pass_user++));
             }while (cus!=null);
-            System.out.println("sadasdsa");
             String phone =  request.getParameter(AddCustomer.CUS_PHONE);
             String mail  = request.getParameter(AddCustomer.CUS_E_MAIL);
             cus = new Customer(user,String.valueOf(pass_user),mail,phone, 1);

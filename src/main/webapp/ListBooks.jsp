@@ -10,6 +10,24 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    Boolean isAdmin=false;
+    String buttonName ="";
+    try {
+        Customer cus = (Customer) session.getAttribute("customer");
+        buttonName ="Buy";
+        if(cus.getRole()==10){
+            isAdmin=true;
+            buttonName ="Delete";
+        }
+    }
+    catch (NullPointerException e1){
+        isAdmin= false;
+        buttonName ="Buy";
+
+    }
+%>
 <head>
     <meta charset="UTF-8">
     <title>Modal</title>
@@ -35,9 +53,17 @@
                     </b>
                     <p align="right">
                     <a href="#" id="go" >
-                    <input type="submit" value="Buy">
+                    <input type="submit" value="<%=buttonName%>">
                     </a>
-                        <%@include file="BuyModalForm.jsp"%>
+                <%if( isAdmin) {
+                    request.getSession().setAttribute("AuthorID",book.getAuthor().getId());
+                    request.getSession().setAttribute(UpdateBook.BOOK_RUBRIC,book.getParent());
+                %>
+
+                <%@include file="Warning.jsp"%>
+                <%}else {%>
+                <%@include file="BuyModalForm.jsp"%>
+                <%}%>
                     </p>
                     </p>
             </div>
