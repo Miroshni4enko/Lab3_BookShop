@@ -102,7 +102,9 @@
                             %>
 
                                 <%@include file="EditModalForm.jsp"%>
-                            <%}else {%>
+                            <%}else {
+                            boolean isMain =false;%>
+
                                 <%@include file="BuyModalForm.jsp"%>
                             <%}%>
                         </p>

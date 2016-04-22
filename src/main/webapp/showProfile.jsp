@@ -66,7 +66,9 @@ if(cus==null){
         </div>
     </div>
 </div>
-<%if(cus!=null){%>
+<%if(cus!=null&&cus.getRole()==10){%>
+<jsp:include page="AdminListOrders.jsp"/>
+<%}else {%>
 <jsp:include page="ListOrders.jsp"/>
 <%}%>
 <jsp:include page="Footer.jsp" />

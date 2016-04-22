@@ -30,7 +30,12 @@ import java.util.List;
          if (customer != null) {
              request.getSession().setAttribute(ATTRIBUTE_CUSTTOMER, customer);
              request.getSession().setAttribute(ATTRIBUTE_LOGIN, login);
-             List<Order> listOrders = OracleDataAccess.getInstance().getOrderByIdCustomer(customer.getId());
+             List<Order> listOrders = null;
+             if(customer.getRole()==10) {
+                 listOrders = OracleDataAccess.getInstance().getAllOrder();
+             }else {
+                 listOrders = OracleDataAccess.getInstance().getOrderByIdCustomer(customer.getId());
+             }
              request.getSession().setAttribute("listOfAllOrders", listOrders);
              Commands.forward("/index.jsp", request, response);
          } else {

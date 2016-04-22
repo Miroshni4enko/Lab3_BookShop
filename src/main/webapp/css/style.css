@@ -60,7 +60,17 @@ A:hover {
     padding:15px 15px 15px 15px;
     text-align: justify;
 }
-
+.order_content{
+    position: absolute;
+    overflow: auto;
+    top: 140px;
+    left: 400px;
+    right: 0;
+    width: 400%;
+    margin:10px 0px;
+    padding:15px 15px 15px 15px;
+    text-align: justify;
+}
 .book{
     border:3px solid #faf8e5;
 }
@@ -139,7 +149,6 @@ th{
     width: 450px;
     high:50px;
 }
-
 
 .sideBook2 {
     position: center;

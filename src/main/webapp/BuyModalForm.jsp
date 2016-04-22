@@ -1,4 +1,5 @@
-<%--
+<%@ page import="controller.processors.AddOrder" %>
+<%@ page import="controller.processors.AddCustomer" %><%--
   Created by IntelliJ IDEA.
   User: Слава
   Date: 20.04.2016
@@ -6,7 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
-<div id="<%="modal_form" + book.getId()%>">
+<div id="<%=isMain?"modal_form" +book.getId():"modal_form"%>">
     <div >
         <h3>Do you want to buy a book?<br>Write your phone number and <br> e-mail!</h3>
     </div>

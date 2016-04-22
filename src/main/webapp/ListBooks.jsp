@@ -108,8 +108,9 @@
                     request.getSession().setAttribute(UpdateBook.BOOK_RUBRIC,book.getParent());
                 %>
 
-                <%@include file="Warning.jsp"%>
-                <%}else {%>
+                <%@include file="DeleteBook.jsp"%>
+                <%}else {
+                boolean isMain =true;%>
 
                 <%@include file="BuyModalForm.jsp"%>
                 <%}%>

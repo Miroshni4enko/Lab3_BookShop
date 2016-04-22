@@ -19,7 +19,7 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="order_content">
+    <div class="admin_order_content">
         <%List<Order> listOrders = null;
             try {
                 //System.out.println(cus);
