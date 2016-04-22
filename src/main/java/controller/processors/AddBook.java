@@ -13,13 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Слава on 21.04.2016.
+ * Class for add book.
+ *
+ * @author Slavik Miroshnychenko
+ * @version %I%, %G%
  */
 public class AddBook implements  GeneralProcess{
+
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
         String authorSurname =request.getParameter(UpdateBook.BOOK_AUTHOR_SURNAME);
         String authorName = request.getParameter(UpdateBook.BOOK_AUTHOR_NAME);
         List<Author>  listAuthor=  OracleDataAccess.getInstance().getAllAuthor();
+
         Author author = null;
         for(Author auth:listAuthor){
             if( auth.getSurname().equals(authorSurname)&&auth.getName().equals(authorName)){
@@ -27,6 +32,7 @@ public class AddBook implements  GeneralProcess{
             }
 
         }
+
         if(author == null) {
             author = new Author();
             author.setName(authorName);
@@ -39,6 +45,7 @@ public class AddBook implements  GeneralProcess{
                 }
             }
         }
+
         String bookName = request.getParameter(UpdateBook.BOOK_NAME);
         String description = request.getParameter(UpdateBook.BOOK_DESCRIPTION);
         String rubricName =request.getParameter(UpdateBook.BOOK_RUBRIC_NAME);
@@ -47,17 +54,19 @@ public class AddBook implements  GeneralProcess{
         int price = Integer.parseInt(request.getParameter(UpdateBook.BOOK_PRICE));
         int pages = Integer.parseInt(request.getParameter(UpdateBook.BOOK_PAGES));
         List<Item> listItem = OracleDataAccess.getInstance().getAllRubric();
+
         Item rubric = null;
         for(Item item:listItem){
             if(item.getName().equals(rubricName)){
                 rubric = item;
             }
         }
+
         Book book = new Book(0,bookName,description,rubric,author,pages,price,amount);
         OracleDataAccess.getInstance().createBook(book);
 
         ArrayList books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
-        request.getSession().setAttribute("listOfAllBooks", books);
+        request.getSession().setAttribute(ViewListBooks.ATTRIBUTE_LIST_OF_ALL_BOOKS, books);
 
         Commands.forward("/index.jsp", request, response);
     }

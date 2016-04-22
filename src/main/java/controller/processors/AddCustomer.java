@@ -16,19 +16,20 @@ import java.util.List;
  */
 public class AddCustomer implements GeneralProcess {
 
-    public final static String CUS_ID = "ID_CUSTOMER";
-    public final static String CUS_LOGIN="LOGIN";
-    public final static String CUS_PASSWORD="PASSWORD";
-    public final static String CUS_E_MAIL="E_MAIL";
-    public final static String CUS_PHONE="PHOME_NUMBER";
-    public final static String CUS_ROLE="ROLE";
-    public final static String CUS_IS_REG="isRegistration";
+    public final static String CUS_ID      = "ID_CUSTOMER";
+    public final static String CUS_LOGIN   = "LOGIN";
+    public final static String CUS_PASSWORD= "PASSWORD";
+    public final static String CUS_E_MAIL  = "E_MAIL";
+    public final static String CUS_PHONE   = "PHOME_NUMBER";
+    public final static String CUS_ROLE    = "ROLE";
+    public final static String CUS_IS_REG  = "isRegistration";
 
     public void process(HttpServletRequest request,HttpServletResponse response) throws DataBaseException  {
        // int id = Integer.valueOf(request.getParameter(CUS_ID));
         String login = request.getParameter(CUS_LOGIN);
         String password = request.getParameter(CUS_PASSWORD);
         Customer cusWithId  = OracleDataAccess.getInstance().getCustomer(login,password);
+
         if(cusWithId==null) {
             String eMail = request.getParameter(CUS_E_MAIL);
             int role = 1;
@@ -37,7 +38,7 @@ public class AddCustomer implements GeneralProcess {
             OracleDataAccess.getInstance().createCustomer(cus);
             request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, login);
             cusWithId = OracleDataAccess.getInstance().getCustomer(login, password);
-            request.getSession().setAttribute(LoginUser.ATTRIBUTE_CUSTTOMER, cusWithId);
+            request.getSession().setAttribute(LoginUser.ATTRIBUTE_CUSTOMER, cusWithId);
             List<Order> listOrders = new ArrayList<Order>();
             request.getSession().setAttribute("listOfAllOrders", listOrders);
             Commands.forward("/index.jsp", request, response);
@@ -46,6 +47,5 @@ public class AddCustomer implements GeneralProcess {
 
             Commands.forward("/showProfile.jsp", request, response);
         }
-
     }
 }

@@ -9,14 +9,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 /**
- * Created by Слава on 21.04.2016.
+ * Class for delete book.
+ *
+ * @author Slavik Miroshnychenko
+ * @version %I%, %G%
  */
 public class DeleteBook implements GeneralProcess {
+
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
-        int idBook = Integer.parseInt(request.getParameter("IdDetail"));
+        int idBook = Integer.parseInt(request.getParameter(DetailBook.ID_DETAIL));
+
         OracleDataAccess.getInstance().removeBook(idBook);
         ArrayList books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
-        request.getSession().setAttribute("listOfAllBooks", books);
+        request.getSession().setAttribute(ViewListBooks.ATTRIBUTE_LIST_OF_ALL_BOOKS, books);
+
         Commands.forward("/index.jsp", request, response);
     }
+
 }

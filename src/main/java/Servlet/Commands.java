@@ -39,6 +39,7 @@ public class Commands {
 
     private void initMap() {
         map = new HashMap<String, Object>();
+
         map.put(ACTION_WELCOME, new Welcome());
         map.put(ACTION_ADD_CUSTOMER, new AddCustomer());
         map.put(ACTION_DETAIL, new DetailBook());
@@ -70,14 +71,6 @@ public class Commands {
     public static final String ACTION_WELCOME          = "welcome";
     public static final String ACTION_DETAIL           = "viewDetailBooks";
 
-    public static final String ACTION_VIEW_LIST_BOOKS  = "viewListBooks";
-    public static       int    AMOUNT_OF_BOOKS_ON_LIST = 6;             // when session starts it equals 6 and after each
-    public static final int    PLUS_BOOKS_TO_LIST      = 6;             // request + 6 in ViewListBooks.java
-    public static final String ACTION_LOGIN_USER       = "loginUser";
-
-    public static final String ACTION_EDIT_BOOK       = "editBook";
-    public static final String ACTION_UN_LOGIN        = "unLogin";
-
     public static final String ACTION_UPDATE_CUSTOMER = "updateCustomer";
     public static final String ACTION_UPDATE_BOOK     = "updateBook";
     public static final String ACTION_ADD_ORDER       = "addOrder";
@@ -85,4 +78,11 @@ public class Commands {
     public static final String ACTION_ADD_BOOK        = "addBook";
     public static final String ACTION_DELETE_ORDER    = "deleteOrder";
     public static final String ACTION_UPDATE_ORDER    = "updateOrder";
+    public static final String ACTION_EDIT_BOOK       = "editBook";
+    public static final String ACTION_UN_LOGIN        = "unLogin";
+
+    public static final String ACTION_VIEW_LIST_BOOKS  = "viewListBooks";
+    public static       int    AMOUNT_OF_BOOKS_ON_LIST     = 6;             // when session starts it equals 6 and after each
+    public static final int    START_OR_PLUS_BOOKS_TO_LIST = 6;             // request + 6 in ViewListBooks.java
+    public static final String ACTION_LOGIN_USER       = "loginUser";
 }

@@ -17,20 +17,24 @@ import java.util.List;
  * @version %I%, %G%
  */
  public class LoginUser implements GeneralProcess {
-     public final static String ATTRIBUTE_CUSTTOMER  = "customer";
-     public final static String ATTRIBUTE_LOGIN      = "login";
-     public final static String NAME_LOGIN_INPUT     = "nameLogin";
-     public final static String NAME_PASSWORD_INPUT  = "namePassword";
+
+     public final static String ATTRIBUTE_START_OF_LOGIN = "false";
+     public final static String ATTRIBUTE_CUSTOMER       = "customer";
+     public final static String ATTRIBUTE_LOGIN          = "login";
+     public final static String NAME_LOGIN_INPUT         = "nameLogin";
+     public final static String NAME_PASSWORD_INPUT      = "namePassword";
 
      public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
+
          String login    = request.getParameter(NAME_LOGIN_INPUT);
          String password = request.getParameter(NAME_PASSWORD_INPUT);
          Customer customer = OracleDataAccess.getInstance().getCustomer(login, password);
 
          if (customer != null) {
-             request.getSession().setAttribute(ATTRIBUTE_CUSTTOMER, customer);
+             request.getSession().setAttribute(ATTRIBUTE_CUSTOMER, customer);
              request.getSession().setAttribute(ATTRIBUTE_LOGIN, login);
-             List<Order> listOrders = null;
+
+             List<Order> listOrders;
              if(customer.getRole()==10) {
                  listOrders = OracleDataAccess.getInstance().getAllOrder();
              }else {

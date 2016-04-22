@@ -2,11 +2,11 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Customer" %>
 <%@ page import="Servlet.Commands" %>
-<%@ page import="controller.processors.DetailBook" %>
+<%@ page import="controller.processors.*" %>
 <%@ page errorPage="errorPage.jsp"%>
 <%--
     Document   : ListBooks
-    Author     : Sasha
+    Author     : Sasha, Slavik
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -35,7 +35,7 @@
 <div class="content">
     <%  List<Book> listOfAllBooks;
         try {
-            listOfAllBooks = (List<Book>) request.getSession().getAttribute("listOfAllBooks");
+            listOfAllBooks = (List<Book>) request.getSession().getAttribute(ViewListBooks.ATTRIBUTE_LIST_OF_ALL_BOOKS);
         } catch (Exception e) {
             listOfAllBooks = null;
         }
@@ -104,7 +104,7 @@
                     });
                 });</script>
                 <%if( isAdmin) {
-                    request.getSession().setAttribute("AuthorID",book.getAuthor().getId());
+                    //request.getSession().setAttribute("AuthorID",book.getAuthor().getId());
                     request.getSession().setAttribute(UpdateBook.BOOK_RUBRIC,book.getParent());
                 %>
 
@@ -120,9 +120,9 @@
             <br>
         <%}%>
             <center>
-           <%--     <% if( !(Commands.AMOUNT_OF_BOOKS_ON_LIST >= listOfAllBooks.size()) ) {%> --%>
+                <% if( !(Commands.START_OR_PLUS_BOOKS_TO_LIST > listOfAllBooks.size()) ) {%>
                     <a href="MainServlet?action=viewListBooks">view more books</a>
-              <%--  <%}%> --%>
+                <%}%>
             </center>
         <%} else { %>
             List of books is empty.

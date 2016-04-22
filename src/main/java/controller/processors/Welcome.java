@@ -4,13 +4,11 @@ import Servlet.Commands;
 import exception.DataBaseException;
 import model.Item;
 import model.OracleDataAccess;
-import model.Order;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.*;
 
 /**
  * Class that handling command Welcome.
@@ -19,13 +17,14 @@ import java.util.*;
  * @version %I%, %G%
  */
 public class Welcome implements GeneralProcess{
-    public static final String ATTRIBUTE_SECTION  = "Section";
-    public static final String ATTRIBUTE_CATEGORY = "Category";
+
+    public static final String ATTRIBUTE_SECTION   = "Section";
+    public static final String ATTRIBUTE_CATEGORY  = "Category";
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException{
 
         ArrayList books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
-        request.getSession().setAttribute("listOfAllBooks", books);
+        request.getSession().setAttribute(ViewListBooks.ATTRIBUTE_LIST_OF_ALL_BOOKS, books);
 
         ArrayList<Item> sectionAll = (ArrayList<Item>) OracleDataAccess.getInstance().getAllSection();
         HashMap<Item, ArrayList<Item>> listRubric = new HashMap<Item, ArrayList<Item>>();

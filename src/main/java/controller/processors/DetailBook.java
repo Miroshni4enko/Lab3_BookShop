@@ -15,12 +15,16 @@ import javax.servlet.http.HttpServletResponse;
  * @version %I%, %G%
  */
 public class DetailBook implements GeneralProcess {
-    public final static String ID_DETAIL = "IdDetail";
+
+    public final static String ID_DETAIL                 = "IdDetail";
+    public final static String ATTRIBUTE_BOOK_FOR_DETAIL = "DetailBook";
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws  DataBaseException{
         int IdDetail = Integer.valueOf(request.getParameter(ID_DETAIL));
+
         Book book = OracleDataAccess.getInstance().getBookById(IdDetail);
-        request.getSession().setAttribute("DetailBook", book);
+        request.getSession().setAttribute(ATTRIBUTE_BOOK_FOR_DETAIL, book);
+
         Commands.forward("/bookDetail.jsp",request,response);
     }
 

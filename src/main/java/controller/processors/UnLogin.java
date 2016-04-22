@@ -3,11 +3,8 @@ package controller.processors;
 import Servlet.Commands;
 import exception.DataBaseException;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
 
 /**
  * Class for log out of user.
@@ -22,8 +19,9 @@ public class UnLogin implements GeneralProcess {
         if (session != null) {
             session.invalidate();
         }*/
-        request.getSession().setAttribute(LoginUser.ATTRIBUTE_CUSTTOMER,null);
-        request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, "false");
+
+        request.getSession().setAttribute(LoginUser.ATTRIBUTE_CUSTOMER,null);
+        request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, LoginUser.ATTRIBUTE_START_OF_LOGIN);
         Commands.forward("/index.jsp", request, response);
     }
 

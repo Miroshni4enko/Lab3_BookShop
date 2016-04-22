@@ -15,9 +15,11 @@ import java.util.ArrayList;
  * @version %I%, %G%
  */
 public class ViewListBooks implements GeneralProcess {
+
+    public static final String ATTRIBUTE_LIST_OF_ALL_BOOKS = "listOfAllBooks";
+    public final static String ATTRIBUTE_VIEW_LIST         = "attribute_list_books";
     public final static String ID_RUBRIC           = "idRubric";
     public final static String ID_RUBRIC_ALL       = "all";
-    public final static String ATTRIBUTE_VIEW_LIST = "attribute_list_books";
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
 
@@ -25,6 +27,7 @@ public class ViewListBooks implements GeneralProcess {
         Integer idRubric;
 
         if (requestIdRubric != null) {
+
             if (requestIdRubric.equals(ID_RUBRIC_ALL)) {
                 request.getSession().setAttribute(ATTRIBUTE_VIEW_LIST, ID_RUBRIC_ALL);
                 idRubric = null;
@@ -36,16 +39,19 @@ public class ViewListBooks implements GeneralProcess {
                     idRubric = null;
                 }
             }
+
+            Commands.AMOUNT_OF_BOOKS_ON_LIST = Commands.START_OR_PLUS_BOOKS_TO_LIST;
         } else {
+
             String listBooks = (String) request.getSession().getAttribute(ATTRIBUTE_VIEW_LIST);
             if (!listBooks.equals("all")) {
                 idRubric = Integer.valueOf(listBooks);
             } else {
                 idRubric = null;
             }
-        }
 
-        Commands.AMOUNT_OF_BOOKS_ON_LIST += Commands.PLUS_BOOKS_TO_LIST;
+            Commands.AMOUNT_OF_BOOKS_ON_LIST += Commands.START_OR_PLUS_BOOKS_TO_LIST;
+        }
 
         ArrayList books;
         if (idRubric != null) {
@@ -54,7 +60,7 @@ public class ViewListBooks implements GeneralProcess {
             books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
         }
 
-        request.getSession().setAttribute("listOfAllBooks", books);
+        request.getSession().setAttribute(ATTRIBUTE_LIST_OF_ALL_BOOKS, books);
         Commands.forward("/index.jsp", request, response);
     }
 

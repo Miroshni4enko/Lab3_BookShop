@@ -11,23 +11,31 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * Created by Слава on 22.04.2016.
+ * Class for update order.
+ *
+ * @author Slavik Miroshnychenko
+ * @version %I%, %G%
  */
 public class UpdateOrder implements GeneralProcess {
+
     public final static String UPDATE_ORDER_ID = "updateOrderID";
-    public final static String UPDATE_BOOK_ID = "updateBookID";
+    public final static String UPDATE_BOOK_ID  = "updateBookID";
+
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
         int amount = Integer.valueOf(request.getParameter(UpdateBook.BOOK_AMOUNT));
         int order =(Integer) request.getSession().getAttribute(UPDATE_ORDER_ID);
         int book = (Integer) request.getSession().getAttribute(UPDATE_BOOK_ID);
-        Customer customer = (Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTTOMER);
+
+        Customer customer = (Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTOMER);
         OracleDataAccess.getInstance().updateBookOfOrder(order,book,amount);
         List<Order> orders;
+
         if(customer.getRole()==10) {
             orders = OracleDataAccess.getInstance().getAllOrder();
-        }else {
+        } else {
             orders = OracleDataAccess.getInstance().getOrderByIdCustomer(customer.getId());
         }
+
         request.getSession().setAttribute("listOfAllOrders", orders);
         Commands.forward("/showProfile.jsp", request, response);
     }

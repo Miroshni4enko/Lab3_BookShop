@@ -22,7 +22,7 @@
         Customer cus = null;
         try {
             //System.out.println(cus);
-            cus =(Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTTOMER);
+            cus =(Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTOMER);
             listOrders = (List<Order>) request.getSession().getAttribute("listOfAllOrders");
             //System.out.println(listOrders);
         } catch (Exception e) {
