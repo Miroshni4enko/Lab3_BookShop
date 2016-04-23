@@ -11,9 +11,9 @@ import java.util.*;
  */
 public class Order {
 
-    private int                     idOrder;
-    private Customer                customer;
-    private Date                    dateOfOrder;
+    private int idOrder;
+    private Customer customer;
+    private Date dateOfOrder;
     private ArrayList<ContentOrder> content;
 
     public Order(int id, Customer customer, Date dateOfOrder, ArrayList<ContentOrder> con) {
@@ -110,6 +110,54 @@ public class Order {
             this.amount = 0;
         }
 
+        @Override
+        public boolean equals(Object obj) {
+            if ((obj == null) || (getClass() != obj.getClass()))
+                return false;
+            ContentOrder other = (ContentOrder) obj;
+            if ((book != other.book) && (amount != other.amount))
+                return false;
+            if (this == obj)
+                return true;
+            return true;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = 1;
+            int one = 17;
+            result = one * result + (this.getBooks() == null ? 0 : this.getBooks().hashCode()) + (Integer.valueOf(this.getAmount()) == null ? 0 : getAmount());
+            return result;
+        }
+
+        @Override
+        public String toString() {
+            return "Book: " + getBooks() + " Count: " + getAmount();
+        }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if ((obj == null) || (getClass() != obj.getClass()))
+            return false;
+        Order other = (Order) obj;
+        if ((idOrder != other.idOrder) && (customer != other.customer) && (dateOfOrder != other.dateOfOrder) && (content != other.content))
+            return false;
+        if (this == obj)
+            return true;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 1;
+        int one = 17;
+        result = one * result + (this.getDateOfOrder() == null ? 0 : this.getDateOfOrder().hashCode());
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer: " + getCustomer().getLogin() + " Date: " + getDateOfOrder();
+    }
 }

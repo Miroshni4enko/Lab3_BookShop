@@ -8,7 +8,7 @@ package model;
  */
 
 public class Author {
-    private int    id;
+    private int id;
     private String surname;
     private String name;
 
@@ -56,4 +56,25 @@ public class Author {
     public String toString() {
         return getSurname() + " " + getName();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if ((obj == null) || (getClass() != obj.getClass()))
+            return false;
+        Author other = (Author) obj;
+        if ((id != other.id) && (surname != other.surname) && (name != other.name))
+            return false;
+        if (this == obj)
+            return true;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 1;
+        int one = 17;
+        result = one * result + (this.getName() == null ? 0 : this.getName().hashCode());
+        return result;
+    }
+
 }
