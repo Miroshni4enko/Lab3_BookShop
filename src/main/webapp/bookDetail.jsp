@@ -9,30 +9,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%   Book book = (Book)session.getAttribute("DetailBook");
     Boolean isAdmin=false;
-    //String action="";
     String buttonName ="";
     String modalForm ;
     Boolean isEdit;
-    String  textareaType="";
     try {
         Customer cus = (Customer) session.getAttribute("customer");
         buttonName ="Buy";
         isEdit=false;
-        //  Customer cus = new Customer();
-        //cus.setLogin("Admin");
-       // if(cus.getLogin().equals("Admin")){
-           if(cus.getRole()==10){
+        if(cus.getRole()==10){
             isAdmin=true;
-            //action="MainServlet?action=editBook";
             buttonName ="Edit";
-               isEdit=true;
+            isEdit=true;
         }
     }
     catch (NullPointerException e1){
         isAdmin= false;
-       // action="MainServlet?action=Buy";
         buttonName ="Buy";
-        textareaType= "readonly";
         isEdit=false;
     }
 %>
@@ -56,14 +48,12 @@
         <tr>
             <td>Book's name:</td>
 
-            <td> <textarea class="textArea2" <%=textareaType%> placeholder="<%=book.getName()%> "
-                                                 name="bookName" id="book",form="buyBook" ></textarea> </td>
+            <td> <%=book.getName()%> </td>
         </tr>
         <tr>
             <th></th>
             <td>Rubric:</td>
-            <td> <textarea class="textArea2" <%=textareaType%> placeholder="<%=book.getParent().getName()%> "
-                           name="bookRubric" id="rubric",form="buyBook"></textarea></td>
+            <td> <%=book.getParent().getName()%> </td>
     </table>
 </div>
 
@@ -72,18 +62,15 @@
 
 
 
-    <table class="table">
+    <table class="table2">
         <tr>
-            <td>Price:</td> <td>  <textarea class="textArea1" <%=textareaType%> placeholder= " <%=book.getPrice()%> "
-                                            name="bookPrice"></textarea></td>
+            <td>Price:</td> <td>  <%=book.getPrice()%> </td>
         </tr>
     <tr>
-        <td>Pages:</td>  <td><textarea class="textArea1" <%=textareaType%> placeholder="<%=book.getPages()%> "
-                                       name="bookPages"></textarea></td>
+        <td>Pages:</td>  <td><%=book.getPages()%> </td>
     </tr>
     <tr>
-        <td>Amount:</td>  <td> <textarea class="textArea1"  <%=textareaType%> placeholder= "<%=book.getAmount()%> "
-                                         name="bookAmount"></textarea></td>
+        <td>Amount:</td>  <td> <%=book.getAmount()%> </td>
     </tr>
         <tr>
             <td>Buy now:</td>
@@ -121,8 +108,7 @@
         <tr>
             <th></th>
             <td>Author:</td>
-            <td><textarea class="textArea2" <%=textareaType%> placeholder=" <%=book.getAuthor()%> "
-                          name="bookAuthor"></textarea></td>
+            <td><%=book.getAuthor()%></td>
         </tr>
     </table>
 </div>
@@ -135,8 +121,7 @@
                 </tr>
                 <tr>
                     <th></th>
-                    <td><textarea class="textArea3"  <%=textareaType%> placeholder= " <%=book.getDescription()%> "
-                                  name="bookDescription"></textarea></td>
+                    <td><%=book.getDescription()%> </td>
                 </tr>
             </table>
 

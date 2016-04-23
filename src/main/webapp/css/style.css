@@ -124,6 +124,19 @@ p {
     background: #FAF0E6 fixed;
     font-size: 18px;
     width: AUTO;
+
+}
+.table2{
+    margin-top:20px;
+    margin: auto;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-spacing: 10px;
+    border-radius: 3px;
+    background: #FAF0E6 fixed;
+    font-size: 18px;
+    width: AUTO;
+
 }
 .sideBook {
     position: absolute;
