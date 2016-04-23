@@ -1039,7 +1039,6 @@ public class OracleDataAccess implements ModelDataBase{
             statement.setString(1, rubric.getName());
             statement.setInt(2, rubric.getParent().getId());
             statement.setString(3, rubric.getDescription());
-            statement.setInt(4, 1);
             statement.execute();
         } catch (SQLException e) {
             throw new DataBaseException("Exception for create", e);
@@ -1060,9 +1059,8 @@ public class OracleDataAccess implements ModelDataBase{
         try {
             statement = connection.prepareStatement(SqlScripts.CREATE_SECTION);
             statement.setString(1, section.getName());
-            statement.setInt(2, section.getParent().getId());
+            statement.setInt(2, Types.NULL);
             statement.setString(3, section.getDescription());
-            statement.setInt(4, 2);
             statement.execute();
         } catch (SQLException e) {
             throw new DataBaseException("Exception for create", e);

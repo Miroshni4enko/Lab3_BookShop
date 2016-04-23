@@ -25,6 +25,12 @@ public class Item {
         this.parent=par;
         this.type=itemType;
     }
+    public Item(String name, String des,Item par,ItemType itemType){
+        this.name=name;
+        this.description=des;
+        this.parent=par;
+        this.type=itemType;
+    }
     public enum ItemType {
         Rubric,
         Book,
