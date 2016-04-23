@@ -43,7 +43,7 @@ public class SqlScripts {
     public static final String CREATE_AUTHOR="INSERT INTO AUTHOR(SURNAME,NAME) values(?,?)";
     public static final String CREATE_BOOK="{call ADDBOOK(?,?,?,?,?,?,?)}";
     public static final String CREATE_RUBRIC="INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values(?,?,?,1)";
-    public static final String CREATE_SECTION="INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values(?,?,?,2)";
+    public static final String CREATE_SECTION="INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values(?,null,?,2)";
     public static final String CREATE_ORDER="{call  ADDORDER(?,?,?,?)}";
     public static final String CREATE_NEW_CON="INSERT INTO CONTENR_ORDER(ID_ORDER,ID_BOOK,AMOUNT) values(?,?,?)";
 
