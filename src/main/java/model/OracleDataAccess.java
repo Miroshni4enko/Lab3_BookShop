@@ -862,19 +862,20 @@ public class OracleDataAccess implements ModelDataBase{
      * @throws DataBaseException Exception with data.
      */
     public List<Book> getAmountOfBooks(int amount) throws DataBaseException {
+        int page = 1;
         Connection connection       = getConnection();
         ResultSet result            = null;
         PreparedStatement statement = null;
-        int count = 0;
 
         List<Book> listBooks = new ArrayList<Book>();
-        try {
-            statement = connection.prepareStatement(SqlScripts.SELECT_ALL_BOOK);
+        try {;
+            statement = connection.prepareStatement(SqlScripts.SELECT_PAGE_OF_LIST_BOOKS);
+            statement.setInt(1, amount);
+            statement.setInt(2, page);
             result    = statement.executeQuery();
 
-            while (result.next() && count < amount) {
+            while (result.next()) {
                 listBooks.add(getBook(result));
-                count++;
             }
 
         } catch (Exception e) {

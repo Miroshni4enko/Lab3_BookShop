@@ -44,7 +44,7 @@ public class ViewListBooks implements GeneralProcess {
         } else {
 
             String listBooks = (String) request.getSession().getAttribute(ATTRIBUTE_VIEW_LIST);
-            if (!listBooks.equals("all")) {
+            if (!listBooks.equals(ID_RUBRIC_ALL)) {
                 idRubric = Integer.valueOf(listBooks);
             } else {
                 idRubric = null;

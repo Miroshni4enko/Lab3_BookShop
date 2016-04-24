@@ -45,6 +45,7 @@ public interface ModelDataBase {
     List<Item> getAllSection() throws DataBaseException;
     List<Book> getAllBooks() throws DataBaseException;
     List<Book> getAllBooksByRubric(int idRubric)throws DataBaseException;
+    List<Book> getAmountOfBooks(int amount) throws DataBaseException;
 
     Book getBookById(int bookId) throws DataBaseException;
     Customer getCustomerById(int customerId) throws DataBaseException;

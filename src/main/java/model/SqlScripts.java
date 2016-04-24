@@ -65,4 +65,10 @@ public class SqlScripts {
     public static final String SELECT_CUSTOMER = "SELECT * FROM CUSTOMER WHERE LOGIN=? and PASSWORD=?";
 
 
+    public static final String SELECT_PAGE_OF_LIST_BOOKS = "select * from ( select a.*, ROWNUM rnum\n" +
+            "  from (SELECT i.ID_ITEM, i.NAME, rub.ID_ITEM AS \"RUBRIC\", a.ID_AUTHOR AS \"AUTHOR\", p.PAGES, p.PRICE, p.AMOUNT, i.DESCRIPTION\n" +
+            "        FROM ITEM i, PROPERTIES p, AUTHOR a, ITEM rub\n" +
+            "        WHERE i.TYPE = 0 AND i.ID_PROPERTIES = p.ID_BOOK AND p.ID_AUTHOR = a.ID_AUTHOR AND i.PARENT_ID = rub.ID_ITEM AND rub.TYPE = 1)a\n" +
+            "  where ROWNUM <=  ?)\n" +
+            "where rnum  >= ?";
 }
