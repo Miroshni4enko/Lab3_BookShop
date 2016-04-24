@@ -1,9 +1,9 @@
---–¿«ƒ≈À€:
+
 INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values('Imaginative literature',null,'Wonderful leisure. Everyone will find their rubric of this section.',2);
 INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values('Educational literature',null,'Literature for study.',2);
 INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values('House and Life',null,'Literature for improving you and your house.',2);
 INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values('Other',null,'Other interesting book.',2);
---–”¡–» »:
+
 
 INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values('Detectives',1,'A fascinating story with a lot of secrets.',1);
 INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values('Novel',1,'A fascinating love/life story.',1);
@@ -15,7 +15,7 @@ INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values('House',3,'Literature f
 
 INSERT INTO ITEM(NAME,PARENT_ID,DESCRIPTION,TYPE) values('Other',4,'Other interesting book.',1);
 
---¿¬“Œ–€:
+
 
 INSERT INTO AUTHOR(SURNAME,NAME) values('Stendhal', 'Frederick');
 INSERT INTO AUTHOR(SURNAME,NAME) values('Arthur Conan', 'Doyle');
@@ -31,7 +31,7 @@ INSERT INTO AUTHOR(SURNAME,NAME) values('Jojo', 'Moyes');
 INSERT INTO AUTHOR(SURNAME,NAME) values('Veronica', 'Roth');
 
 
--- Õ»√»:
+
 
 
 execute ADDBOOK('Red and black','The amazing story of Julien life.',6,1,576,120,10);
@@ -60,7 +60,7 @@ execute ADDBOOK('Divergent','In a world where lives Beatrice Prior, people are d
 execute ADDBOOK('Insurgents','New part of Divergent',7,11,384,120,11);
 execute ADDBOOK('Four. History divergents','New part of Divergent',7,11,352,150,5);
 
---œÓÍÛÔ‡ÚÂÎË/œÓÎ¸ÁÓ‚‡ÚÂÎË:
+
 INSERT INTO CUSTOMER(LOGIN,PASSWORD,E_MAIL,PHOME_NUBMER,ROLE) values('Admin','root','admin@yandex.ua','0951223335',10);
 INSERT INTO CUSTOMER(LOGIN,PASSWORD,E_MAIL,PHOME_NUBMER,ROLE) values('System','system','system@yandex.ua','0951221115',0);
 
