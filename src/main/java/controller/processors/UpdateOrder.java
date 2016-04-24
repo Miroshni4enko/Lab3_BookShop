@@ -35,7 +35,7 @@ public class UpdateOrder implements GeneralProcess {
         } else {
             orders = OracleDataAccess.getInstance().getOrderByIdCustomer(customer.getId());
         }
-        request.getSession().setAttribute("listOfUpAllOrders", orders);
+        request.getSession().setAttribute("listOfAllOrders", orders);
         Commands.forward("/showProfile.jsp", request, response);
     }
 }

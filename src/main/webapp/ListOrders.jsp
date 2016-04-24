@@ -182,7 +182,7 @@
 </table>
 </div>
 <%} else { %>
-List of books is empty.
+List of orders is empty.
 <br>
 <br>
 <%}%>
