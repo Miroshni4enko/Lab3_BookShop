@@ -8,6 +8,7 @@ import model.Order;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ import java.util.List;
  * @version %I%, %G%
  */
 public class UpdateOrder implements GeneralProcess {
-
+    public final static String LIST_ORDERS = "testMagicOrder";
     public final static String UPDATE_ORDER_ID = "updateOrderID";
     public final static String UPDATE_BOOK_ID  = "updateBookID";
 
@@ -28,14 +29,15 @@ public class UpdateOrder implements GeneralProcess {
 
         Customer customer = (Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTOMER);
         OracleDataAccess.getInstance().updateBookOfOrder(order,book,amount);
-        List<Order> orders;
+        List<Order> orders = new ArrayList<Order>();
 
         if(customer.getRole()==10) {
             orders = OracleDataAccess.getInstance().getAllOrder();
         } else {
             orders = OracleDataAccess.getInstance().getOrderByIdCustomer(customer.getId());
         }
-        request.getSession().setAttribute("listOfAllOrders", orders);
+        request.getSession().setAttribute(LIST_ORDERS, null);
+        request.getSession().setAttribute(LIST_ORDERS, orders);
         Commands.forward("/showProfile.jsp", request, response);
     }
 }

@@ -21,7 +21,8 @@ public class DeleteOrder implements GeneralProcess {
     public final static String DELETE_ORDER = "deleteOrder";
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
-        Order order =(Order) request.getSession().getAttribute(DELETE_ORDER);
+        int orderId =Integer.valueOf(request.getParameter(UpdateOrder.UPDATE_ORDER_ID));
+        Order order = OracleDataAccess.getInstance().getOrderById(orderId);
         Customer customer = (Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTOMER);
         OracleDataAccess.getInstance().removeOrder(order);
 
@@ -31,8 +32,8 @@ public class DeleteOrder implements GeneralProcess {
         }else {
             orders = OracleDataAccess.getInstance().getOrderByIdCustomer(customer.getId());
         }
-
-        request.getSession().setAttribute("listOfAllOrders", orders);
+        request.getSession().setAttribute(UpdateOrder.LIST_ORDERS, null);
+        request.getSession().setAttribute(UpdateOrder.LIST_ORDERS, orders);
         Commands.forward("/showProfile.jsp", request, response);
     }
 }

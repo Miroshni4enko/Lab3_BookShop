@@ -25,7 +25,6 @@ public class DeleteItem implements GeneralProcess {
             }
         }
         if(item!=null) {
-            System.out.println(item.getId());
             OracleDataAccess.getInstance().removeSection(item.getId());
         }else{
             for (Item index : listRubrics) {
@@ -34,7 +33,6 @@ public class DeleteItem implements GeneralProcess {
                     break;
                 }
             }
-            System.out.println(item.getId());
             OracleDataAccess.getInstance().removeRubric(item.getId());
         }
         Commands.forward("/MainServlet?action=" + Commands.ACTION_WELCOME, request, response);

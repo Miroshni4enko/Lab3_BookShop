@@ -58,9 +58,14 @@ public class AddOrder implements GeneralProcess {
         order.setContents(contents);
         OracleDataAccess.getInstance().createOrder(order);
 
-        List<Order> listOrders = (List<Order>) request.getSession().getAttribute("listOfAllOrders");
-        listOrders.add(order);
-        request.getSession().setAttribute("listOfAllOrders", listOrders);
+        List<Order> listOrders;
+        if(cus.getRole()==10) {
+            listOrders = OracleDataAccess.getInstance().getAllOrder();
+        }else {
+            listOrders = OracleDataAccess.getInstance().getOrderByIdCustomer(cus.getId());
+        }
+        request.getSession().setAttribute(UpdateOrder.LIST_ORDERS, null);
+        request.getSession().setAttribute(UpdateOrder.LIST_ORDERS, listOrders);
         Commands.forward("/index.jsp", request, response);
     }
 

@@ -24,7 +24,7 @@
 <jsp:include page="Menu.jsp" />
 <% String isReg = (String) request.getSession().getAttribute(AddCustomer.CUS_IS_REG);%>
 <h4 class="center"><%=isReg!=null?isReg:""%></h4>
-<%!List<String> list =null; int i = 0;%>
+<%List<String> list =null; int i = 0;%>
 <% Customer cus  = (Customer) request.getSession().getAttribute("customer");
     i =0;
 if(cus==null){
@@ -36,14 +36,14 @@ if(cus==null){
     list.add("Password");
     list.add("Email");
     list.add("Phone");
-    list.add("Sign_up");
+    list.add("Signup");
 }else{
     list =new ArrayList<String> ();
     list.add("class=\"leftstr\"");
     list.add("Profile");
     list.add("MainServlet?action=updateCustomer");
     list.add(cus.getLogin());
-    //System.out.println(cus.getLogin());
+
     list.add(cus.getPassword());
     list.add(cus.getMail());
     list.add(cus.getPhone());
@@ -69,6 +69,5 @@ if(cus==null){
 <%if(cus!=null){%>
 <jsp:include page="ListOrders.jsp"/>
 <%}%>
-<jsp:include page="Footer.jsp" />
 </body>
 </html>

@@ -12,7 +12,7 @@
     </div>
     <div >
         <form name = "buy_form" method="post" action="MainServlet?action=deleteOrder">
-            <%request.getSession().setAttribute(DeleteOrder.DELETE_ORDER,order);%>
+            <input type="hidden" value="<%=order.getIdOrder()%>" name="<%=UpdateOrder.UPDATE_ORDER_ID%>">
             <div class="prob">  <input class="btn" type="submit"  value="Delete order" /></div>
         </form>
     </div>

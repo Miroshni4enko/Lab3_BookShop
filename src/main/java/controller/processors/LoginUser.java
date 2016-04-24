@@ -40,7 +40,8 @@ import java.util.List;
              }else {
                  listOrders = OracleDataAccess.getInstance().getOrderByIdCustomer(customer.getId());
              }
-             request.getSession().setAttribute("listOfAllOrders", listOrders);
+             request.getSession().setAttribute(UpdateOrder.LIST_ORDERS, null);
+             request.getSession().setAttribute(UpdateOrder.LIST_ORDERS, listOrders);
              Commands.forward("/index.jsp", request, response);
          } else {
              Commands.forward("/Login.jsp", request, response);

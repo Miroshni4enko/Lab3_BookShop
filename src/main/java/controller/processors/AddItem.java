@@ -20,7 +20,6 @@ public class AddItem implements GeneralProcess {
         String name = request.getParameter(ITEM_NAME);
         String desc = request.getParameter(ITEM_DESCRIPTION);
         String sectionName = request.getParameter(ITEM_SECTION_NAME);
-        System.out.println(name + desc + sectionName);
         Item section = null;
         if(sectionName.equals("Create section")){
             section = new Item(0,name,desc,null, Item.ItemType.Section);
@@ -33,7 +32,6 @@ public class AddItem implements GeneralProcess {
                     break;
                 }
             }
-            System.out.println(section.getId());
             Item rubric = new Item(0, name, desc, section, Item.ItemType.Rubric);
 
             OracleDataAccess.getInstance().createRubric(rubric);

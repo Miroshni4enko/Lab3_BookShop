@@ -21,10 +21,8 @@
     <%List<Order> listOrders = null;
         Customer cus = null;
         try {
-            //System.out.println(cus);
             cus =(Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTOMER);
-            listOrders = (List<Order>) request.getSession().getAttribute("listOfAllOrders");
-            //System.out.println(listOrders);
+            listOrders = (List<Order>) request.getSession().getAttribute(UpdateOrder.LIST_ORDERS);
         } catch (Exception e) {
             listOrders = null;
         }
