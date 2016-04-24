@@ -2,15 +2,11 @@ package controller.processors;
 
 import Servlet.Commands;
 import exception.DataBaseException;
-import model.Author;
 import model.Book;
-import model.Item;
 import model.OracleDataAccess;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class for add book.

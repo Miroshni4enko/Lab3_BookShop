@@ -23,14 +23,12 @@ public class AddOrder implements GeneralProcess {
 
     public final static String user ="Common user";
     public final static String Book_Amount ="amount";
-    int pass_user = 1111;
+
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
         Customer cus = (Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTOMER);
-
+        int pass_user = 1111;
         if(cus == null){
-            int i = 0;
-
             do{
                 cus = OracleDataAccess.getInstance().getCustomer(user,String.valueOf(pass_user++));
             }while (cus!=null);
@@ -41,8 +39,6 @@ public class AddOrder implements GeneralProcess {
             cus = new Customer(user,String.valueOf(pass_user),mail,phone, 1);
             OracleDataAccess.getInstance().createCustomer(cus);
             cus =  OracleDataAccess.getInstance().getCustomer(user,String.valueOf(pass_user));
-            //List<Order> order =  OracleDataAccess.getInstance().(cus.getId());
-            //ArrayList<Order.ContentOrder> content = order.get(0).getContents();
         }
 
         int IdDetail = Integer.valueOf(request.getParameter(DetailBook.ID_DETAIL));

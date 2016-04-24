@@ -5,7 +5,7 @@
 <%@ page errorPage="errorPage.jsp"%>
 <%--
   Created by IntelliJ IDEA.
-  User: Фокстрот
+  User: Слава
   Date: 05.04.2016
   Time: 21:16
   To change this template use File | Settings | File Templates.
@@ -22,13 +22,11 @@
 <body>
 <jsp:include page="Head.jsp" />
 <jsp:include page="Menu.jsp" />
-<% String isReg = (String) request.getSession().getAttribute(AddCustomer.CUS_IS_REG);%>
-<h4 class="center"><%=isReg!=null?isReg:""%></h4>
 <%List<String> list =null; int i = 0;%>
 <% Customer cus  = (Customer) request.getSession().getAttribute("customer");
     i =0;
-if(cus==null){
     list = new ArrayList<String> ();
+if(cus==null){
     list.add(" ");
     list.add("Registration");
     list.add("MainServlet?action=addCustomer");
@@ -38,7 +36,6 @@ if(cus==null){
     list.add("Phone");
     list.add("Signup");
 }else{
-    list =new ArrayList<String> ();
     list.add("class=\"leftstr\"");
     list.add("Profile");
     list.add("MainServlet?action=updateCustomer");

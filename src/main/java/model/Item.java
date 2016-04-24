@@ -87,7 +87,7 @@ public class Item {
         if ((obj == null) || (getClass() != obj.getClass()))
             return false;
         Item other = (Item) obj;
-        if ((idItem != other.idItem) && (name != other.name) && (description != other.description) && (type != other.type) && (parent != other.parent))
+        if ((idItem != other.idItem) && (!name.equals(other.name)) && (!description.equals(other.description)) && (type != other.type) && (parent != other.parent))
             return false;
         if (this == obj)
             return true;

@@ -98,7 +98,7 @@ public class Customer {
         if ((obj == null) || (getClass() != obj.getClass()))
             return false;
         Customer other = (Customer) obj;
-        if ((id != other.id) && (login != other.login) && (password != other.password) && (eMail != other.eMail) && (phone != other.phone) && (role != other.role))
+        if ((id != other.id) && (!login.equals(other.login)) && (!password.equals( other.password)) && (!eMail.equals(other.eMail)) && (!phone.equals( other.phone)) && (role != other.role))
             return false;
         if (this == obj)
             return true;

@@ -26,54 +26,54 @@
             <p class="prob">
             <div><label for="<%=UpdateBook.BOOK_NAME + "ID"%>">Name</label></div>
             <input type="text" id ="<%=UpdateBook.BOOK_NAME+"ID"%>"  name ="<%=UpdateBook.BOOK_NAME%>"
-                    <%=isEdit?"value=" + "\"" +  book.getName() +"\"":"placeholder=\"Book name\"" %>/>
+                    <%=isEdit?"value=" + "\"" +  book.getName() +"\"":"placeholder=\"Book name\"" %>required/>
             </label>
             </p>
 
             <p class="prob">
             <div> <label for="<%=UpdateBook.BOOK_AMOUNT + "ID"%>">Amount</label></div>
             <input type="number" id ="<%=UpdateBook.BOOK_AMOUNT+"ID"%>" name="<%=UpdateBook.BOOK_AMOUNT%>"
-                    <%=isEdit?"value=" + "\""+ book.getAmount()+ "\"":"placeholder=\"amount\"" %> />
+                    <%=isEdit?"value=" + "\""+ book.getAmount()+ "\"":"placeholder=\"amount\"" %> required/>
             </p>
 
             <p class="prob">
             <div><label  for="<%=UpdateBook.BOOK_PAGES + "ID"%>">Pages</label></div>
             <input id ="<%=UpdateBook.BOOK_PAGES+"ID"%>" type="number" name="<%=UpdateBook.BOOK_PAGES%>"
-                    <%=isEdit?"value="+ "\"" + book.getPages()+ "\"":"placeholder=\"pages\"" %>/>
+                    <%=isEdit?"value="+ "\"" + book.getPages()+ "\"":"placeholder=\"pages\"" %>required/>
             </p>
 
             <p class="prob">
             <div><label for="<%=UpdateBook.BOOK_AUTHOR_NAME + "ID"%>">Author name </label></div>
             <input id ="<%=UpdateBook.BOOK_AUTHOR_NAME+"ID"%>" type="text" name ="<%=UpdateBook.BOOK_AUTHOR_NAME%>"
-                    <%=isEdit?"value=" + "\""+ book.getAuthor().getName()+ "\"":"placeholder=\"Author name\"" %>/>
+                    <%=isEdit?"value=" + "\""+ book.getAuthor().getName()+ "\"":"placeholder=\"Author name\"" %>required/>
             </p>
 
             <p class="prob">
             <div><label for="<%=UpdateBook.BOOK_AUTHOR_SURNAME + "ID"%>">Author surname </label></div>
             <input id ="<%=UpdateBook.BOOK_AUTHOR_SURNAME+"ID"%>" type="text" name ="<%=UpdateBook.BOOK_AUTHOR_SURNAME%>"
-                    <%=isEdit?"value=" + "\""+ book.getAuthor().getSurname()+ "\"":"placeholder=\"Author surname\"" %>/>
+                    <%=isEdit?"value=" + "\""+ book.getAuthor().getSurname()+ "\"":"placeholder=\"Author surname\"" %>required/>
             </p>
 
             <p class="prob">
             <div><label for="<%=UpdateBook.BOOK_PRICE + "ID"%>">Price </label></div>
             <input id ="<%=UpdateBook.BOOK_PRICE+"ID"%>" type="number" name ="<%=UpdateBook.BOOK_PRICE%>"
-                    <%=isEdit?"value="+ "\"" + book.getPrice()+ "\"":"placeholder=\"price\"" %>/>
+                    <%=isEdit?"value="+ "\"" + book.getPrice()+ "\"":"placeholder=\"price\"" %>required/>
             </p>
 
             <p class="prob">
             <div><label for="<%=UpdateBook.BOOK_DESCRIPTION + "ID"%>">Description </label></div>
             <input id ="<%=UpdateBook.BOOK_DESCRIPTION+"ID"%>" type="text" name ="<%=UpdateBook.BOOK_DESCRIPTION%>"
-                    <%=isEdit?"value=" + "\""+ book.getDescription()+ "\"":"placeholder=\"description\"" %>/>
+                    <%=isEdit?"value=" + "\""+ book.getDescription()+ "\"":"placeholder=\"description\"" %>required/>
             </p>
             <p class="prob">
             <div><label for="<%=UpdateBook.BOOK_RUBRIC_NAME + "ID"%>">Rubric</label></div>
             <p>
             <div>
-                <select id = "<%=UpdateBook.BOOK_RUBRIC_NAME + "ID"%>" name="<%=UpdateBook.BOOK_RUBRIC_NAME%>" size="1" >
+                <select id = "<%=UpdateBook.BOOK_RUBRIC_NAME + "ID"%>" name="<%=UpdateBook.BOOK_RUBRIC_NAME%>" size="1" required>
                     <option disabled selected></option>
                     <% List<Item> rubrics = (List<Item>) request.getSession().getAttribute(Welcome.ATTRIBUTE_All_CATEGORY);
                         for(Item rubric:rubrics){%>
-                    <option ><%=rubric.getName()%></option>
+                    <option  ><%=rubric.getName()%></option>
                     <%}%>
                 </select>
             </div>

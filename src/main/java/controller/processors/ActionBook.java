@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * Created by Слава on 24.04.2016.
+ * Abstract class for work with book.
+ *
+ * @author Slavik Miroshnychenko
+ * @version %I%, %G%
  */
 abstract class ActionBook implements GeneralProcess{
     public final static String BOOK_NAME = "bookName";

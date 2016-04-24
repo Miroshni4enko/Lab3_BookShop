@@ -62,7 +62,7 @@ public class Author {
         if ((obj == null) || (getClass() != obj.getClass()))
             return false;
         Author other = (Author) obj;
-        if ((id != other.id) && (surname != other.surname) && (name != other.name))
+        if ((id != other.id) && (!surname.equals(other.surname)) && (!name.equals(other.name)))
             return false;
         if (this == obj)
             return true;

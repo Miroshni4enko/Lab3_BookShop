@@ -23,21 +23,21 @@
             <p class="prob">
             <div><label for="<%=AddItem.ITEM_NAME+"ID"%>">Name</label></div>
             <input type="text" id ="<%=AddItem.ITEM_NAME+"ID"%>" name ="<%=AddItem.ITEM_NAME%>"
-                   placeholder="Rubric name" />
+                   placeholder="Rubric name" required/>
             </label>
             </p>
 
             <p class="prob">
             <div><label for="<%=AddItem.ITEM_DESCRIPTION + "ID"%>">Description </label></div>
             <input id ="<%=AddItem.ITEM_DESCRIPTION+"ID"%>" type="text" name ="<%=AddItem.ITEM_DESCRIPTION%>"
-                   placeholder="description"/>
+                   placeholder="description"required/>
             </p>
 
             <p class="prob">
             <div><label for="<%=AddItem.ITEM_SECTION_NAME + "ID"%>">Section</label></div>
             <p>
             <div>
-                <select id = "<%=AddItem.ITEM_SECTION_NAME + "ID"%>" name="<%=AddItem.ITEM_SECTION_NAME%>" size="1" >
+                <select id = "<%=AddItem.ITEM_SECTION_NAME + "ID"%>" name="<%=AddItem.ITEM_SECTION_NAME%>" size="1" required>
                     <option disabled selected value></option>
                     <option>Create section</option>
                     <% List<Item> rubricsL = (List<Item>) request.getSession().getAttribute(Welcome.ATTRIBUTE_SECTION);

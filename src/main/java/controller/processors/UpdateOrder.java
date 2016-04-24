@@ -29,7 +29,7 @@ public class UpdateOrder implements GeneralProcess {
 
         Customer customer = (Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTOMER);
         OracleDataAccess.getInstance().updateBookOfOrder(order,book,amount);
-        List<Order> orders = new ArrayList<Order>();
+        List<Order> orders ;
 
         if(customer.getRole()==10) {
             orders = OracleDataAccess.getInstance().getAllOrder();

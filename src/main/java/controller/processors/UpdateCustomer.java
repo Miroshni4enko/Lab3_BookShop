@@ -4,9 +4,12 @@ import Servlet.Commands;
 import exception.DataBaseException;
 import model.Customer;
 import model.OracleDataAccess;
+import model.Order;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class for update customer.
@@ -23,12 +26,16 @@ public class UpdateCustomer implements GeneralProcess {
         cus.setPassword(request.getParameter(AddCustomer.CUS_PASSWORD));
         cus.seteMail(request.getParameter(AddCustomer.CUS_E_MAIL));
         cus.setPhone(request.getParameter(AddCustomer.CUS_PHONE));
-        OracleDataAccess.getInstance().updateCustomer(cus);
+        Customer cusCheck  = OracleDataAccess.getInstance().getCustomer(cus.getLogin(),cus.getPassword());
 
-        request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, cus.getLogin());
-        request.getSession().setAttribute(LoginUser.ATTRIBUTE_CUSTOMER, cus);
+        if(cusCheck==null) {
+            OracleDataAccess.getInstance().updateCustomer(cus);
+            request.getSession().setAttribute(AddCustomer.CUS_LOGIN, cus.getLogin());
+            request.getSession().setAttribute(LoginUser.ATTRIBUTE_CUSTOMER, cus);
+            request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, cus.getLogin());
 
-        Commands.forward("/index.jsp",request,response);
+        }
+        Commands.forward("/showProfile.jsp", request, response);
     }
 
 }

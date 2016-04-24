@@ -23,7 +23,7 @@
             <div><label for="<%=AddItem.ITEM_NAME + "ID"%>"></label></div>
             <p>
             <div>
-                <select id = "<%=AddItem.ITEM_NAME + "ID"%>" name="<%=AddItem.ITEM_NAME%>" size="1">
+                <select id = "<%=AddItem.ITEM_NAME + "ID"%>" name="<%=AddItem.ITEM_NAME%>" size="1" required>
                     <option></option>
                     <% List<Item> rubrics = (List<Item>) request.getSession().getAttribute(Welcome.ATTRIBUTE_SECTION);
                         for(Item rubric:rubrics){%>

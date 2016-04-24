@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * Created by Слава on 23.04.2016.
+ * Class for add item.
+ *
+ * @author Slavik Miroshnychenko
+ * @version %I%, %G%
  */
 public class AddItem implements GeneralProcess {
     public final static String ITEM_NAME = "itemName";

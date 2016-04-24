@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * Created by Слава on 24.04.2016.
+ * Class for delete item.
+ *
+ * @author Slavik Miroshnychenko
+ * @version %I%, %G%
  */
 public class DeleteItem implements GeneralProcess {
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {

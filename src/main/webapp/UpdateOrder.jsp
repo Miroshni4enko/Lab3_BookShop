@@ -16,8 +16,8 @@
         <form name = "buy_form" method="post" action="MainServlet?action=updateOrder">
             <p class="prob">
             <div> <label for="<%=UpdateBook.BOOK_AMOUNT + "ID"%>">Amount</label></div>
-            <input type="hidden" value="<%=order.getIdOrder()%>" name="<%=UpdateOrder.UPDATE_ORDER_ID%>">
-            <input type="hidden" value="<%=con.getBooks().getId()%>" name="<%=UpdateOrder.UPDATE_BOOK_ID%>">
+            <input type="hidden" value="<%=order.getIdOrder()%>" name="<%=UpdateOrder.UPDATE_ORDER_ID%>" required>
+            <input type="hidden" value="<%=con.getBooks().getId()%>" name="<%=UpdateOrder.UPDATE_BOOK_ID%>" required>
             <input type="number" id ="<%=UpdateBook.BOOK_AMOUNT+"ID"%>" name="<%=UpdateBook.BOOK_AMOUNT%>"
                     value="<%=con.getAmount()%>" />
             </p>

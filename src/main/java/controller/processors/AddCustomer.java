@@ -12,7 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Фокстрот on 05.04.2016.
+ * Class for add customer.
+ *
+ * @author Veleri Rechembei
+ * @version %I%, %G%
  */
 public class AddCustomer implements GeneralProcess {
 
@@ -20,7 +23,7 @@ public class AddCustomer implements GeneralProcess {
     public final static String CUS_LOGIN   = "LOGIN";
     public final static String CUS_PASSWORD= "PASSWORD";
     public final static String CUS_E_MAIL  = "E_MAIL";
-    public final static String CUS_PHONE   = "PHOME_NUMBER";
+    public final static String CUS_PHONE   = "PHONE_NUMBER";
     public final static String CUS_ROLE    = "ROLE";
     public final static String CUS_IS_REG  = "isRegistration";
 
@@ -28,12 +31,11 @@ public class AddCustomer implements GeneralProcess {
        // int id = Integer.valueOf(request.getParameter(CUS_ID));
         String login = request.getParameter(CUS_LOGIN);
         String password = request.getParameter(CUS_PASSWORD);
+        String phone = request.getParameter(CUS_PHONE);
         Customer cusWithId  = OracleDataAccess.getInstance().getCustomer(login,password);
-
-        if(cusWithId==null) {
+        if(phone.length()<13 && cusWithId==null) {
             String eMail = request.getParameter(CUS_E_MAIL);
             int role = 1;
-            String phone = request.getParameter(CUS_PHONE);
             Customer cus = new Customer(login, password, eMail, phone, role);
             OracleDataAccess.getInstance().createCustomer(cus);
             request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, login);
@@ -43,8 +45,6 @@ public class AddCustomer implements GeneralProcess {
             request.getSession().setAttribute("listOfAllOrders", listOrders);
             Commands.forward("/index.jsp", request, response);
         }else{
-            request.getSession().setAttribute(CUS_IS_REG,"This login and password is already use");
-
             Commands.forward("/showProfile.jsp", request, response);
         }
     }
