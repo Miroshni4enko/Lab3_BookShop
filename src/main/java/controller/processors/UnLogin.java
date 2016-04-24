@@ -21,7 +21,7 @@ public class UnLogin implements GeneralProcess {
         }*/
 
         request.getSession().setAttribute(LoginUser.ATTRIBUTE_CUSTOMER,null);
-        request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, LoginUser.ATTRIBUTE_START_OF_LOGIN);
+        request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, null);
         Commands.forward("/index.jsp", request, response);
     }
 

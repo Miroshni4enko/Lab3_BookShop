@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Class that handling command Welcome.
@@ -20,6 +21,7 @@ public class Welcome implements GeneralProcess{
 
     public static final String ATTRIBUTE_SECTION   = "Section";
     public static final String ATTRIBUTE_CATEGORY  = "Category";
+    public static final String ATTRIBUTE_All_CATEGORY  = "AllCategory";
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException{
 
@@ -37,8 +39,11 @@ public class Welcome implements GeneralProcess{
         request.getSession().setAttribute(ATTRIBUTE_CATEGORY, listRubric);
         request.getSession().setAttribute(ATTRIBUTE_SECTION,  sectionAll);
 
+        List<Item> allRubric = OracleDataAccess.getInstance().getAllRubric();
+        request.getSession().setAttribute(ATTRIBUTE_All_CATEGORY, allRubric);
+
         request.getSession().setAttribute(ViewListBooks.ATTRIBUTE_VIEW_LIST, ViewListBooks.ID_RUBRIC_ALL);
-        request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, "false");
+        //request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, "false");
 
         Commands.forward("/index.jsp", request, response);
     }

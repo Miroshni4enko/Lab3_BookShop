@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="js/modal.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/delete_item.js"></script>
 </head>
 <body>
 <%String login = (String) request.getSession().getAttribute(LoginUser.ATTRIBUTE_LOGIN);%>
@@ -19,7 +21,7 @@
     <p class="leftstr">
         <a href="index.jsp">Shop</a> |
         <a href="AboutUs.jsp">About us</a>
-        <%if(login.equals("Admin")){
+        <%if(login!=null&& login.equals("Admin")){
         Book book = new Book();
         boolean isEdit=false;%>
         <a  href="#" id="edit">AddBook</a>
@@ -28,7 +30,7 @@
     </p>
     <p class="rightstr">
         <a href="index.jsp"><%
-                if (!login.equals("false")) {%>
+                if (login!=null) {%>
 
                 <a href="showProfile.jsp"><%=login%></a>
                 <a href="MainServlet?action=unLogin">Exit</a>

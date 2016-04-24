@@ -14,10 +14,10 @@
     </div>
     <div >
         <form name = "buy_form" method="post" action="MainServlet?action=updateOrder">
-            <%request.getSession().setAttribute(UpdateOrder.UPDATE_ORDER_ID,order.getIdOrder());
-            request.getSession().setAttribute(UpdateOrder.UPDATE_BOOK_ID,con.getBooks().getId());%>
             <p class="prob">
             <div> <label for="<%=UpdateBook.BOOK_AMOUNT + "ID"%>">Amount</label></div>
+            <input type="hidden" value="<%=order.getIdOrder()%>" name="<%=UpdateOrder.UPDATE_ORDER_ID%>">
+            <input type="hidden" value="<%=con.getBooks().getId()%>" name="<%=UpdateOrder.UPDATE_BOOK_ID%>">
             <input type="number" id ="<%=UpdateBook.BOOK_AMOUNT+"ID"%>" name="<%=UpdateBook.BOOK_AMOUNT%>"
                     value="<%=con.getAmount()%>" />
             </p>

@@ -10,6 +10,7 @@ import model.OracleDataAccess;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Class for handling update of book.
@@ -42,9 +43,18 @@ public class UpdateBook implements GeneralProcess {
         int amount = Integer.parseInt(request.getParameter(BOOK_AMOUNT));
         int price = Integer.parseInt(request.getParameter(BOOK_PRICE));
         int pages = Integer.parseInt(request.getParameter(BOOK_PAGES));
-        Item item = (Item) request.getSession().getAttribute(BOOK_RUBRIC);
 
-        Book book = new Book(idBook,bookName,description,item,author,pages,price,amount);
+        String rubricName =request.getParameter(BOOK_RUBRIC_NAME);
+        List<Item> listItem = (List<Item>) request.getSession().getAttribute(Welcome.ATTRIBUTE_All_CATEGORY);
+
+        Item rubric = null;
+        for(Item item:listItem){
+            if(item.getName().equals(rubricName)){
+                rubric = item;
+            }
+        }
+
+        Book book = new Book(idBook,bookName,description,rubric,author,pages,price,amount);
         OracleDataAccess.getInstance().updateBook(book);
 
         ArrayList books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);

@@ -23,8 +23,8 @@ public class UpdateOrder implements GeneralProcess {
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
         int amount = Integer.valueOf(request.getParameter(UpdateBook.BOOK_AMOUNT));
-        int order =(Integer) request.getSession().getAttribute(UPDATE_ORDER_ID);
-        int book = (Integer) request.getSession().getAttribute(UPDATE_BOOK_ID);
+        int order =Integer.valueOf(request.getParameter(UPDATE_ORDER_ID));
+        int book = Integer.valueOf(request.getParameter(UPDATE_BOOK_ID));
 
         Customer customer = (Customer) request.getSession().getAttribute(LoginUser.ATTRIBUTE_CUSTOMER);
         OracleDataAccess.getInstance().updateBookOfOrder(order,book,amount);
@@ -35,8 +35,7 @@ public class UpdateOrder implements GeneralProcess {
         } else {
             orders = OracleDataAccess.getInstance().getOrderByIdCustomer(customer.getId());
         }
-
-        request.getSession().setAttribute("listOfAllOrders", orders);
+        request.getSession().setAttribute("listOfUpAllOrders", orders);
         Commands.forward("/showProfile.jsp", request, response);
     }
 }

@@ -53,6 +53,8 @@ public class Commands {
         map.put(ACTION_ADD_BOOK,new AddBook());
         map.put(ACTION_DELETE_ORDER,new DeleteOrder());
         map.put(ACTION_UPDATE_ORDER,new UpdateOrder());
+        map.put(ACTION_ADD_RUBRIC,new AddItem());
+        map.put(ACTION_DELETE_ITEM,new DeleteItem());
     }
 
     public static void forward(String url, HttpServletRequest request, HttpServletResponse response) {
@@ -78,11 +80,12 @@ public class Commands {
     public static final String ACTION_ADD_BOOK        = "addBook";
     public static final String ACTION_DELETE_ORDER    = "deleteOrder";
     public static final String ACTION_UPDATE_ORDER    = "updateOrder";
-    public static final String ACTION_EDIT_BOOK       = "editBook";
+    public static final String ACTION_DELETE_ITEM       = "deleteItem";
     public static final String ACTION_UN_LOGIN        = "unLogin";
 
     public static final String ACTION_VIEW_LIST_BOOKS  = "viewListBooks";
     public static       int    AMOUNT_OF_BOOKS_ON_LIST     = 6;             // when session starts it equals 6 and after each
     public static final int    START_OR_PLUS_BOOKS_TO_LIST = 6;             // request + 6 in ViewListBooks.java
     public static final String ACTION_LOGIN_USER       = "loginUser";
+    public static final String ACTION_ADD_RUBRIC      =  "addRubric";
 }

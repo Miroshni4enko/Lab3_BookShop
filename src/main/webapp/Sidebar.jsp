@@ -13,7 +13,16 @@
     <p><a href="<%= "MainServlet?action=" + Commands.ACTION_VIEW_LIST_BOOKS+
             "&" + ViewListBooks.ID_RUBRIC + "=" + ViewListBooks.ID_RUBRIC_ALL%>">
         Category:</a>
-        <%
+        <div >
+        <%String login = (String) request.getSession().getAttribute(LoginUser.ATTRIBUTE_LOGIN);%>
+        <%if(login!=null && login.equals("Admin")){%>
+        <a href="#" id="go">&nbsp&nbsp&nbspADD&nbsp&nbsp&nbsp</a>
+        <%@include file="AddItem.jsp"%>
+        <a href="#" id="del">REMOVE</a>
+        <%@include file="DeleteItem.jsp"%>
+        <%}%>
+        </div>
+<%
         ArrayList<Item> section = (ArrayList<Item>) request.getSession().getAttribute(Welcome.ATTRIBUTE_SECTION);
         HashMap<Item, ArrayList<Item>> listRubric = (HashMap) request.getSession().getAttribute(Welcome.ATTRIBUTE_CATEGORY);
 

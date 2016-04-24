@@ -24,13 +24,14 @@ public class AddBook implements  GeneralProcess{
         String authorSurname =request.getParameter(UpdateBook.BOOK_AUTHOR_SURNAME);
         String authorName = request.getParameter(UpdateBook.BOOK_AUTHOR_NAME);
         List<Author>  listAuthor=  OracleDataAccess.getInstance().getAllAuthor();
+        System.out.println(authorName + authorSurname);
 
         Author author = null;
+
         for(Author auth:listAuthor){
-            if( auth.getSurname().equals(authorSurname)&&auth.getName().equals(authorName)){
+            if(auth.getName() != null && auth.getSurname().equals(authorSurname)&&auth.getName().equals(authorName)){
                 author = auth;
             }
-
         }
 
         if(author == null) {
@@ -40,7 +41,7 @@ public class AddBook implements  GeneralProcess{
             OracleDataAccess.getInstance().createAuthor(author);
             listAuthor = OracleDataAccess.getInstance().getAllAuthor();
             for(Author auth:listAuthor){
-                if( auth.getSurname().equals(authorSurname)&&auth.getName().equals(authorName)){
+                if(auth.getName() != null&& auth.getSurname().equals(authorSurname)&&auth.getName().equals(authorName)){
                     author = auth;
                 }
             }
