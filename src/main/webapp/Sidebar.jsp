@@ -10,7 +10,11 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="sidebar">
-    <p><a href="<%= "MainServlet?action=" + Commands.ACTION_VIEW_LIST_BOOKS+
+    <p>
+    <form class="find_input" method="post" action="">
+        <input class="find_input" type="text" name = ""placeholder="search book" required />
+    </form>
+        <a href="<%= "MainServlet?action=" + Commands.ACTION_VIEW_LIST_BOOKS+
             "&" + ViewListBooks.ID_RUBRIC + "=" + ViewListBooks.RUBRIC_ALL%>">
         Category:</a>
         <div >

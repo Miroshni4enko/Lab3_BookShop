@@ -357,3 +357,4 @@ th{
     text-align: center;
     border:0px;
 }
+.find_input { width: 130px; margin: 0; padding: 2px 5px ; border: 1px solid #3D9970; outline: none; font-size: 14px; }
