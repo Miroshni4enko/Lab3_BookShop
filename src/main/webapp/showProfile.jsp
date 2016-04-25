@@ -22,10 +22,10 @@
 <body>
 <jsp:include page="Head.jsp" />
 <jsp:include page="Menu.jsp" />
-<%List<String> list =null; int i = 0;%>
+<%List<String> list = null; int i = 0;%>
 <% Customer cus  = (Customer) request.getSession().getAttribute("customer");
     i =0;
-    list = new ArrayList<String> ();
+    list = new ArrayList<> ();
 if(cus==null){
     list.add(" ");
     list.add("Registration");

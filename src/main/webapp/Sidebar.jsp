@@ -11,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="sidebar">
     <p><a href="<%= "MainServlet?action=" + Commands.ACTION_VIEW_LIST_BOOKS+
-            "&" + ViewListBooks.ID_RUBRIC + "=" + ViewListBooks.ID_RUBRIC_ALL%>">
+            "&" + ViewListBooks.ID_RUBRIC + "=" + ViewListBooks.RUBRIC_ALL%>">
         Category:</a>
         <div >
         <%String login = (String) request.getSession().getAttribute(LoginUser.ATTRIBUTE_LOGIN);%>

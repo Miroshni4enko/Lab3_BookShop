@@ -42,7 +42,7 @@ public class Welcome implements GeneralProcess{
         List<Item> allRubric = OracleDataAccess.getInstance().getAllRubric();
         request.getSession().setAttribute(ATTRIBUTE_All_CATEGORY, allRubric);
 
-        request.getSession().setAttribute(ViewListBooks.ATTRIBUTE_VIEW_LIST, ViewListBooks.ID_RUBRIC_ALL);
+        request.getSession().setAttribute(ViewListBooks.ATTRIBUTE_VIEW_LIST, ViewListBooks.RUBRIC_ALL);
         //request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, "false");
 
         Commands.forward("/index.jsp", request, response);

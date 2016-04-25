@@ -18,7 +18,6 @@ import java.util.List;
  */
  public class LoginUser implements GeneralProcess {
 
-     public final static String ATTRIBUTE_START_OF_LOGIN = "false";
      public final static String ATTRIBUTE_CUSTOMER       = "customer";
      public final static String ATTRIBUTE_LOGIN          = "login";
      public final static String NAME_LOGIN_INPUT         = "nameLogin";
