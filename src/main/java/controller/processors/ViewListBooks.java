@@ -17,63 +17,71 @@ import java.util.ArrayList;
 public class ViewListBooks implements GeneralProcess {
 
     public static final String ATTRIBUTE_LIST_OF_ALL_BOOKS = "listOfAllBooks";      //list with books
-    public final static String ATTRIBUTE_ACTION_VIEW_LIST  = "attribute_list_books";// action for list: all, search, id
+    public final static String ACTION_VIEW_LIST_ATTRIBUTE  = "attribute_list_books";// action for list: all, search, id
+    public final static String PARAMETER_ACTION_FOR_LIST_ATTRIBUTE = "parameterForList_action";
 
-    
-    public final static String ID_RUBRIC      = "idRubric";
-    public final static String RUBRIC_ALL     = "all";
-
-    public static final String ATTRIBUTE_NAME_FOR_SEARCH = "nameForSearch";
-    public final static String RUBRIC_SEARCH  = "search";
-    public final static String ID_SEARCH_BOOK = "searchBook";
+    public final static String NAME_ACTION_FOR_ALL    = "actionAll";
+    public final static String NAME_ACTION_FOR_RUBRIC = "actionRubric";
+    public final static String NAME_ACTION_FOR_SEARCH = "actionSearch";
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException {
 
-        String requestIdRubric = request.getParameter(ID_RUBRIC);
-        Integer idRubric = null;
-        String search = null;
+        String requestAction = request.getParameter(ACTION_VIEW_LIST_ATTRIBUTE);
+        Integer idRubric;
+        String nameForSearch;
+        ArrayList books = null;
 
-        if (requestIdRubric != null) {
-            if (requestIdRubric.equals(RUBRIC_SEARCH)) {
-                request.getSession().setAttribute(ATTRIBUTE_ACTION_VIEW_LIST, RUBRIC_SEARCH);
-                search = request.getParameter(ID_SEARCH_BOOK);
-                request.getSession().setAttribute(ATTRIBUTE_NAME_FOR_SEARCH, search);
-            } else {
-                if (requestIdRubric.equals(RUBRIC_ALL)) {
-                    request.getSession().setAttribute(ATTRIBUTE_ACTION_VIEW_LIST, RUBRIC_ALL);
-                } else {
+        if (requestAction != null) {
+            switch (requestAction) {
+                case NAME_ACTION_FOR_ALL:
+                    request.getSession().setAttribute(ACTION_VIEW_LIST_ATTRIBUTE, NAME_ACTION_FOR_ALL);
+                    books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
+                    break;
+                case NAME_ACTION_FOR_RUBRIC:
                     try {
-                        idRubric = Integer.valueOf(requestIdRubric);
-                        request.getSession().setAttribute(ATTRIBUTE_ACTION_VIEW_LIST, idRubric.toString());
+                        idRubric = Integer.valueOf(request.getParameter(PARAMETER_ACTION_FOR_LIST_ATTRIBUTE));
+                        request.getSession().setAttribute(PARAMETER_ACTION_FOR_LIST_ATTRIBUTE, idRubric);
+                        books = (ArrayList) OracleDataAccess.getInstance().getAllBooksByRubric(idRubric);
                     } catch (Exception e) {
-                        idRubric = null;
+                        request.getSession().setAttribute(ACTION_VIEW_LIST_ATTRIBUTE, NAME_ACTION_FOR_ALL);
+                        books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
                     }
-                }
+                    break;
+                case NAME_ACTION_FOR_SEARCH:
+                    request.getSession().setAttribute(ACTION_VIEW_LIST_ATTRIBUTE, NAME_ACTION_FOR_SEARCH);
+                    nameForSearch = request.getParameter(PARAMETER_ACTION_FOR_LIST_ATTRIBUTE);
+                    System.out.println("d2222222222222222 "+ nameForSearch);
+                    request.getSession().setAttribute(PARAMETER_ACTION_FOR_LIST_ATTRIBUTE, nameForSearch);
+                    books = (ArrayList) OracleDataAccess.getInstance().getBooksByName(nameForSearch);
+                    System.out.println("fff"+books.toString());
+                    break;
+                default:
+                    request.getSession().setAttribute(ACTION_VIEW_LIST_ATTRIBUTE, NAME_ACTION_FOR_ALL);
+                    books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
+                    break;
             }
-
             Commands.AMOUNT_OF_BOOKS_ON_LIST = Commands.START_OR_PLUS_BOOKS_TO_LIST;
         } else {
-            String listBooks = (String) request.getSession().getAttribute(ATTRIBUTE_ACTION_VIEW_LIST);
-            if (!listBooks.equals(RUBRIC_ALL)) {
-                if (listBooks.equals(RUBRIC_SEARCH)) {
-                    search = (String) request.getSession().getAttribute(ATTRIBUTE_NAME_FOR_SEARCH);
-                } else {
-                    idRubric = Integer.valueOf(listBooks);
-                }
+            requestAction = (String) request.getSession().getAttribute(ACTION_VIEW_LIST_ATTRIBUTE);
+            switch (requestAction) {
+                case NAME_ACTION_FOR_ALL:
+                    Commands.AMOUNT_OF_BOOKS_ON_LIST += Commands.START_OR_PLUS_BOOKS_TO_LIST;
+                    books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
+                    break;
+                case NAME_ACTION_FOR_RUBRIC:
+                    idRubric = (Integer) request.getSession().getAttribute(PARAMETER_ACTION_FOR_LIST_ATTRIBUTE);
+                    books = (ArrayList) OracleDataAccess.getInstance().getAllBooksByRubric(idRubric);
+                    break;
+                case NAME_ACTION_FOR_SEARCH:
+                    nameForSearch = (String) request.getSession().getAttribute(PARAMETER_ACTION_FOR_LIST_ATTRIBUTE);
+                    books = (ArrayList) OracleDataAccess.getInstance().getBooksByName(nameForSearch);
+                    break;
+                default:
+                    books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
+                    Commands.AMOUNT_OF_BOOKS_ON_LIST += Commands.START_OR_PLUS_BOOKS_TO_LIST;
+                    break;
             }
 
-            Commands.AMOUNT_OF_BOOKS_ON_LIST += Commands.START_OR_PLUS_BOOKS_TO_LIST;
-        }
-
-        ArrayList books;
-        if (search != null) {
-            books = (ArrayList) OracleDataAccess.getInstance().getBooksByName(search);
-        } else {
-            if (idRubric != null) {
-                books = (ArrayList) OracleDataAccess.getInstance().getAllBooksByRubric(idRubric);
-            } else {
-                books = (ArrayList) OracleDataAccess.getInstance().getAmountOfBooks(Commands.AMOUNT_OF_BOOKS_ON_LIST);
-            }
         }
 
         request.getSession().setAttribute(ATTRIBUTE_LIST_OF_ALL_BOOKS, books);

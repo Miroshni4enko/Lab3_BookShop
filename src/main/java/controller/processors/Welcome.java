@@ -31,7 +31,7 @@ public class Welcome implements GeneralProcess{
         ArrayList<Item> sectionAll = (ArrayList<Item>) OracleDataAccess.getInstance().getAllSection();
         HashMap<Item, ArrayList<Item>> listRubric = new HashMap<Item, ArrayList<Item>>();
 
-        for(int i = 0; i <= sectionAll.size() - 1; i++){
+        for (int i = 0; i <= sectionAll.size() - 1; i++){
             ArrayList<Item> rubric = (ArrayList<Item>) OracleDataAccess.getInstance().getRubricBySection(sectionAll.get(i).getId());
             listRubric.put(sectionAll.get(i), rubric);
         }
@@ -42,8 +42,7 @@ public class Welcome implements GeneralProcess{
         List<Item> allRubric = OracleDataAccess.getInstance().getAllRubric();
         request.getSession().setAttribute(ATTRIBUTE_All_CATEGORY, allRubric);
 
-        request.getSession().setAttribute(ViewListBooks.ATTRIBUTE_VIEW_LIST, ViewListBooks.RUBRIC_ALL);
-        //request.getSession().setAttribute(LoginUser.ATTRIBUTE_LOGIN, "false");
+        request.getSession().setAttribute(ViewListBooks.ACTION_VIEW_LIST_ATTRIBUTE, ViewListBooks.NAME_ACTION_FOR_ALL);
 
         Commands.forward("/index.jsp", request, response);
     }

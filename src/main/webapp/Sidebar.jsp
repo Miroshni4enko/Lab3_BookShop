@@ -11,11 +11,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="sidebar">
     <p>
-    <form class="find_input" method="post" action="">
-        <input class="find_input" type="text" name = ""placeholder="search book" required />
+    <form class="find_input" method="POST" action="<%= "MainServlet?action=" + Commands.ACTION_VIEW_LIST_BOOKS +
+                            "&" + ViewListBooks.ACTION_VIEW_LIST_ATTRIBUTE + "=" + ViewListBooks.NAME_ACTION_FOR_SEARCH%>">
+        <input class = "find_input" type = "text" name = "<%=ViewListBooks.PARAMETER_ACTION_FOR_LIST_ATTRIBUTE%>" placeholder="search book" required />
     </form>
-        <a href="<%= "MainServlet?action=" + Commands.ACTION_VIEW_LIST_BOOKS+
-            "&" + ViewListBooks.ID_RUBRIC + "=" + ViewListBooks.RUBRIC_ALL%>">
+        <a href="<%= "MainServlet?action=" + Commands.ACTION_VIEW_LIST_BOOKS +
+            "&" + ViewListBooks.ACTION_VIEW_LIST_ATTRIBUTE + "=" + ViewListBooks.NAME_ACTION_FOR_ALL%>">
         Category:</a>
         <div >
         <%String login = (String) request.getSession().getAttribute(LoginUser.ATTRIBUTE_LOGIN);%>
@@ -35,7 +36,8 @@
                 <ul>
                     <% for (int i = 0; i <= listRubric.get(it).size() - 1 ; i ++)  { %>
                     <li><a href="<%= "MainServlet?action=" + Commands.ACTION_VIEW_LIST_BOOKS +
-                            "&" + ViewListBooks.ID_RUBRIC + "=" + listRubric.get(it).get(i).getId()%>">
+                            "&" + ViewListBooks.ACTION_VIEW_LIST_ATTRIBUTE + "=" + ViewListBooks.NAME_ACTION_FOR_RUBRIC +
+                            "&" + ViewListBooks.PARAMETER_ACTION_FOR_LIST_ATTRIBUTE + "=" +listRubric.get(it).get(i).getId()%>">
                         <%= listRubric.get(it).get(i).getName()%></a>
                     </li>
                     <%}%>
