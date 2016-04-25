@@ -38,7 +38,7 @@ public class OracleDataAccess implements ModelDataBase{
         ht.put(Context.PROVIDER_URL, "t3://localhost:7001");
         try {
             ctx = new InitialContext(ht);
-            ds = (javax.sql.DataSource) ctx.lookup("myJNDIDBName"); // change your JNDI_name
+            ds = (javax.sql.DataSource) ctx.lookup("books"); // change your JNDI_name
         } catch (NamingException e) {
             LOG.error("InitialContext or DataSource error", e);
         }finally {
@@ -1150,6 +1150,25 @@ public class OracleDataAccess implements ModelDataBase{
             disconnect(connection, result, statement);
         }
         return section;
+    }
+    public List<Book> getBooksByName(String name)throws DataBaseException{
+        Connection connection = getConnection();
+        ResultSet result = null;
+        PreparedStatement statement = null;
+        List<Book> listBooks = new ArrayList<Book>();
+        try {
+            statement = connection.prepareStatement(SqlScripts.SELECT_BOOK_BY_NAME);
+            statement.setString(1, name);
+            result = statement.executeQuery();
+            while (result.next()) {
+                listBooks.add(getBook(result));
+            }
+        } catch (Exception e) {
+            throw new DataBaseException("Exception with data from database", e);
+        } finally {
+            disconnect(connection, result, statement);
+        }
+        return listBooks;
     }
 }
 

@@ -71,4 +71,8 @@ public class SqlScripts {
             "        WHERE i.TYPE = 0 AND i.ID_PROPERTIES = p.ID_BOOK AND p.ID_AUTHOR = a.ID_AUTHOR AND i.PARENT_ID = rub.ID_ITEM AND rub.TYPE = 1)a\n" +
             "  where ROWNUM <=  ?)\n" +
             "where rnum  >= ?";
+
+    public static final String SELECT_BOOK_BY_NAME = "select *\n" +
+            "from Item\n" +
+            "WHERE type = 0 and name LIKE '?%'";
 }
