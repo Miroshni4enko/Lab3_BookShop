@@ -72,5 +72,8 @@ public class SqlScripts {
             "  where ROWNUM <=  ?)\n" +
             "where rnum  >= ?";
 
-    public static final String SELECT_BOOK_BY_NAME = "select * from Item WHERE type = 0 and name LIKE '%?%'";
+    public static final String SELECT_BOOK_BY_NAME = "SELECT i.ID_ITEM,i.NAME,rub.ID_ITEM AS \"RUBRIC\",a.ID_AUTHOR AS\"AUTHOR\",\n" +
+            "            p.PAGES,p.PRICE,p.AMOUNT,i.DESCRIPTION FROM ITEM i,PROPERTIES p,AUTHOR a," +
+            "            ITEM rub WHERE i.TYPE =0 AND i.ID_PROPERTIES=p.ID_BOOK " +
+            "            AND p.ID_AUTHOR=a.ID_AUTHOR AND i.PARENT_ID=rub.ID_ITEM AND rub.TYPE=1 AND i.name LIKE ? ESCAPE '!'";
 }

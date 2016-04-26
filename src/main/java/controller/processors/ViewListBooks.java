@@ -50,10 +50,8 @@ public class ViewListBooks implements GeneralProcess {
                 case NAME_ACTION_FOR_SEARCH:
                     request.getSession().setAttribute(ACTION_VIEW_LIST_ATTRIBUTE, NAME_ACTION_FOR_SEARCH);
                     nameForSearch = request.getParameter(PARAMETER_ACTION_FOR_LIST_ATTRIBUTE);
-                    System.out.println("d2222222222222222 "+ nameForSearch);
                     request.getSession().setAttribute(PARAMETER_ACTION_FOR_LIST_ATTRIBUTE, nameForSearch);
                     books = (ArrayList) OracleDataAccess.getInstance().getBooksByName(nameForSearch);
-                    System.out.println("fff"+books.toString());
                     break;
                 default:
                     request.getSession().setAttribute(ACTION_VIEW_LIST_ATTRIBUTE, NAME_ACTION_FOR_ALL);
