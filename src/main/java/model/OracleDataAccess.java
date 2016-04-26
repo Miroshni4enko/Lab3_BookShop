@@ -1156,6 +1156,11 @@ public class OracleDataAccess implements ModelDataBase{
         ResultSet result = null;
         PreparedStatement statement = null;
         List<Book> listBooks = new ArrayList<Book>();
+        name = name
+                .replace("!", "!!")
+                .replace("%", "!%")
+                .replace("_", "!_")
+                .replace("[", "![");
         try {
             statement = connection.prepareStatement(SqlScripts.SELECT_BOOK_BY_NAME);
             statement.setString(1,name +"%");
