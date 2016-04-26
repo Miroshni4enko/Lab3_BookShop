@@ -120,7 +120,9 @@
             <br>
         <%}%>
             <center>
-                <% if( !(Commands.START_OR_PLUS_BOOKS_TO_LIST > listOfAllBooks.size()) ) {%>
+                <% if( !(Commands.START_OR_PLUS_BOOKS_TO_LIST > listOfAllBooks.size() ||
+                        request.getSession().getAttribute(ViewListBooks.ATTRIBUTE_LIST_OF_ALL_BOOKS)
+                                .equals(ViewListBooks.NAME_ACTION_FOR_ALL)) ) {%>
                     <a href="MainServlet?action=viewListBooks">view more books</a>
                 <%}%>
             </center>

@@ -64,8 +64,8 @@
         <version>12.2.1-0-0</version>
         <configuration>
           <adminurl>t3://localhost:7001</adminurl>
-          <user></user>
-          <password></password>
+          <user>uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu</user>
+          <password>pppppppppppppppppppppppppppppppppppppppppppppppppp</password>
           <name>WLSLocale</name>
           <remote>true</remote>
           <upload>true</upload>
@@ -113,6 +113,14 @@
         <version>2.3</version>
         <configuration>
           <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
 
