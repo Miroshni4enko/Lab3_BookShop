@@ -38,7 +38,7 @@ public class OracleDataAccess implements ModelDataBase{
         ht.put(Context.PROVIDER_URL, "t3://localhost:7001");
         try {
             ctx = new InitialContext(ht);
-            ds = (javax.sql.DataSource) ctx.lookup("books"); // change your JNDI_name
+            ds = (javax.sql.DataSource) ctx.lookup("myJNDIDBName"); // change your JNDI_name
         } catch (NamingException e) {
             LOG.error("InitialContext or DataSource error", e);
         }finally {
@@ -1152,21 +1152,22 @@ public class OracleDataAccess implements ModelDataBase{
         return section;
     }
     public List<Book> getBooksByName(String name)throws DataBaseException{
+        System.out.println("-----------------------------------------------------");
         Connection connection = getConnection();
         ResultSet result = null;
         PreparedStatement statement = null;
         List<Book> listBooks = new ArrayList<Book>();
-        name = name
-                .replace("!", "!!")
+        name = name.replace("!", "!!")
                 .replace("%", "!%")
                 .replace("_", "!_")
                 .replace("[", "![");
         try {
             statement = connection.prepareStatement(SqlScripts.SELECT_BOOK_BY_NAME);
-            statement.setString(1,name +"%");
+            statement.setString(1, "%" + name + "%");
             result = statement.executeQuery();
             while (result.next()) {
                 Book book = getBook(result);
+                System.out.println(book.toString());
                 listBooks.add(book);
             }
 

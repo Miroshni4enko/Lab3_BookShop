@@ -72,8 +72,15 @@ public class SqlScripts {
             "  where ROWNUM <=  ?)\n" +
             "where rnum  >= ?";
 
-    public static final String SELECT_BOOK_BY_NAME = "SELECT i.ID_ITEM,i.NAME,rub.ID_ITEM AS \"RUBRIC\",a.ID_AUTHOR AS\"AUTHOR\",\n" +
-            "            p.PAGES,p.PRICE,p.AMOUNT,i.DESCRIPTION FROM ITEM i,PROPERTIES p,AUTHOR a," +
-            "            ITEM rub WHERE i.TYPE =0 AND i.ID_PROPERTIES=p.ID_BOOK " +
-            "            AND p.ID_AUTHOR=a.ID_AUTHOR AND i.PARENT_ID=rub.ID_ITEM AND rub.TYPE=1 AND i.name LIKE ? ESCAPE '!'";
+    public static final String SELECT_BOOK_BY_NAME =
+            "SELECT i.ID_ITEM, i.NAME, rub.ID_ITEM AS \"RUBRIC\", a.ID_AUTHOR AS\"AUTHOR\",\n" +
+            "           p.PAGES, p.PRICE, p.AMOUNT, i.DESCRIPTION\n" +
+            "FROM ITEM i, PROPERTIES p, AUTHOR a, ITEM rub\n" +
+            "WHERE i.TYPE = 0\n" +
+            "      AND i.ID_PROPERTIES = p.ID_BOOK\n" +
+            "      AND p.ID_AUTHOR = a.ID_AUTHOR\n" +
+            "      AND i.PARENT_ID = rub.ID_ITEM\n" +
+            "      AND rub.TYPE = 1\n" +
+            "      AND lower(i.name || i.DESCRIPTION || a.NAME || a.SURNAME) like lower(?) ESCAPE '!'";
+
 }
