@@ -1152,7 +1152,6 @@ public class OracleDataAccess implements ModelDataBase{
         return section;
     }
     public List<Book> getBooksByName(String name)throws DataBaseException{
-        System.out.println("-----------------------------------------------------");
         Connection connection = getConnection();
         ResultSet result = null;
         PreparedStatement statement = null;
