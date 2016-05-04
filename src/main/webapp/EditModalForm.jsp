@@ -70,11 +70,13 @@
             <p>
             <div>
                 <select id = "<%=UpdateBook.BOOK_RUBRIC_NAME + "ID"%>" name="<%=UpdateBook.BOOK_RUBRIC_NAME%>" size="1" required>
-                    <option disabled selected></option>
+                    <option selected> <%=isEdit?book.getParent().getName():" " %></option>
                     <% List<Item> rubrics = (List<Item>) request.getSession().getAttribute(Welcome.ATTRIBUTE_All_CATEGORY);
-                        for(Item rubric:rubrics){%>
-                    <option  ><%=rubric.getName()%></option>
-                    <%}%>
+                        for(Item rubric:rubrics){
+                            if(!rubric.equals(book.getParent())){%>
+                            <option  ><%=rubric.getName()%></option>
+                            <%}
+                    }%>
                 </select>
             </div>
             </p>
