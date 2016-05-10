@@ -2,11 +2,13 @@ package controller.processors;
 
 import Servlet.Commands;
 import exception.DataBaseException;
+import model.Book;
 import model.Item;
 import model.OracleDataAccess;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,15 +30,25 @@ public class DeleteItem implements GeneralProcess {
             }
         }
         if(item!=null) {
-            OracleDataAccess.getInstance().removeSection(item.getId());
-        }else{
+            ArrayList<Item> rubric = (ArrayList<Item>) OracleDataAccess.getInstance().getRubricBySection(item.getId());
+            if(rubric.size()==0) {
+                OracleDataAccess.getInstance().removeSection(item.getId());
+            }else {
+                request.getSession().setAttribute("Message","Section is don't empty. Please delete item in section.");
+            }
+        }else {
             for (Item index : listRubrics) {
                 if (index.getName().equals(nameItem)) {
                     item = index;
                     break;
                 }
             }
-            OracleDataAccess.getInstance().removeRubric(item.getId());
+            ArrayList<Book> books = (ArrayList<Book>) OracleDataAccess.getInstance().getAllBooksByRubric(item.getId());
+            if(books.size()==0) {
+                OracleDataAccess.getInstance().removeRubric(item.getId());
+            }else {
+                request.getSession().setAttribute("Message", "Rubric is don't empty. Please delete item in rubric.");
+            }
         }
         Commands.forward("/MainServlet?action=" + Commands.ACTION_WELCOME, request, response);
 

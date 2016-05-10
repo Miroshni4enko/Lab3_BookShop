@@ -24,15 +24,20 @@
             <p>
             <div>
                 <select id = "<%=AddItem.ITEM_NAME + "ID"%>" name="<%=AddItem.ITEM_NAME%>" size="1" required>
-                    <option></option>
-                    <% List<Item> rubrics = (List<Item>) request.getSession().getAttribute(Welcome.ATTRIBUTE_SECTION);
-                        for(Item rubric:rubrics){%>
-                    <option ><%=rubric.getName()%></option>
+                    <option disabled selected></option>
+                    <% List<Item> rubrics = (List<Item>) request.getSession().getAttribute(Welcome.ATTRIBUTE_SECTION);%>
+                    <optgroup label="Sections">
+                        <%for(Item rubric:rubrics){%>
+                        <option ><%=rubric.getName()%></option>
                     <%}%>
-                    <%  rubrics = (List<Item>) request.getSession().getAttribute(Welcome.ATTRIBUTE_All_CATEGORY);
-                        for(Item rubric:rubrics){%>
-                    <option ><%=rubric.getName()%></option>
+                    </optgroup>
+                    <%  rubrics = (List<Item>) request.getSession().getAttribute(Welcome.ATTRIBUTE_All_CATEGORY);%>
+                    <optgroup label="Rubrics:">
+                        <%for(Item rubric:rubrics){%>
+                        <option ><%=rubric.getName()%></option>
+
                     <%}%>
+                            </optgroup>
                 </select>
             </div>
             </p>

@@ -38,12 +38,17 @@
             <p>
             <div>
                 <select id = "<%=AddItem.ITEM_SECTION_NAME + "ID"%>" name="<%=AddItem.ITEM_SECTION_NAME%>" size="1" required>
-                    <option disabled selected value></option>
-                    <option>Create section</option>
-                    <% List<Item> rubricsL = (List<Item>) request.getSession().getAttribute(Welcome.ATTRIBUTE_SECTION);
-                        for(Item rubric:rubricsL){%>
-                    <option ><%=rubric.getName()%></option>
+                    <option disabled selected></option>
+                    <optgroup label="Add new section">
+                        <option>Create section</option>
+                    </optgroup>
+                    <% List<Item> sections = (List<Item>) request.getSession().getAttribute(Welcome.ATTRIBUTE_SECTION);%>
+                        <optgroup label="Sections:">
+                        <%for(Item section:sections){%>
+
+                    <option ><%=section.getName()%></option>
                     <%}%>
+                        </optgroup>
                 </select>
             </div>
             </p>
