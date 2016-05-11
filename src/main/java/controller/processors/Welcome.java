@@ -22,6 +22,7 @@ public class Welcome implements GeneralProcess{
     public static final String ATTRIBUTE_SECTION   = "Section";
     public static final String ATTRIBUTE_CATEGORY  = "Category";
     public static final String ATTRIBUTE_All_CATEGORY  = "AllCategory";
+    public static final String ATTRIBUTE_MESSAGE   = "Message";
 
     public void process(HttpServletRequest request, HttpServletResponse response) throws DataBaseException{
 

@@ -39,7 +39,7 @@
         } catch (Exception e) {
             listOfAllBooks = null;
         }
-        String mess = (String) request.getSession().getAttribute("Message");
+        String mess = (String) request.getSession().getAttribute(Welcome.ATTRIBUTE_MESSAGE);
         if(mess == null) {
             if (listOfAllBooks != null || listOfAllBooks.size() == 0) {
                 for (Book book : listOfAllBooks) {%>
@@ -134,7 +134,7 @@
                 <br>
             <%}%>
         <%} else {
-            request.getSession().setAttribute("Message", null); %>
+            request.getSession().setAttribute(Welcome.ATTRIBUTE_MESSAGE, null); %>
             <%= mess %>
         <% }%>
     <br>

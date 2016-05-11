@@ -34,7 +34,7 @@ public class DeleteItem implements GeneralProcess {
             if(rubric.size()==0) {
                 OracleDataAccess.getInstance().removeSection(item.getId());
             }else {
-                request.getSession().setAttribute("Message","Section is don't empty. Please delete item in section.");
+                request.getSession().setAttribute(Welcome.ATTRIBUTE_MESSAGE,"Section is don't empty. Please delete item in section.");
             }
         }else {
             for (Item index : listRubrics) {
@@ -47,7 +47,7 @@ public class DeleteItem implements GeneralProcess {
             if(books.size()==0) {
                 OracleDataAccess.getInstance().removeRubric(item.getId());
             }else {
-                request.getSession().setAttribute("Message", "Rubric is don't empty. Please delete item in rubric.");
+                request.getSession().setAttribute(Welcome.ATTRIBUTE_MESSAGE, "Rubric is don't empty. Please delete item in rubric.");
             }
         }
         Commands.forward("/MainServlet?action=" + Commands.ACTION_WELCOME, request, response);
