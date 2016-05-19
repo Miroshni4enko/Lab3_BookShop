@@ -49,7 +49,9 @@ public class SqlScripts {
     public static final String DELETE_CUSTOMER = "DELETE FROM CUSTOMER WHERE ID_CUSTOMER = ?";
     public static final String DELETE_RUBRIC = "DELETE FROM ITEM WHERE ID_ITEM = ? AND TYPE=1";
     public static final String DELETE_SECTION = "DELETE FROM ITEM WHERE ID_ITEM = ? AND TYPE=2";
-    public static final String DELETE_BOOK = "DELETE ITEM WHERE ID_ITEM = ? AND TYPE =0";
+    //public static final String DELETE_BOOK = "DELETE ITEM WHERE ID_ITEM = ? AND TYPE =0";
+    public static final String DELETE_BOOK =  "{call  DELETEBOOK(?)}";
+
 
     public static final String UPDATE_ITEM = "UPDATE ITEM SET PARENT_ID=?,NAME=?,DESCRIPTION=? WHERE ID_ITEM = ?";
     public static final String UPDATE_BOOK_PROPERTIES = "UPDATE PROPERTIES SET ID_AUTHOR=?,PAGES=?,PRICE=?,AMOUNT=? WHERE ID_BOOK=?";

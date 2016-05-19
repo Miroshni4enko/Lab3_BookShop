@@ -518,3 +518,30 @@ INSERT INTO ORDERS(ID_ORDER,ID_CUSTOMER,DATA) values(id_or,CUSTOMER,DATA_C);
   END;
 
 /
+--------------------------------------------------------
+--  DDL for Procedure DELETEBOOK
+--------------------------------------------------------
+set define off;
+
+CREATE OR REPLACE PROCEDURE "DELETEBOOK"
+(
+Book_id IN NUMBER
+)
+
+IS
+BEGIN
+
+DELETE FROM ORDERS WHERE ID_ORDER=(
+SELECT ID_ORDER
+FROM CONTENR_ORDER
+WHERE CONTENR_ORDER.ID_BOOK=Book_id
+AND ROWNUM=1);
+DELETE FROM ITEM WHERE ID_ITEM=Book_id;
+COMMIT;
+
+EXCEPTION
+WHEN OTHERS THEN
+ROLLBACK;
+RETURN;
+END;
+/
