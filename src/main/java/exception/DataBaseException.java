@@ -19,6 +19,7 @@ public class DataBaseException  extends Exception {
         this.message = message;
         LOG.error(Arrays.toString(e.getStackTrace()).replaceAll(" ", "\t\n"));
     }
+
     @Override
     public String getMessage() {
         return super.getMessage() + "is: " + message;
